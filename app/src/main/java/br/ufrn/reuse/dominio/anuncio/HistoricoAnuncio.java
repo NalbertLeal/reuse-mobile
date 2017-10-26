@@ -34,12 +34,12 @@ public class HistoricoAnuncio{
     private Date dataAlteracao;
 
     /**
-     * Usuário associado ao histórico.
+     * Usuário associado ao histórico. Pode ser nulo.
      */
     private Usuario usuario;
 
     /**
-     * Justificativa do cadastro do histórico.
+     * Justificativa do cadastro do histórico. Pode ser vazia.
      */
     private String justificativa;
 
