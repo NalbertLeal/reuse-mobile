@@ -13,13 +13,18 @@ import br.ufrn.reuse.facade.ReuseFacadeImpl;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    private ReuseFacade reuseFacade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        reuseFacade = new ReuseFacadeImpl();
 
+        Usuario usuario = new Usuario();
+        usuario.setId(1L);
+
+        List<Anuncio> anunciosUsuario = reuseFacade.findAllAnuncios(usuario);
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vitrine);
+        setContentView(R.layout.activity_main);
     }
 }
