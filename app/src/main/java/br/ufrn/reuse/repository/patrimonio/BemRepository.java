@@ -1,8 +1,9 @@
-package br.ufrn.reuse.repository;
+package br.ufrn.reuse.repository.patrimonio;
 
 import br.ufrn.reuse.dominio.patrimonio.Bem;
 import br.ufrn.reuse.remote.BemRemoteService;
-import br.ufrn.reuse.repository.local.BemLocalRepository;
+import br.ufrn.reuse.repository.patrimonio.local.BemLocalRepository;
+import br.ufrn.reuse.utils.SincronizacaoUtils;
 
 /**
  * Classe que representa o repositório de bens do reuse.
@@ -28,7 +29,7 @@ public class BemRepository {
     public Bem findBemById(Long idBem){
         Bem bem = bemLocalRepository.findBemById(idBem);
 
-        if(bem != null && bem.isSincronizado(QUANTIDADE_DIAS_SINCRONIZADO_BEM)){
+        if(bem != null && SincronizacaoUtils.isSincronizado(bem.getDataSincronizacao(),QUANTIDADE_DIAS_SINCRONIZADO_BEM)){
             bem = bemRemote.findBemById(idBem);
         }
 

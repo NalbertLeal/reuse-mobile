@@ -1,4 +1,4 @@
-package br.ufrn.reuse.repository.local;
+package br.ufrn.reuse.repository.patrimonio.local;
 
 import br.ufrn.reuse.dominio.patrimonio.Bem;
 

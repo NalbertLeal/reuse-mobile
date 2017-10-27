@@ -35,16 +35,6 @@ public class Bem {
      */
     private Date dataSincronizacao;
 
-    /**
-     * Retorna se o registro está sincronizado no banco local.
-     *
-     * @param quantidadeDiasSincronizadoBem
-     * @return
-     */
-    public boolean isSincronizado(int quantidadeDiasSincronizadoBem) {
-        return SincronizacaoUtils.isSincronizado(dataSincronizacao,quantidadeDiasSincronizadoBem);
-    }
-
     //GETTERS && SETTERS
 
     public Long getId() {
