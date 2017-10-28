@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">reuse</string>
+    <string name="app_name">ReUse</string>
     <string name="title_activity_vitrine">Vitrine</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
