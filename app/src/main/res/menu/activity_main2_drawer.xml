@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_anunciar"
+            android:title="Quero Anunciar" />
+        <item
+            android:id="@+id/nav_interesses"
+            android:title="Meus interesses" />
+        <item
+            android:id="@+id/nav_anuncios"
+            android:title="Meus anuncios" />
+    </group>
+
+
+</menu>
