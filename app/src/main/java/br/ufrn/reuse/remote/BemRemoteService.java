@@ -3,9 +3,11 @@ package br.ufrn.reuse.remote;
 import br.ufrn.reuse.dominio.patrimonio.Bem;
 
 /**
- * Created by nalbertg on 26/10/17.
+ * Implementação do serviço remoto de bens.
+ *
+ * @author Daniel
+ * @author Nalbert
  */
-
 public class BemRemoteService {
     public Bem findBemById(Long idBem) {
 

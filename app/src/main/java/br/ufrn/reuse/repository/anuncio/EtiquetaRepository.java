@@ -7,7 +7,6 @@ import br.ufrn.reuse.dominio.anuncio.Etiqueta;
 /**
  * Created by Daniel on 10/27/2017.
  */
-
 public class EtiquetaRepository {
     public List<Etiqueta> findAllEtiquetasByAnuncioId(Long id) {
         return null;

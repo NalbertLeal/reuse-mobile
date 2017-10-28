@@ -1,5 +1,7 @@
 package br.ufrn.reuse.repository.patrimonio;
 
+import java.util.concurrent.Future;
+
 import br.ufrn.reuse.dominio.patrimonio.Bem;
 import br.ufrn.reuse.remote.BemRemoteService;
 import br.ufrn.reuse.repository.patrimonio.local.BemLocalRepository;
@@ -31,6 +33,7 @@ public class BemRepository {
 
         if(bem != null && SincronizacaoUtils.isSincronizado(bem.getDataSincronizacao(),QUANTIDADE_DIAS_SINCRONIZADO_BEM)){
             bem = bemRemote.findBemById(idBem);
+            bemLocalRepository.save(bem);
         }
 
         return bem;

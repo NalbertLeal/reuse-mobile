@@ -3,6 +3,8 @@ package br.ufrn.reuse.repository.anuncio;
 import java.util.List;
 
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
+import br.ufrn.reuse.dominio.anuncio.CategoriaAnuncio;
+import br.ufrn.reuse.dominio.anuncio.Etiqueta;
 import br.ufrn.reuse.dominio.comum.Usuario;
 import br.ufrn.reuse.remote.AnuncioRemoteService;
 import br.ufrn.reuse.repository.patrimonio.BemRepository;
@@ -12,33 +14,84 @@ import br.ufrn.reuse.repository.anuncio.local.AnuncioLocalRepository;
 import br.ufrn.reuse.utils.SincronizacaoUtils;
 
 /**
- * Created by nalbertg on 26/10/17.
+ * Implementação do repositório de anúncios.
+ *
+ * @author Daniel
  */
-
 public class AnuncioRepository {
 
+    /**
+     * Quantidade de dias que um registro poderá ser retornado sem efetuar uma consulta ao serviço remoto.
+     */
     public static final int QUANTIDADE_DIAS_SINCRONIZADO_ANUNCIO = 1;
 
+    /**
+     * Dependência do serviço remoto.
+      */
     private AnuncioRemoteService remoteService;
+
+    /**
+     * Dependência do repositório local.
+     */
     private AnuncioLocalRepository localRepository;
 
+    /**
+     * Retorna todos os anúncios do usuário.
+     *
+     * @param usuario o usuário
+     * @return anúncios do usuário
+     */
     public List<Anuncio> findAll(Usuario usuario) {
         return remoteService.findAll(usuario);
     }
 
+    /**
+     * Busca um anúncio pelo id
+     *
+     * @param idAnuncio id do anúncio
+     * @return o anúncio, caso exista
+     */
     public Anuncio findAnuncioById(Long idAnuncio) {
 
         Anuncio anuncio = localRepository.findById(idAnuncio);
 
         if(anuncio != null && SincronizacaoUtils.isSincronizado(anuncio.getDataSincronizacao(), QUANTIDADE_DIAS_SINCRONIZADO_ANUNCIO)){
             anuncio = remoteService.findById(idAnuncio);
+            localRepository.save(anuncio);
         }
 
         return remoteService.findById(idAnuncio);
     }
 
+    /**
+     * Efetua o cadastro de um anúncio no serviço remoto.
+     *
+     * @param anuncio o anúncio a ser cadastrado.
+     * @return o anúncio cadastrado.
+     */
     public Anuncio cadastrar(Anuncio anuncio) {
         return remoteService.cadatrar(anuncio);
     }
 
+    /**
+     * Busca todos os anúncios publicados
+     *
+     * @return todos os anúncios publicados
+     */
+    public List<Anuncio> findAllAnunciosPublicados() {
+        return remoteService.findAllAnunciosPublicados();
+    }
+
+    /**
+     * Efetua a consulta de anúncios publicados pelos filtros.
+     *
+     * @param categoria categoria do anúncio
+     * @param denominacaoBem denominação do bem
+     * @param numeroTombamento número de tombamento
+     * @param etiquetas etiquetas do anúncio
+     * @return Os anúncios publicados que contemplem todos os parâmetros informados.
+     */
+    public List<Anuncio> findAllAnuncios(CategoriaAnuncio categoria, String denominacaoBem, Integer numeroTombamento, List<Etiqueta> etiquetas) {
+        return remoteService.findAllAnuncios(categoria,denominacaoBem,numeroTombamento,etiquetas);
+    }
 }

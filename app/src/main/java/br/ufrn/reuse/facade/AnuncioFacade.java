@@ -3,6 +3,8 @@ package br.ufrn.reuse.facade;
 import java.util.List;
 
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
+import br.ufrn.reuse.dominio.anuncio.CategoriaAnuncio;
+import br.ufrn.reuse.dominio.anuncio.Etiqueta;
 import br.ufrn.reuse.dominio.comum.Usuario;
 
 import br.ufrn.reuse.repository.anuncio.AnuncioRepository;
@@ -18,7 +20,9 @@ import br.ufrn.reuse.repository.comum.UsuarioRepository;
 import br.ufrn.reuse.repository.patrimonio.BemRepository;
 
 /**
- * Created by Daniel on 10/27/2017.
+ * Fachada para o módulo de anúncios.
+ *
+ * @author Daniel
  */
 public class AnuncioFacade {
 
@@ -42,9 +46,7 @@ public class AnuncioFacade {
     public List<Anuncio> findAllAnuncios(Usuario usuario) {
         List<Anuncio> anuncios = anuncioRepository.findAll(usuario);
 
-        for (Anuncio anuncio : anuncios){
-            loadAnuncio(anuncio);
-        }
+        loadAnuncios(anuncios);
 
         return anuncios;
     }
@@ -56,6 +58,31 @@ public class AnuncioFacade {
         loadAnuncio(anuncio);
 
         return anuncio;
+    }
+
+    public List<Anuncio> findAllAnunciosPublicados() {
+        List<Anuncio> anuncios = anuncioRepository.findAllAnunciosPublicados();
+
+        loadAnuncios(anuncios);
+
+        return anuncios;
+    }
+
+    public List<Anuncio> findAllAnuncios(CategoriaAnuncio categoria, String denominacaoBem, Integer numeroTombamento, List<Etiqueta> etiquetas) {
+        return anuncioRepository.findAllAnuncios(categoria,denominacaoBem,numeroTombamento,etiquetas);
+    }
+
+    //Métodos que efetuam o join das informações.
+
+    /**
+     * Carrega as informações de uma lista de anúncios.
+     *
+     * @param anuncios
+     */
+    private void loadAnuncios(List<Anuncio> anuncios) {
+        for(Anuncio anuncio : anuncios){
+            loadAnuncio(anuncio);
+        }
     }
 
     /**
@@ -73,7 +100,7 @@ public class AnuncioFacade {
             anuncio.setHistoricos(historicoAnuncioRepository.findAllHistoricosByAnuncioId(anuncio.getId()));
             anuncio.setEtiquetas(etiquetaRepository.findAllEtiquetasByAnuncioId(anuncio.getId()));
             anuncio.setFotos(fotoRepository.findAllFotosByAnuncioId(anuncio.getId()));
-            anuncio.setCategoria(categoriaRepository.findAllEtiquetasByAnuncioId(anuncio.getId()));
+            anuncio.setCategoria(categoriaRepository.findCategoriaById(anuncio.getCategoria().getIdentificador()));
             anuncio.setUnidade(unidadeRepository.findUnidadeById(anuncio.getUnidade()));
         }
 

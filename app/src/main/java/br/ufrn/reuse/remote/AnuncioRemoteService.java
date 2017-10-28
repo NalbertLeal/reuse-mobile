@@ -4,11 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
+import br.ufrn.reuse.dominio.anuncio.CategoriaAnuncio;
+import br.ufrn.reuse.dominio.anuncio.Etiqueta;
 import br.ufrn.reuse.dominio.comum.Usuario;
 import br.ufrn.reuse.dominio.patrimonio.Bem;
 
 /**
- * Created by nalbertg on 26/10/17.
+ * Implementação do acesso ao serviço remoto
+ *
+ * @author Daniel
+ * @author Nalbert
  */
 public class AnuncioRemoteService {
 
@@ -36,6 +41,14 @@ public class AnuncioRemoteService {
     }
 
     public Anuncio cadatrar(Anuncio anuncio) {
+        return null;
+    }
+
+    public List<Anuncio> findAllAnunciosPublicados() {
+        return null;
+    }
+
+    public List<Anuncio> findAllAnuncios(CategoriaAnuncio categoria, String denominacaoBem, Integer numeroTombamento, List<Etiqueta> etiquetas) {
         return null;
     }
 }
