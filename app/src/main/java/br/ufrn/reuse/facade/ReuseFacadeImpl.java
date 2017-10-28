@@ -21,19 +21,10 @@ import br.ufrn.reuse.repository.comum.UsuarioRepository;
 
 public class ReuseFacadeImpl implements ReuseFacade {
 
-    private AnuncioRepository anuncioRepository;
-    private BemRepository bemRepository;
-    private UsuarioRepository usuarioRepository;
-    private StatusAnuncioRepository statusAnuncioRepository;
-    private InteresseRepository interesseRepository;
-    private HistoricoAnuncioRepository historicoAnuncioRepository;
-    private EtiquetaRepository etiquetaRepository;
-    private FotoRepository fotoRepository;
-    private CategoriaRepository categoriaRepository;
-    private UnidadeRepository unidadeRepository;
+    private AnuncioFacade anuncioFacade;
 
     @Override
     public List<Anuncio> findAllAnuncios(Usuario usuario) {
-        return anuncioRepository.findAll(usuario);
+        return anuncioFacade.findAllAnuncios(usuario);
     }
 }

@@ -30,4 +30,12 @@ public class AnuncioRemoteService {
 
         return anuncios;
     }
+
+    public Anuncio findById(Long idAnuncio) {
+        return null;
+    }
+
+    public Anuncio cadatrar(Anuncio anuncio) {
+        return null;
+    }
 }

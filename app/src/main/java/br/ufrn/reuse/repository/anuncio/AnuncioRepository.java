@@ -9,6 +9,7 @@ import br.ufrn.reuse.repository.patrimonio.BemRepository;
 import br.ufrn.reuse.repository.comum.UnidadeRepository;
 import br.ufrn.reuse.repository.comum.UsuarioRepository;
 import br.ufrn.reuse.repository.anuncio.local.AnuncioLocalRepository;
+import br.ufrn.reuse.utils.SincronizacaoUtils;
 
 /**
  * Created by nalbertg on 26/10/17.
@@ -16,35 +17,28 @@ import br.ufrn.reuse.repository.anuncio.local.AnuncioLocalRepository;
 
 public class AnuncioRepository {
 
+    public static final int QUANTIDADE_DIAS_SINCRONIZADO_ANUNCIO = 1;
+
     private AnuncioRemoteService remoteService;
     private AnuncioLocalRepository localRepository;
-    private AnuncioRepository anuncioRepository;
-    private BemRepository bemRepository;
-    private UsuarioRepository usuarioRepository;
-    private StatusAnuncioRepository statusAnuncioRepository;
-    private InteresseRepository interesseRepository;
-    private HistoricoAnuncioRepository historicoAnuncioRepository;
-    private EtiquetaRepository etiquetaRepository;
-    private FotoRepository fotoRepository;
-    private CategoriaRepository categoriaRepository;
-    private UnidadeRepository unidadeRepository;
 
     public List<Anuncio> findAll(Usuario usuario) {
+        return remoteService.findAll(usuario);
+    }
 
-        List<Anuncio> anuncios = remoteService.findAll(usuario);
+    public Anuncio findAnuncioById(Long idAnuncio) {
 
-        for (Anuncio anuncio : anuncios){
-            anuncio.setBem(bemRepository.findBemById(anuncio.getBem().getId()));
-            anuncio.setUsuario(usuarioRepository.findUsuarioById(anuncio.getUsuario().getId()));
-            anuncio.setStatusAnuncio(statusAnuncioRepository.findStatusAnuncioById(anuncio.getStatusAnuncio().getIdentificador()));
-            anuncio.setInteresses(interesseRepository.findInteressesByIdAnuncio(anuncio.getId()));
-            anuncio.setHistoricos(historicoAnuncioRepository.findAllHistoricosByAnuncioId(anuncio.getId()));
-            anuncio.setEtiquetas(etiquetaRepository.findAllEtiquetasByAnuncioId(anuncio.getId()));
-            anuncio.setFotos(fotoRepository.findAllFotosByAnuncioId(anuncio.getId()));
-            anuncio.setCategoria(categoriaRepository.findAllEtiquetasByAnuncioId(anuncio.getId()));
-            anuncio.setUnidade(unidadeRepository.findUnidadeById(anuncio.getUnidade()));
+        Anuncio anuncio = localRepository.findById(idAnuncio);
+
+        if(anuncio != null && SincronizacaoUtils.isSincronizado(anuncio.getDataSincronizacao(), QUANTIDADE_DIAS_SINCRONIZADO_ANUNCIO)){
+            anuncio = remoteService.findById(idAnuncio);
         }
 
-        return anuncios;
+        return remoteService.findById(idAnuncio);
     }
+
+    public Anuncio cadastrar(Anuncio anuncio) {
+        return remoteService.cadatrar(anuncio);
+    }
+
 }
