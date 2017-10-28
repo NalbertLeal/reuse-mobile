@@ -85,6 +85,11 @@ public class Anuncio {
      */
     private List<Etiqueta> etiquetas;
 
+    /**
+     * Atributo que representa a data que o registro foi sincronizado no banco local
+     */
+    private Date dataSincronizacao;
+
     //GETTERS E SETTERS
 
     public Long getId() {
@@ -197,5 +202,13 @@ public class Anuncio {
 
     public void setEtiquetas(List<Etiqueta> etiquetas) {
         this.etiquetas = etiquetas;
+    }
+
+    public Date getDataSincronizacao() {
+        return dataSincronizacao;
+    }
+
+    public void setDataSincronizacao(Date dataSincronizacao) {
+        this.dataSincronizacao = dataSincronizacao;
     }
 }

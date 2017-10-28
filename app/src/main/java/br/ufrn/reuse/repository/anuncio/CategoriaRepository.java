@@ -7,7 +7,7 @@ import br.ufrn.reuse.dominio.anuncio.CategoriaAnuncio;
  */
 
 public class CategoriaRepository {
-    public CategoriaAnuncio findAllEtiquetasByAnuncioId(Long id) {
+    public CategoriaAnuncio findCategoriaById(String categoria) {
         return null;
     }
 }

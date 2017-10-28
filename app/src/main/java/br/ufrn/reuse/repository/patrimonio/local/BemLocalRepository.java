@@ -11,4 +11,8 @@ public class BemLocalRepository {
     public Bem findBemById(Long idBem) {
         return null;
     }
+
+    public void save(Bem bem) {
+
+    }
 }
