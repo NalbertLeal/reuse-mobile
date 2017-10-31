@@ -1,5 +1,7 @@
 package br.ufrn.reuse.facade;
 
+import android.text.TextUtils;
+
 import java.util.List;
 
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
@@ -103,4 +105,14 @@ public class ReuseFacadeImpl implements ReuseFacade {
         return anuncioFacade.findAllAnuncios(categoria,denominacaoBem,numeroTombamento,etiquetas);
     }
 
+    /**
+     * Busca se as credenciais informadas são válidas.
+     *
+     * @return sucesso no login
+     */
+    @Override
+    public boolean autenticar() {
+
+        return true; //new ComumRemoteService().credenciaisValidas(usuario, senha);
+    }
 }

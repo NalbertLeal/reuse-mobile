@@ -22,4 +22,5 @@ public interface ReuseFacade {
     Interesse demonstraInteresse(Usuario usuario, Anuncio anuncio);
     void removerInteresse(Interesse interesse);
     List<Anuncio> findAllAnuncios(CategoriaAnuncio categoria, String denominacaoBem, Integer numeroTombamento, List<Etiqueta> etiquetas);
+    boolean autenticar();
 }
