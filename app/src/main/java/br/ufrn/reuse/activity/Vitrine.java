@@ -19,6 +19,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -55,8 +57,16 @@ public class Vitrine extends AppCompatActivity
 
         List<Anuncio> anuncios = new ReuseFacadeImpl().findAllAnunciosPublicados();
 
-        ListView listView = (ListView) findViewById(R.id.lista_vitrine);
+        GridView listView = (GridView) findViewById(R.id.lista_vitrine);
         listView.setAdapter(new VitrineListAdapter(this, anuncios));
+
+        LinearLayout vitrineLayout = (LinearLayout) findViewById(R.id.layout_vitrine);
+
+        int widthVitrine = vitrineLayout.getWidth();
+
+
+        listView.setMinimumWidth(widthVitrine);
+
 
     }
 

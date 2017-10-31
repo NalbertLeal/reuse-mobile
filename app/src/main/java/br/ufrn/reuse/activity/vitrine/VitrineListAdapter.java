@@ -37,11 +37,11 @@ public class VitrineListAdapter extends ArrayAdapter<Anuncio>{
         imageView.setImageResource(R.drawable.ic_logo_reuse);
 
         TextView textView = (TextView) convertView.findViewById(R.id.textView2);
-        textView.setText("Eita boe");
+        textView.setText(String.valueOf(anuncio.getBem().getNumTombamento()));
 
 
         TextView textView2 = (TextView) convertView.findViewById(R.id.textView2);
-        textView2.setText("Eita porrra");
+        textView2.setText(anuncio.getBem().getDenominacao());
 
         return convertView;
     }
