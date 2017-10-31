@@ -7,6 +7,7 @@ import br.ufrn.reuse.facade.ReuseFacadeImpl;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
@@ -28,8 +29,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Vitrine extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class Vitrine extends AbstractActivity{
         // teste
         //ListView lista = (ListView) findViewById(R.id.nome);
     @Override
@@ -90,35 +90,4 @@ public class Vitrine extends AppCompatActivity
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_anunciar) {
-            // Handle the camera action
-            Log.d("ANUNCIAR","nav_anunciar");
-        } else if (id == R.id.nav_interesses) {
-            Log.d("INTERESSES","nav_interesses");
-        } else if (id == R.id.nav_anuncios) {
-            Log.d("ANUNCIOS","nav_anuncios");
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
 }

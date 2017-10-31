@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import br.ufrn.reuse.R;
 
-public class InteressesActivity extends AppCompatActivity {
+public class InteressesActivity extends AbstractActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

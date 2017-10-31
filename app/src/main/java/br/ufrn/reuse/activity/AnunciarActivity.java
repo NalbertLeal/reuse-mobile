@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import br.ufrn.reuse.R;
 
-public class AnunciarActivity extends AppCompatActivity {
+public class AnunciarActivity extends AbstractActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

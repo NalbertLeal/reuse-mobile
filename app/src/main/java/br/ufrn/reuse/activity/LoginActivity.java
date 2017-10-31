@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import br.ufrn.reuse.R;
+import br.ufrn.reuse.facade.ReuseFacadeImpl;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -33,12 +34,9 @@ public class LoginActivity extends AppCompatActivity{
         setContentView(R.layout.activity_login);
 
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(reuseFacade.autenticar()) {
-                    iniciarTimeline("Apuena");
-                }
+        mEmailSignInButton.setOnClickListener(view -> {
+            if(new ReuseFacadeImpl().autenticar()) {
+                iniciarTimeline("Apuena");
             }
         });
     }

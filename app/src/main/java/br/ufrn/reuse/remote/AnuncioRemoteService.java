@@ -1,5 +1,7 @@
 package br.ufrn.reuse.remote;
 
+import android.support.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,17 +24,7 @@ public class AnuncioRemoteService {
         List<Anuncio> anuncios = new ArrayList<>();
 
         for(int i = 0; i < 30; i++ ){
-            Anuncio anuncio = new Anuncio();
-
-            anuncio.setId(Long.valueOf(i));
-            anuncio.setTextoPublicacao("Cadeira DXRacer muito massa. Nunca foi usada. Assento regulável! Gira! Mas possui defeito.");
-
-            Bem bem = new Bem();
-            bem.setId(Long.valueOf(i));
-            bem.setNumTombamento(2012121211);
-            bem.setDenominacao("Cadeira nova, muito boa.");
-
-            anuncio.setBem(bem);
+            Anuncio anuncio = createAnuncio(i);
 
             anuncios.add(anuncio);
         }
@@ -41,11 +33,11 @@ public class AnuncioRemoteService {
     }
 
     public Anuncio findById(Long idAnuncio) {
-        return null;
+        return createAnuncio(idAnuncio.intValue());
     }
 
     public Anuncio cadatrar(Anuncio anuncio) {
-        return null;
+        return createAnuncio(1);
     }
 
     public List<Anuncio> findAllAnunciosPublicados() {
@@ -55,4 +47,21 @@ public class AnuncioRemoteService {
     public List<Anuncio> findAllAnuncios(CategoriaAnuncio categoria, String denominacaoBem, Integer numeroTombamento, List<Etiqueta> etiquetas) {
         return null;
     }
+
+    @NonNull
+    private Anuncio createAnuncio(int i) {
+        Anuncio anuncio = new Anuncio();
+
+        anuncio.setId(Long.valueOf(i));
+        anuncio.setTextoPublicacao("Cadeira DXRacer muito massa. Nunca foi usada. Assento regulável! Gira! Mas possui defeito.");
+
+        Bem bem = new Bem();
+        bem.setId(Long.valueOf(i));
+        bem.setNumTombamento(2012121211);
+        bem.setDenominacao("Cadeira nova, muito boa.");
+
+        anuncio.setBem(bem);
+        return anuncio;
+    }
+
 }
