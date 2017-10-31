@@ -1,8 +1,14 @@
 package br.ufrn.reuse.activity;
 import br.ufrn.reuse.R;
+import br.ufrn.reuse.activity.vitrine.VitrineListAdapter;
+import br.ufrn.reuse.dominio.anuncio.Anuncio;
+import br.ufrn.reuse.facade.ReuseFacade;
+import br.ufrn.reuse.facade.ReuseFacadeImpl;
+
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,14 +18,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-public class Main2Activity extends AppCompatActivity
+import java.util.ArrayList;
+import java.util.List;
+
+public class Vitrine extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+        // teste
+        //ListView lista = (ListView) findViewById(R.id.nome);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_vitrine);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -40,6 +52,12 @@ public class Main2Activity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        List<Anuncio> anuncios = new ReuseFacadeImpl().findAllAnunciosPublicados();
+
+        ListView listView = (ListView) findViewById(R.id.lista_vitrine);
+        listView.setAdapter(new VitrineListAdapter(this, anuncios));
+
     }
 
     @Override
@@ -55,7 +73,7 @@ public class Main2Activity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main2, menu);
+        getMenuInflater().inflate(R.menu.vitrine, menu);
         return true;
     }
 
@@ -79,10 +97,11 @@ public class Main2Activity extends AppCompatActivity
 
         if (id == R.id.nav_anunciar) {
             // Handle the camera action
+            Log.d("ANUNCIAR","nav_anunciar");
         } else if (id == R.id.nav_interesses) {
-
+            Log.d("INTERESSES","nav_interesses");
         } else if (id == R.id.nav_anuncios) {
-
+            Log.d("ANUNCIOS","nav_anuncios");
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

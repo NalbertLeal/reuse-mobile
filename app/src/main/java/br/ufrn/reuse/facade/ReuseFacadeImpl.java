@@ -7,6 +7,7 @@ import br.ufrn.reuse.dominio.anuncio.CategoriaAnuncio;
 import br.ufrn.reuse.dominio.anuncio.Etiqueta;
 import br.ufrn.reuse.dominio.anuncio.Interesse;
 import br.ufrn.reuse.dominio.comum.Usuario;
+import br.ufrn.reuse.remote.AnuncioRemoteService;
 import br.ufrn.reuse.repository.anuncio.AnuncioRepository;
 import br.ufrn.reuse.repository.patrimonio.BemRepository;
 import br.ufrn.reuse.repository.anuncio.CategoriaRepository;
@@ -43,7 +44,12 @@ public class ReuseFacadeImpl implements ReuseFacade {
      */
     @Override
     public List<Anuncio> findAllAnunciosPublicados() {
-        return anuncioFacade.findAllAnunciosPublicados();
+        //List<Anuncio> anuncios = anuncioFacade.findAllAnunciosPublicados();
+
+
+
+
+        return new AnuncioRemoteService().findAll(null);
     }
 
     /**
