@@ -8,86 +8,34 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
+
+            <ListView
+                android:id="@+id/lista_vitrine"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Bem Vindo ao REUSE" />
+                android:layout_height="match_parent"
+                android:scrollbars="none"
+                android:numColumns="1"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:stretchMode="columnWidth"
+                android:scrollbarAlwaysDrawHorizontalTrack="false"
+                android:scrollbarAlwaysDrawVerticalTrack="false">
 
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Sistema de reaproveitamento de bens da UFRN" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Procurar..." />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Buscar" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Mobilia" />
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Eletronicos" />
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Escritorio" />
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Laboratorial" />
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Material Bibliografico" />
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Material Bibliografico" />
-
-            </LinearLayout>
-
-                <ListView
-                    android:id="@+id/lista_vitrine"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-
-
-                    >
-
-
-                </ListView>
-
+            </ListView>
 
 
         </LinearLayout>
     </ScrollView>
+
+
 
 </LinearLayout>
