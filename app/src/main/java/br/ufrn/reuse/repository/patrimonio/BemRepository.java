@@ -1,7 +1,5 @@
 package br.ufrn.reuse.repository.patrimonio;
 
-import java.util.concurrent.Future;
-
 import br.ufrn.reuse.dominio.patrimonio.Bem;
 import br.ufrn.reuse.remote.BemRemoteService;
 import br.ufrn.reuse.repository.patrimonio.local.BemLocalRepository;

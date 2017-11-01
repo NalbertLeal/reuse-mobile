@@ -13,9 +13,7 @@ import br.ufrn.reuse.R;
 /**
  * Created by Daniel on 10/31/2017.
  */
-
 public abstract class AbstractActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
-
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -34,8 +32,8 @@ public abstract class AbstractActivity extends AppCompatActivity implements Navi
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+
         return true;
     }
-
 
 }

@@ -10,7 +10,7 @@ public class StatusAnuncio {
     /**
      * Identificador do status do anúncio.
      */
-    public String identificador;
+    private String identificador;
 
     /**
      * Nome do status do anúncio.

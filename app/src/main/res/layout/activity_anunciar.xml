@@ -6,4 +6,70 @@
     android:layout_height="match_parent"
     tools:context="br.ufrn.reuse.activity.AnunciarActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/label_tombamento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tombamento:" />
+
+        <EditText android:id="@+id/edt_tombamento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:text="Tombamento" />
+
+        <Button android:id="@+id/btn_buscar_bem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Buscar"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Informações do bem:"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Tombamento:" />
+
+            <TextView
+                android:id="@+id/txt_tombamento"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Denominação do bem: "/>
+
+            <TextView
+                android:id="@+id/txt_denominacao"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_cadastrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cadastrar"/>
+
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

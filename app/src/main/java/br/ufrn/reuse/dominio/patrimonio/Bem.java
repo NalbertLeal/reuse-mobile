@@ -1,11 +1,6 @@
 package br.ufrn.reuse.dominio.patrimonio;
 
-import android.text.format.DateUtils;
-
-import java.util.Calendar;
 import java.util.Date;
-
-import br.ufrn.reuse.utils.SincronizacaoUtils;
 
 /**
  * Classe que representa um bem.

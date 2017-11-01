@@ -52,11 +52,11 @@ public class AnuncioRemoteService {
     private Anuncio createAnuncio(int i) {
         Anuncio anuncio = new Anuncio();
 
-        anuncio.setId(Long.valueOf(i));
+        anuncio.setId((long) i);
         anuncio.setTextoPublicacao("Cadeira DXRacer muito massa. Nunca foi usada. Assento regulável! Gira! Mas possui defeito.");
 
         Bem bem = new Bem();
-        bem.setId(Long.valueOf(i));
+        bem.setId((long) i);
         bem.setNumTombamento(2012121211);
         bem.setDenominacao("Cadeira nova, muito boa.");
 

@@ -7,9 +7,6 @@ import br.ufrn.reuse.dominio.anuncio.CategoriaAnuncio;
 import br.ufrn.reuse.dominio.anuncio.Etiqueta;
 import br.ufrn.reuse.dominio.comum.Usuario;
 import br.ufrn.reuse.remote.AnuncioRemoteService;
-import br.ufrn.reuse.repository.patrimonio.BemRepository;
-import br.ufrn.reuse.repository.comum.UnidadeRepository;
-import br.ufrn.reuse.repository.comum.UsuarioRepository;
 import br.ufrn.reuse.repository.anuncio.local.AnuncioLocalRepository;
 import br.ufrn.reuse.utils.SincronizacaoUtils;
 

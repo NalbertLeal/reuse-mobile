@@ -1,7 +1,5 @@
 package br.ufrn.reuse.facade;
 
-import android.text.TextUtils;
-
 import java.util.List;
 
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
@@ -9,17 +7,8 @@ import br.ufrn.reuse.dominio.anuncio.CategoriaAnuncio;
 import br.ufrn.reuse.dominio.anuncio.Etiqueta;
 import br.ufrn.reuse.dominio.anuncio.Interesse;
 import br.ufrn.reuse.dominio.comum.Usuario;
+import br.ufrn.reuse.dominio.patrimonio.Bem;
 import br.ufrn.reuse.remote.AnuncioRemoteService;
-import br.ufrn.reuse.repository.anuncio.AnuncioRepository;
-import br.ufrn.reuse.repository.patrimonio.BemRepository;
-import br.ufrn.reuse.repository.anuncio.CategoriaRepository;
-import br.ufrn.reuse.repository.anuncio.EtiquetaRepository;
-import br.ufrn.reuse.repository.anuncio.FotoRepository;
-import br.ufrn.reuse.repository.anuncio.HistoricoAnuncioRepository;
-import br.ufrn.reuse.repository.anuncio.InteresseRepository;
-import br.ufrn.reuse.repository.anuncio.StatusAnuncioRepository;
-import br.ufrn.reuse.repository.comum.UnidadeRepository;
-import br.ufrn.reuse.repository.comum.UsuarioRepository;
 
 /**
  * Implementação da fachada da aplicação.
@@ -39,6 +28,11 @@ public class ReuseFacadeImpl implements ReuseFacade {
      */
     private InteresseFacade interesseFacade;
 
+    @Override
+    public Anuncio cadastrar(Anuncio anuncio){
+        return anuncioFacade.cadastrar(anuncio);
+    }
+
     /**
      * Busca todos os anúncios publicados.
      *
@@ -47,10 +41,6 @@ public class ReuseFacadeImpl implements ReuseFacade {
     @Override
     public List<Anuncio> findAllAnunciosPublicados() {
         //List<Anuncio> anuncios = anuncioFacade.findAllAnunciosPublicados();
-
-
-
-
         return new AnuncioRemoteService().findAll(null);
     }
 
@@ -105,6 +95,18 @@ public class ReuseFacadeImpl implements ReuseFacade {
         return anuncioFacade.findAllAnuncios(categoria,denominacaoBem,numeroTombamento,etiquetas);
     }
 
+    @Override
+    public Bem findBemByNumTombamento(int tombamento) {
+
+        Bem bem = new Bem();
+
+        bem.setId(1L);
+        bem.setDenominacao("Cadeira muito boa");
+        bem.setNumTombamento(2012121212);
+
+        return bem;
+    }
+
     /**
      * Busca se as credenciais informadas são válidas.
      *
@@ -112,7 +114,6 @@ public class ReuseFacadeImpl implements ReuseFacade {
      */
     @Override
     public boolean autenticar() {
-
         return true; //new ComumRemoteService().credenciaisValidas(usuario, senha);
     }
 }

@@ -1,5 +1,6 @@
 package br.ufrn.reuse.dominio.anuncio;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -63,7 +64,7 @@ public class Anuncio {
     /**
      * Usuário do cadastro do anúncio.
      */
-    public Usuario usuario;
+    private Usuario usuario;
 
     /**
      * Interesses do anúncio.
@@ -210,5 +211,27 @@ public class Anuncio {
 
     public void setDataSincronizacao(Date dataSincronizacao) {
         this.dataSincronizacao = dataSincronizacao;
+    }
+
+    public List<String> validarCadastro() {
+        List<String> erros = new ArrayList<>();
+
+        if(bem == null){
+            erros.add("Bem não pode ser nulo.");
+        }
+
+        if(usuario == null){
+            erros.add("Usuario não pode ser nulo.");
+        }
+
+        if(unidade == null){
+            erros.add("Unidade não pode ser nula.");
+        }
+
+        if(categoria == null){
+            erros.add("Selecione uma categoria.");
+        }
+
+        return erros;
     }
 }

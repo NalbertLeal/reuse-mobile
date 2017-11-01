@@ -11,11 +11,11 @@ public class AnuncioLocalRepository {
     public Anuncio findById(Long idAnuncio) {
         Anuncio anuncio = new Anuncio();
 
-        anuncio.setId(Long.valueOf(idAnuncio));
+        anuncio.setId(idAnuncio);
         anuncio.setTextoPublicacao("Cadeira DXRacer muito massa. Nunca foi usada. Assento regulável! Gira! Mas possui defeito.");
 
         Bem bem = new Bem();
-        bem.setId(Long.valueOf(idAnuncio));
+        bem.setId(idAnuncio);
 
         return anuncio;
     }

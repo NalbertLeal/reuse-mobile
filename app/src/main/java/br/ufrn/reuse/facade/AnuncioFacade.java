@@ -24,7 +24,7 @@ import br.ufrn.reuse.repository.patrimonio.BemRepository;
  *
  * @author Daniel
  */
-public class AnuncioFacade {
+class AnuncioFacade {
 
     private AnuncioRepository anuncioRepository;
     private BemRepository bemRepository;
