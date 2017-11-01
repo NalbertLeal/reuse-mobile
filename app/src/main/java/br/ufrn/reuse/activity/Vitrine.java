@@ -43,7 +43,7 @@ public class Vitrine extends AbstractActivity{
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        List<Anuncio> anuncios = new ReuseFacadeImpl().findAllAnunciosPublicados();
+        List<Anuncio> anuncios = new ReuseFacadeImpl(this).findAllAnunciosPublicados();
 
         GridView listView = (GridView) findViewById(R.id.lista_vitrine);
         listView.setAdapter(new VitrineListAdapter(this, anuncios));

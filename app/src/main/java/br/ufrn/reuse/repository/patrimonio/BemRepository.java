@@ -1,5 +1,7 @@
 package br.ufrn.reuse.repository.patrimonio;
 
+import android.content.Context;
+
 import br.ufrn.reuse.dominio.patrimonio.Bem;
 import br.ufrn.reuse.remote.BemRemoteService;
 import br.ufrn.reuse.repository.patrimonio.local.BemLocalRepository;
@@ -16,6 +18,7 @@ public class BemRepository {
      */
     public static final int QUANTIDADE_DIAS_SINCRONIZADO_BEM = 2;
 
+
     /**
      * Dependencia da implementação do serviço remoto.
      */
@@ -25,6 +28,12 @@ public class BemRepository {
      * Dependencia da implementação do repositório local.
      */
     private BemLocalRepository bemLocalRepository;
+
+    private final Context context;
+
+    public BemRepository(Context context) {
+        this.context = context;
+    }
 
     public Bem findBemById(Long idBem){
         Bem bem = bemLocalRepository.findBemById(idBem);

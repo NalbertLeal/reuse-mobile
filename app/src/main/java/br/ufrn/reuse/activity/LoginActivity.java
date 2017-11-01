@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity{
 
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(view -> {
-            if(new ReuseFacadeImpl().autenticar()) {
+            if(new ReuseFacadeImpl(this).autenticar()) {
                 iniciarTimeline("Apuena");
             }
         });

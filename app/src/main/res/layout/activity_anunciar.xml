@@ -9,7 +9,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="25dp">
 
         <TextView
             android:id="@+id/label_tombamento"
@@ -17,17 +19,18 @@
             android:layout_height="wrap_content"
             android:text="Tombamento:" />
 
-        <EditText android:id="@+id/edt_tombamento"
+        <EditText
+            android:id="@+id/edt_tombamento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:text="Tombamento" />
+            android:hint="Tombamento do bem"
+            android:inputType="number" />
 
-        <Button android:id="@+id/btn_buscar_bem"
+        <Button
+            android:id="@+id/btn_buscar_bem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Buscar"
-            />
+            android:text="Buscar" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,7 +40,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Informações do bem:"/>
+                android:text="Informações do bem:" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -48,28 +51,44 @@
             <TextView
                 android:id="@+id/txt_tombamento"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
+                android:layout_height="match_parent" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Denominação do bem: "/>
+                android:text="Denominação do bem: " />
 
             <TextView
                 android:id="@+id/txt_denominacao"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
+                android:layout_height="match_parent" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Categoria" />
 
         </LinearLayout>
+
+        <Spinner
+            android:id="@+id/spinner_categoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </Spinner>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Digite as informações que desejar"
+            android:inputType="textMultiLine" />
 
         <Button
             android:id="@+id/btn_cadastrar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cadastrar"/>
+            android:text="Cadastrar" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

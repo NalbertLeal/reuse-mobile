@@ -1,5 +1,7 @@
 package br.ufrn.reuse.repository.anuncio;
 
+import android.content.Context;
+
 import br.ufrn.reuse.dominio.anuncio.CategoriaAnuncio;
 
 /**
@@ -7,6 +9,12 @@ import br.ufrn.reuse.dominio.anuncio.CategoriaAnuncio;
  */
 
 public class CategoriaRepository {
+    private final Context context;
+
+    public CategoriaRepository(Context context) {
+        this.context = context;
+    }
+
     public CategoriaAnuncio findCategoriaById(String categoria) {
         return null;
     }

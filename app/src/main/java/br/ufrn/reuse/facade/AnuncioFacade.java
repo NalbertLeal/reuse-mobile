@@ -1,5 +1,7 @@
 package br.ufrn.reuse.facade;
 
+import android.content.Context;
+
 import java.util.List;
 
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
@@ -36,6 +38,20 @@ class AnuncioFacade {
     private FotoRepository fotoRepository;
     private CategoriaRepository categoriaRepository;
     private UnidadeRepository unidadeRepository;
+
+    public AnuncioFacade(Context context){
+        this.anuncioRepository = new AnuncioRepository(context);
+        this.bemRepository = new BemRepository(context);
+        this.usuarioRepository = new UsuarioRepository(context);
+        this.statusAnuncioRepository = new StatusAnuncioRepository(context);
+        this.interesseRepository = new InteresseRepository(context);
+        this.historicoAnuncioRepository = new HistoricoAnuncioRepository(context);
+        this.etiquetaRepository = new EtiquetaRepository(context);
+        this.fotoRepository = new FotoRepository(context);
+        this.categoriaRepository = new CategoriaRepository(context);
+        this.unidadeRepository = new UnidadeRepository(context);
+    }
+
 
     public Anuncio cadastrar(Anuncio anuncio){
         //TODO: VALIDAR

@@ -1,5 +1,7 @@
 package br.ufrn.reuse.repository.anuncio;
 
+import android.content.Context;
+
 import java.util.List;
 
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
@@ -11,6 +13,12 @@ import br.ufrn.reuse.dominio.comum.Usuario;
  */
 
 public class InteresseRepository {
+    private final Context context;
+
+    public InteresseRepository(Context context) {
+        this.context = context;
+    }
+
     public List<Interesse> findInteressesByIdAnuncio(Long id) {
         return null;
     }

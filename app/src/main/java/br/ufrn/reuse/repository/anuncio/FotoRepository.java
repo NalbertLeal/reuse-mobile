@@ -1,5 +1,7 @@
 package br.ufrn.reuse.repository.anuncio;
 
+import android.content.Context;
+
 import java.util.List;
 
 import br.ufrn.reuse.dominio.anuncio.Foto;
@@ -9,6 +11,12 @@ import br.ufrn.reuse.dominio.anuncio.Foto;
  */
 
 public class FotoRepository {
+    private final Context context;
+
+    public FotoRepository(Context context) {
+        this.context = context;
+    }
+
     public List<Foto> findAllFotosByAnuncioId(Long id) {
         return null;
     }

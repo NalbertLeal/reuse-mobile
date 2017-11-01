@@ -1,5 +1,7 @@
 package br.ufrn.reuse.repository.anuncio;
 
+import android.content.Context;
+
 import java.util.List;
 
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
@@ -31,6 +33,13 @@ public class AnuncioRepository {
      * Dependência do repositório local.
      */
     private AnuncioLocalRepository localRepository;
+
+    private final Context context;
+
+    public AnuncioRepository(Context context) {
+        this.context = context;
+        this.remoteService = new AnuncioRemoteService();
+    }
 
     /**
      * Retorna todos os anúncios do usuário.

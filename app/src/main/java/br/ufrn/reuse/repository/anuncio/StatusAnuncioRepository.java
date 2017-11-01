@@ -1,5 +1,7 @@
 package br.ufrn.reuse.repository.anuncio;
 
+import android.content.Context;
+
 import br.ufrn.reuse.dominio.anuncio.StatusAnuncio;
 
 /**
@@ -7,6 +9,12 @@ import br.ufrn.reuse.dominio.anuncio.StatusAnuncio;
  */
 
 public class StatusAnuncioRepository {
+    private final Context context;
+
+    public StatusAnuncioRepository(Context context) {
+        this.context = context;
+    }
+
     public StatusAnuncio findStatusAnuncioById(String identificador) {
         return null;
     }

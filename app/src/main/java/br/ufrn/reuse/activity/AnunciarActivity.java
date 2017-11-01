@@ -1,8 +1,11 @@
 package br.ufrn.reuse.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -28,15 +31,24 @@ public class AnunciarActivity extends AbstractActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anunciar);
 
-        reuseFacade = new ReuseFacadeImpl();
+        reuseFacade = new ReuseFacadeImpl(this);
         anuncio = new Anuncio();
 
+        iniciarComponentes();
+
+    }
+
+    private void iniciarComponentes() {
         Button buttonSelecionarBem = (Button) findViewById(R.id.btn_buscar_bem);
         buttonSelecionarBem.setOnClickListener((view) -> selecionarBem());
 
         Button buttonCadastrar = (Button) findViewById(R.id.btn_cadastrar);
         buttonCadastrar.setOnClickListener((view) -> cadastrar());
 
+        List<CategoriaAnuncio> categoriaAnuncios = reuseFacade.findAllCategorias();
+
+        Spinner spinnerCategoria = (Spinner) findViewById(R.id.spinner_categoria);
+        spinnerCategoria.setAdapter(new ArrayAdapter<CategoriaAnuncio>(this,R.layout.support_simple_spinner_dropdown_item, categoriaAnuncios));
     }
 
     private void selecionarBem() {
@@ -71,10 +83,10 @@ public class AnunciarActivity extends AbstractActivity {
 
         anuncio.setUnidade(getUnidade());
         anuncio.setUsuario(getUsuario());
+        anuncio.setCategoria(getCategoriaSelecionada());
 
         //TEM QUE RECUPERAR ESSAS INFORMAÇÕES DA VIEW
         anuncio.setEtiquetas(new ArrayList<>());
-        anuncio.setCategoria(new CategoriaAnuncio());
         anuncio.setQuantidadeDiasAtivo(15);
         anuncio.setTextoPublicacao(" ");
 
@@ -82,15 +94,23 @@ public class AnunciarActivity extends AbstractActivity {
 
         if(erros.isEmpty()){
             reuseFacade.cadastrar(anuncio);
+            startActivity(new Intent(this,AnunciosActivity.class));
         }
 
+        //TODO: lançar os erros para a tela
+
+    }
+
+    private CategoriaAnuncio getCategoriaSelecionada() {
+        Spinner spinnerCategoria = (Spinner) findViewById(R.id.spinner_categoria);
+        return (CategoriaAnuncio) spinnerCategoria.getSelectedItem();
     }
 
     private Usuario getUsuario() {
-        return null;
+        return new Usuario();
     }
 
     public Unidade getUnidade() {
-        return null;
+        return new Unidade();
     }
 }

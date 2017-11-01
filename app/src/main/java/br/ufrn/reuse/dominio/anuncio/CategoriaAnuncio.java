@@ -17,6 +17,11 @@ public class CategoriaAnuncio {
      */
     private String descricao;
 
+    public CategoriaAnuncio(String identificador, String descricao) {
+        this.identificador = identificador;
+        this.descricao = descricao;
+    }
+
     public String getIdentificador() {
         return identificador;
     }
@@ -32,4 +37,10 @@ public class CategoriaAnuncio {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+    @Override
+    public String toString(){
+        return descricao;
+    }
+
 }
