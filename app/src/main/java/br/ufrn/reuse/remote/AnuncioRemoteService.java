@@ -8,6 +8,7 @@ import java.util.List;
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
 import br.ufrn.reuse.dominio.anuncio.CategoriaAnuncio;
 import br.ufrn.reuse.dominio.anuncio.Etiqueta;
+import br.ufrn.reuse.dominio.anuncio.StatusAnuncio;
 import br.ufrn.reuse.dominio.comum.Usuario;
 import br.ufrn.reuse.dominio.patrimonio.Bem;
 
@@ -18,6 +19,13 @@ import br.ufrn.reuse.dominio.patrimonio.Bem;
  * @author Nalbert
  */
 public class AnuncioRemoteService {
+
+    private static List<Anuncio> anuncios;
+
+    public AnuncioRemoteService(){
+        this.anuncios = new ArrayList<>();
+    }
+
 
     public List<Anuncio> findAll(Usuario usuario) {
 
@@ -36,7 +44,7 @@ public class AnuncioRemoteService {
         return createAnuncio(idAnuncio.intValue());
     }
 
-    public Anuncio cadatrar(Anuncio anuncio) {
+    public Anuncio cadastrar(Anuncio anuncio) {
         return createAnuncio(1);
     }
 

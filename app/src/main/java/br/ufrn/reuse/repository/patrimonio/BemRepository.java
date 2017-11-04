@@ -1,6 +1,7 @@
 package br.ufrn.reuse.repository.patrimonio;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import br.ufrn.reuse.dominio.patrimonio.Bem;
 import br.ufrn.reuse.remote.BemRemoteService;
@@ -22,7 +23,7 @@ public class BemRepository {
     /**
      * Dependencia da implementação do serviço remoto.
      */
-    private BemRemoteService bemRemote;
+    public BemRemoteService bemRemote;
 
     /**
      * Dependencia da implementação do repositório local.
@@ -47,4 +48,7 @@ public class BemRepository {
 
     }
 
+    public Bem findByTombamento(int numTombamento){
+        return bemRemote.findByTombamento(numTombamento);
+    }
 }

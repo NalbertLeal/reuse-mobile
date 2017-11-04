@@ -2,7 +2,6 @@ package br.ufrn.reuse.facade;
 
 import android.content.Context;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
@@ -31,8 +30,21 @@ public class ReuseFacadeImpl implements ReuseFacade {
      */
     private InteresseFacade interesseFacade;
 
+    /**
+     * Dependência do módulo de patrimonio.
+     */
+    private PatrimonioFacade patrimonioFacade;
+
+    /**
+     * Dependência da parte comum dos sistemas.
+     */
+    private ComumFacade comumFacade;
+
     public ReuseFacadeImpl(Context context){
         this.anuncioFacade = new AnuncioFacade(context);
+        this.interesseFacade = new InteresseFacade(context);
+        this.patrimonioFacade = new PatrimonioFacade(context);
+        this.comumFacade = new ComumFacade(context);
     }
 
     @Override
@@ -104,27 +116,16 @@ public class ReuseFacadeImpl implements ReuseFacade {
 
     @Override
     public Bem findBemByNumTombamento(int tombamento) {
-
-        Bem bem = new Bem();
-
-        bem.setId(1L);
-        bem.setDenominacao("Cadeira muito boa");
-        bem.setNumTombamento(2012121212);
-
-        return bem;
+        return patrimonioFacade.findByTombamento(tombamento);
     }
 
     @Override
     public List<CategoriaAnuncio> findAllCategorias() {
+        return anuncioFacade.findAllCategorias();
+    }
 
-        List<CategoriaAnuncio> categorias = new ArrayList<>();
-
-        categorias.add(new CategoriaAnuncio("MOBILIA", "Mobilia"));
-        categorias.add(new CategoriaAnuncio("ELETRONICOS","Eletrônicos"));
-        categorias.add(new CategoriaAnuncio("LABORATORIAL","Laboratorial"));
-        categorias.add(new CategoriaAnuncio("OUTROS","Outros"));
-
-        return categorias;
+    public List<Etiqueta> findAllEtiquetas(){
+        return anuncioFacade.findAllEtiquetas();
     }
 
     /**
@@ -134,6 +135,7 @@ public class ReuseFacadeImpl implements ReuseFacade {
      */
     @Override
     public boolean autenticar() {
-        return true; //new ComumRemoteService().credenciaisValidas(usuario, senha);
+        //TODO: Handle authentication =)
+        return comumFacade.autenticar(); //new ComumRemoteService().credenciaisValidas(usuario, senha);
     }
 }

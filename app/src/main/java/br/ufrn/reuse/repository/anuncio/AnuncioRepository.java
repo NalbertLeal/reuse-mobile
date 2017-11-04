@@ -76,7 +76,7 @@ public class AnuncioRepository {
      * @return o anúncio cadastrado.
      */
     public Anuncio cadastrar(Anuncio anuncio) {
-        return remoteService.cadatrar(anuncio);
+        return remoteService.cadastrar(anuncio);
     }
 
     /**

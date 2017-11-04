@@ -20,7 +20,7 @@ public class Foto {
     /**
      *
      */
-    private String urlFoto0;
+    private String urlFoto;
 
     /**
      * Atributo que mapeia se uma foto é a foto de capa do anúncio.
@@ -44,12 +44,12 @@ public class Foto {
         this.idArquivo = idArquivo;
     }
 
-    public String getUrlFoto0() {
-        return urlFoto0;
+    public String getUrlFoto() {
+        return urlFoto;
     }
 
-    public void setUrlFoto0(String urlFoto0) {
-        this.urlFoto0 = urlFoto0;
+    public void setUrlFoto(String urlFoto) {
+        this.urlFoto = urlFoto;
     }
 
     public boolean isFotoCapa() {
