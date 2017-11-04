@@ -36,7 +36,7 @@ class AnuncioFacade {
     private HistoricoAnuncioRepository historicoAnuncioRepository;
     private EtiquetaRepository etiquetaRepository;
     private FotoRepository fotoRepository;
-    private CategoriaRepository categoriaRepository;
+    CategoriaRepository categoriaRepository;
     private UnidadeRepository unidadeRepository;
 
     public AnuncioFacade(Context context){
@@ -88,6 +88,17 @@ class AnuncioFacade {
         return anuncioRepository.findAllAnuncios(categoria,denominacaoBem,numeroTombamento,etiquetas);
     }
 
+
+
+    /**
+     * Busca todas as categorias de anúncio.
+     *
+     * @return
+     */
+    public List<CategoriaAnuncio> findAllCategorias(){
+        return categoriaRepository.findAllCategorias();
+    }
+
     //Métodos que efetuam o join das informações.
 
     /**
@@ -99,6 +110,10 @@ class AnuncioFacade {
         for(Anuncio anuncio : anuncios){
             loadAnuncio(anuncio);
         }
+    }
+
+    public List<Etiqueta> findAllEtiquetas() {
+        return etiquetaRepository.findAllEtiquetas();
     }
 
     /**

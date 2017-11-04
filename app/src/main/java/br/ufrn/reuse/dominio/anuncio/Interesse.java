@@ -25,7 +25,7 @@ public class Interesse {
     /**
      * Data de cadastro do interesse.
      */
-    private Date data;
+    private Date dataInteresse;
     /**
      * Anúncio do interesse.
      */
@@ -63,12 +63,12 @@ public class Interesse {
         this.interessado = interessado;
     }
 
-    public Date getData() {
-        return data;
+    public Date getDataInteresse() {
+        return dataInteresse;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setDataInteresse(Date dataInteresse) {
+        this.dataInteresse = dataInteresse;
     }
 
     public Anuncio getAnuncio() {

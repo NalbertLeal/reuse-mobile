@@ -1,5 +1,7 @@
 package br.ufrn.reuse.facade;
 
+import android.content.Context;
+
 import java.util.List;
 
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
@@ -12,6 +14,10 @@ import br.ufrn.reuse.repository.anuncio.InteresseRepository;
  */
 public class InteresseFacade {
     private InteresseRepository interesseRepository;
+
+    public InteresseFacade(Context context) {
+        this.interesseRepository = new InteresseRepository(context);
+    }
 
     public List<Interesse> findAllInteresses(Usuario usuario) {
         return interesseRepository.findAllInteresses(usuario);
