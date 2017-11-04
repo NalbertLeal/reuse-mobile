@@ -28,7 +28,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.AnunciarActivity" />
-        <activity android:name=".activity.InteressesActivity" />
+        <activity android:name=".activity.InteressesActivity"
+                    android:label="@string/title_activity_interesses"/>
         <activity android:name=".activity.AnunciosActivity" />
         <activity android:name=".activity.DetalhamentoAnuncioActivity"></activity>
     </application>

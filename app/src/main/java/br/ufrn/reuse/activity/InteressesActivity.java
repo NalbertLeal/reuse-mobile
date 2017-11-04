@@ -9,7 +9,7 @@ import android.widget.Spinner;
 import br.ufrn.reuse.R;
 
 public class InteressesActivity extends AbstractActivity {
-    private String[] situacao = new String[] {"Em análise"};
+    private String[] situacao = new String[] {"Todos", "Em análise"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
