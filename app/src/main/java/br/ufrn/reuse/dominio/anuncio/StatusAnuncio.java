@@ -17,6 +17,13 @@ public class StatusAnuncio {
      */
     private String nome;
 
+    public StatusAnuncio(){}
+
+    public StatusAnuncio(String identificador, String nome) {
+        this.identificador = identificador;
+        this.nome = nome;
+    }
+
     public String getIdentificador() {
         return identificador;
     }

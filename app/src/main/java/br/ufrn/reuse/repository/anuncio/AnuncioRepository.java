@@ -8,7 +8,7 @@ import br.ufrn.reuse.dominio.anuncio.Anuncio;
 import br.ufrn.reuse.dominio.anuncio.CategoriaAnuncio;
 import br.ufrn.reuse.dominio.anuncio.Etiqueta;
 import br.ufrn.reuse.dominio.comum.Usuario;
-import br.ufrn.reuse.remote.AnuncioRemoteService;
+import br.ufrn.reuse.remote.anuncio.AnuncioRemoteService;
 import br.ufrn.reuse.repository.anuncio.local.AnuncioLocalRepository;
 import br.ufrn.reuse.utils.SincronizacaoUtils;
 
@@ -66,7 +66,7 @@ public class AnuncioRepository {
             localRepository.save(anuncio);
         }
 
-        return remoteService.findById(idAnuncio);
+        return anuncio;
     }
 
     /**

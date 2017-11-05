@@ -20,6 +20,16 @@ public class Unidade {
     /**Sigla da unidade*/
     private String sigla;
 
+    public Unidade() {
+    }
+
+    public Unidade(Long id, Long codigo, String nome, String sigla) {
+        this.id = id;
+        this.codigo = codigo;
+        this.nome = nome;
+        this.sigla = sigla;
+    }
+
     public Long getId() {
         return id;
     }
