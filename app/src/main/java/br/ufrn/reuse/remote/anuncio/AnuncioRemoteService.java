@@ -1,4 +1,4 @@
-package br.ufrn.reuse.remote;
+package br.ufrn.reuse.remote.anuncio;
 
 import android.support.annotation.NonNull;
 

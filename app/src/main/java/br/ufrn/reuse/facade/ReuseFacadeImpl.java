@@ -10,7 +10,7 @@ import br.ufrn.reuse.dominio.anuncio.Etiqueta;
 import br.ufrn.reuse.dominio.anuncio.Interesse;
 import br.ufrn.reuse.dominio.comum.Usuario;
 import br.ufrn.reuse.dominio.patrimonio.Bem;
-import br.ufrn.reuse.remote.AnuncioRemoteService;
+import br.ufrn.reuse.remote.anuncio.AnuncioRemoteService;
 
 /**
  * Implementação da fachada da aplicação.

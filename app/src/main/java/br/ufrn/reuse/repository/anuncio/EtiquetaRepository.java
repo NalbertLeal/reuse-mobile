@@ -5,6 +5,7 @@ import android.content.Context;
 import java.util.List;
 
 import br.ufrn.reuse.dominio.anuncio.Etiqueta;
+import br.ufrn.reuse.remote.anuncio.EtiquetaRemoteService;
 import br.ufrn.reuse.repository.anuncio.local.EtiquetaLocalRepository;
 
 /**
@@ -14,6 +15,8 @@ public class EtiquetaRepository {
     private final Context context;
 
     private EtiquetaLocalRepository localRepository;
+
+    private EtiquetaRemoteService remoteService;
 
     public EtiquetaRepository(Context context) {
         this.context = context;

@@ -1,10 +1,9 @@
 package br.ufrn.reuse.repository.patrimonio;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 
 import br.ufrn.reuse.dominio.patrimonio.Bem;
-import br.ufrn.reuse.remote.BemRemoteService;
+import br.ufrn.reuse.remote.patrimonio.BemRemoteService;
 import br.ufrn.reuse.repository.patrimonio.local.BemLocalRepository;
 import br.ufrn.reuse.utils.SincronizacaoUtils;
 

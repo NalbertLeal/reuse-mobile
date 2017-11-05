@@ -132,7 +132,7 @@ class AnuncioFacade {
             anuncio.setEtiquetas(etiquetaRepository.findAllEtiquetasByAnuncioId(anuncio.getId()));
             anuncio.setFotos(fotoRepository.findAllFotosByAnuncioId(anuncio.getId()));
             anuncio.setCategoria(categoriaRepository.findCategoriaById(anuncio.getCategoria().getIdentificador()));
-            anuncio.setUnidade(unidadeRepository.findUnidadeById(anuncio.getUnidade()));
+            anuncio.setUnidade(unidadeRepository.findUnidadeById(anuncio.getUnidade().getId()));
         }
 
     }
