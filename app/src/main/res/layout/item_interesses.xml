@@ -35,13 +35,13 @@
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Denominação" />
+                android:text="Data" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/data_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tombamento" />
+                android:text="22/07/1996" />
         </LinearLayout>
 
         <LinearLayout
@@ -53,25 +53,31 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1 interessado" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:gravity="right">
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="match_parent"
+                android:text="Situação" />
+            <TextView
+                android:id="@+id/situacao_label"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                app:srcCompat="@mipmap/ic_launcher" />
+                android:text="Aguardando Aprovação" />
         </LinearLayout>
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Usuário: " />
 
+        <TextView
+            android:id="@+id/nome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity=""
+            android:text="Adelino Afonso Fernandes Avelino" />
+    </LinearLayout>
 
 </LinearLayout>
