@@ -17,7 +17,7 @@
         <activity
             android:name=".activity.Vitrine"
             android:label="@string/title_activity_main2"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.LoginActivity"
             android:label="@string/title_activity_login">
@@ -28,10 +28,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.AnunciarActivity" />
-        <activity android:name=".activity.InteressesActivity"
-                    android:label="@string/title_activity_interesses"/>
+        <activity
+            android:name=".activity.InteressesActivity"
+            android:label="@string/title_activity_interesses" />
         <activity android:name=".activity.AnunciosActivity" />
-        <activity android:name=".activity.DetalhamentoAnuncioActivity"></activity>
+        <activity android:name=".activity.DetalhamentoAnuncioActivity" />
+        <activity android:name=".activity.MeusAnuncios"></activity>
     </application>
 
 </manifest>
