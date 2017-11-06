@@ -17,6 +17,13 @@ public class Etiqueta{
      */
     private String nome;
 
+    public Etiqueta(){}
+
+    public Etiqueta(Long id, String nome) {
+        this.id = id;
+        this.nome = nome;
+    }
+
     public Long getId() {
         return id;
     }

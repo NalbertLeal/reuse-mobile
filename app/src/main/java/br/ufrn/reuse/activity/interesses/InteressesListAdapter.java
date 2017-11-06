@@ -33,17 +33,17 @@ public class InteressesListAdapter extends ArrayAdapter<Anuncio>{
 
         Anuncio anuncio = this.getItem(position);
 
-        convertView = LayoutInflater.from(this.getContext()).inflate(R.layout.item_vitrine,null);
+        convertView = LayoutInflater.from(this.getContext()).inflate(R.layout.item_interesses,null);
 
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView2);
-        imageView.setImageResource(R.drawable.ic_logo_reuse);
+        ImageView imageView = (ImageView) convertView.findViewById(R.id.imageViewinteresses);
+        imageView.setImageResource(R.drawable.ic_menu_gallery);
 
-        TextView textView = (TextView) convertView.findViewById(R.id.textView2);
-        textView.setText(String.valueOf(anuncio != null ? String.valueOf(anuncio.getBem().getNumTombamento()) : "0"));
+        TextView textView = (TextView) convertView.findViewById(R.id.textViewData);
+        textView.setText(String.valueOf(anuncio != null ? String.valueOf(anuncio.getBem().getDataSincronizacao()) : "0"));
 
 
-        TextView textView2 = (TextView) convertView.findViewById(R.id.textView2);
-        textView2.setText(anuncio.getBem().getDenominacao());
+        TextView data = (TextView) convertView.findViewById(R.id.textViewData);
+        data.setText((CharSequence) anuncio.getBem().getDataSincronizacao());
 
         return convertView;
     }

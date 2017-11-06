@@ -43,6 +43,18 @@ public class HistoricoAnuncio{
      */
     private String justificativa;
 
+    public HistoricoAnuncio() {
+    }
+
+    public HistoricoAnuncio(Long id, Anuncio anuncio, StatusAnuncio statusAnuncio, Date dataAlteracao, Usuario usuario, String justificativa) {
+        this.id = id;
+        this.anuncio = anuncio;
+        this.statusAnuncio = statusAnuncio;
+        this.dataAlteracao = dataAlteracao;
+        this.usuario = usuario;
+        this.justificativa = justificativa;
+    }
+
     public Long getId() {
         return id;
     }

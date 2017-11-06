@@ -27,6 +27,16 @@ public class Foto {
      */
     private boolean fotoCapa;
 
+    public Foto() {
+    }
+
+    public Foto(Long id, Long idArquivo, String urlFoto, boolean fotoCapa) {
+        this.id = id;
+        this.idArquivo = idArquivo;
+        this.urlFoto = urlFoto;
+        this.fotoCapa = fotoCapa;
+    }
+
     //TODO: Arquivo para upload.
     public Long getId() {
         return id;

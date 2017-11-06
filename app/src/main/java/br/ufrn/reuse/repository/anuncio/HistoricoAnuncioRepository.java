@@ -5,6 +5,7 @@ import android.content.Context;
 import java.util.List;
 
 import br.ufrn.reuse.dominio.anuncio.HistoricoAnuncio;
+import br.ufrn.reuse.remote.anuncio.HistoricoAnuncioRemoteService;
 
 /**
  * Created by Daniel on 10/27/2017.
@@ -12,12 +13,15 @@ import br.ufrn.reuse.dominio.anuncio.HistoricoAnuncio;
 
 public class HistoricoAnuncioRepository {
     private final Context context;
+    private final HistoricoAnuncioRemoteService remoteService;
 
     public HistoricoAnuncioRepository(Context context) {
         this.context = context;
+
+        this.remoteService = new HistoricoAnuncioRemoteService(context);
     }
 
     public List<HistoricoAnuncio> findAllHistoricosByAnuncioId(Long id) {
-        return null;
+        return remoteService.findAllHistoricosByAnuncioId(id);
     }
 }

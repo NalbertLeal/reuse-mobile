@@ -91,6 +91,13 @@ public class Anuncio {
      */
     private Date dataSincronizacao;
 
+    public Anuncio() {
+    }
+
+    public Anuncio(Long id) {
+        this.id = id;
+    }
+
     //GETTERS E SETTERS
 
     public Long getId() {
