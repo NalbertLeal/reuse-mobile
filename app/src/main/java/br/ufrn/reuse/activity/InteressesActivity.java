@@ -11,7 +11,7 @@ import android.widget.Spinner;
 import java.util.List;
 
 import br.ufrn.reuse.R;
-import br.ufrn.reuse.activity.vitrine.VitrineListAdapter;
+import br.ufrn.reuse.activity.interesses.InteressesListAdapter;
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
 import br.ufrn.reuse.facade.ReuseFacadeImpl;
 
@@ -41,7 +41,7 @@ public class InteressesActivity extends AbstractActivity {
 
         List<Anuncio> anuncios = new ReuseFacadeImpl(this).findAllAnunciosPublicados();
         GridView listView = (GridView) findViewById(R.id.lista_interesses);
-        listView.setAdapter(new VitrineListAdapter(this, anuncios));
+        listView.setAdapter(new InteressesListAdapter(this, anuncios));
 
         LinearLayout interessesLayout = (LinearLayout) findViewById(R.id.layout_interesses);
 
