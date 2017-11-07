@@ -51,7 +51,7 @@ public class VitrineActivity extends AbstractActivity{
         GridView gridVitrine = getGridVitrine();
         gridVitrine.setAdapter(new VitrineListAdapter(this, anuncios));
         //Recupera o usuario logado e o mostra
-        recuperaUsuarioUnidade();
+        super.recuperaUsuarioUnidade();
 
         GridView listView = (GridView) findViewById(R.id.lista_vitrine);
         listView.setAdapter(new VitrineListAdapter(this, anuncios));
@@ -88,24 +88,6 @@ public class VitrineActivity extends AbstractActivity{
         }
     }
 
-    private void recuperaUsuarioUnidade() {
-
-        Long idUsuario = getIntent().getLongExtra("usuarioLogado", 0);
-        Usuario usuarioLogado = new ReuseFacadeImpl(this).findUsuario(idUsuario);
-        TextView nome = (TextView) findViewById(R.id.textUser);
-        if(nome != null)
-            nome.setText(usuarioLogado.getPessoa().getNome());
-        TextView email = (TextView) findViewById(R.id.textEmailUser);
-        if(email != null)
-            email.setText(usuarioLogado.getEmail());
-
-        Long unidadeLogada = getIntent().getLongExtra("unidadeLogada", 0);
-        TextView unidade = (TextView) findViewById(R.id.textEmailUser);
-        if(unidade != null && unidadeLogada >= 0)
-            unidade.setText(unidadeLogada.toString());
-    }
-
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -121,12 +103,6 @@ public class VitrineActivity extends AbstractActivity{
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.vitrine, menu);
         return true;
-    }
-
-    public void salvarUnidadeUltimoLogado(Long unidade) {
-        SharedPreferences sp = getPreferences(Activity.MODE_PRIVATE);
-        SharedPreferences.Editor  editor = sp.edit();
-        editor.putLong("unidadeUltimoLogado", unidade);
     }
 
     private GridView getGridVitrine() {

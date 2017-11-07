@@ -16,7 +16,7 @@ import br.ufrn.reuse.facade.ReuseFacadeImpl;
  * Tela de login
  * @author Esther
  */
-public class LoginActivity extends AppCompatActivity{
+public class LoginActivity extends AbstractActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,13 +44,6 @@ public class LoginActivity extends AppCompatActivity{
         intent.putExtra("usuarioLogado", usuario);
         intent.putExtra("unidadeLogada", unidade);
         startActivity(intent);
-    }
-
-    private void salvarUltimoUsuarioLogado(String usuario){
-        SharedPreferences sp = getPreferences(Activity.MODE_PRIVATE);
-        SharedPreferences.Editor  editor = sp.edit();
-        editor.putString("ultimoLogado", usuario);
-        editor.putBoolean("logarAutomaticamente", true);
     }
 
     private void autenticarPorToken(){
