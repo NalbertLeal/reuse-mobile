@@ -10,12 +10,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import br.ufrn.reuse.R;
+import br.ufrn.reuse.dominio.anuncio.Anuncio;
 
-import br.ufrn.reuse.R;
+public class MeusAnunciosActivity extends AppCompatActivity {
 
-public class MeusAnuncios extends AppCompatActivity {
-
-    private ArrayList anuncios;
+    private ArrayList<Anuncio> anuncios;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +38,13 @@ public class MeusAnuncios extends AppCompatActivity {
             anuncioLLFotoTombamento.setOrientation(LinearLayout.VERTICAL);
             anuncioLL.addView(anuncioLLFotoTombamento);  // adiciona o LinearLayout "anuncioLLFotoTombamento" no LinearLayout pai
 
+            //TODO: Ver isso
             ImageView anuncioImage = new ImageView(this);
-            anuncioImage.setImageDrawable(); // imagem do objeto do anuncio
+            anuncioImage.setImageDrawable(null); // imagem do objeto do anuncio
             anuncioLLFotoTombamento.addView(anuncioImage);
+            //TODO: Ver isso
             TextView anuncioTombamento = new TextView(this);
-            anuncioTombamento.setText(); // tombamento do objeto do anuncio
+            anuncioTombamento.setText(null); // tombamento do objeto do anuncio
             anuncioLLFotoTombamento.addView(anuncioTombamento);
 
             LinearLayout anuncioLLDados = new LinearLayout(this);

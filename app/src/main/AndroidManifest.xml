@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.Vitrine"
+            android:name=".activity.VitrineActivity"
             android:label="@string/title_activity_main2"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -34,7 +34,7 @@
             android:label="@string/title_activity_interesses" />
         <activity android:name=".activity.AnunciosActivity" />
         <activity android:name=".activity.DetalhamentoAnuncioActivity" />
-        <activity android:name=".activity.MeusAnuncios"></activity>
+        <activity android:name=".activity.MeusAnunciosActivity"></activity>
     </application>
 
 </manifest>

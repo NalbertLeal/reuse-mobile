@@ -4,6 +4,7 @@ import android.content.Context;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import br.ufrn.reuse.dominio.comum.Unidade;
 
@@ -24,6 +25,12 @@ public class UnidadeRemoteService {
     }
 
     public Unidade findUnidadeById(Long idUnidade) {
-        return this.unidades.stream().filter(unidade -> unidade.getId().equals(idUnidade)).findFirst().get();
+        for (Unidade unidade : this.unidades) {
+            if (unidade.getId().equals(idUnidade)) {
+                return null;
+            }
+        }
+
+        return null;
     }
 }

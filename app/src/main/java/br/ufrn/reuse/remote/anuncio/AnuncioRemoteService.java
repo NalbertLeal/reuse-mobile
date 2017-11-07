@@ -3,6 +3,7 @@ package br.ufrn.reuse.remote.anuncio;
 import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
@@ -56,15 +57,32 @@ public class AnuncioRemoteService {
         return null;
     }
 
+    public List<Anuncio> findAllAnunciosPublicados(String textoBusca) {
+
+        List<Anuncio> anuncios = new ArrayList<>();
+
+        for (String nome: Arrays.asList("Cadeira Roxa", "Cadeira azul", "Cadeira Vermelha","Notebook Azul", "Notebook Novo", "Notebook Amarelo")) {
+            if(nome.contains(textoBusca)) {
+                Anuncio anuncio = createAnuncio(1);
+                anuncio.getBem().setDenominacao(nome);
+
+                anuncios.add(anuncio);
+            }
+        }
+
+        return anuncios;
+    }
+
+
     @NonNull
-    private Anuncio createAnuncio(int i) {
+    private Anuncio createAnuncio(long i) {
         Anuncio anuncio = new Anuncio();
 
-        anuncio.setId((long) i);
+        anuncio.setId(i);
         anuncio.setTextoPublicacao("Cadeira DXRacer muito massa. Nunca foi usada. Assento regulável! Gira! Mas possui defeito.");
 
         Bem bem = new Bem();
-        bem.setId((long) i);
+        bem.setId(i);
         bem.setNumTombamento(2012121211);
         if(i%2==1)
             bem.setDenominacao("Cadeira nova, muito boa.");

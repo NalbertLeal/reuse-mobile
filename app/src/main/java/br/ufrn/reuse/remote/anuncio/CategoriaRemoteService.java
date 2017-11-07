@@ -5,6 +5,7 @@ import android.content.Context;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import br.ufrn.reuse.dominio.anuncio.CategoriaAnuncio;
@@ -31,10 +32,13 @@ public class CategoriaRemoteService {
     }
 
     public CategoriaAnuncio findCategoriaById(String identificador) {
-        return this.categorias.stream()
-                .filter(categoria -> categoria.equals(identificador))
-                .findFirst()
-                .get();
+        for (CategoriaAnuncio categoria : this.categorias) {
+            if (categoria.equals(identificador)) {
+                return categoria;
+            }
+        }
+
+        return null;
     }
 
 }

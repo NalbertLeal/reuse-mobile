@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity{
     }
 
     private void iniciarTimeline(Long usuario, Long unidade){
-        Intent intent = new Intent(this, Vitrine.class);
+        Intent intent = new Intent(this, VitrineActivity.class);
         intent.putExtra("usuarioLogado", usuario);
         intent.putExtra("unidadeLogada", unidade);
         startActivity(intent);

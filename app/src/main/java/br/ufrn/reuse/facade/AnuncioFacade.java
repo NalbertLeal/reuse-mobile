@@ -99,6 +99,16 @@ class AnuncioFacade {
         return categoriaRepository.findAllCategorias();
     }
 
+    /**
+     * Busca os anúncios que contenham o substring.
+     *
+     * @param textoBusca
+     * @return
+     */
+    public List<Anuncio> findAllAnunciosPublicados(String textoBusca) {
+        return anuncioRepository.findAllAnunciosPublicados(textoBusca);
+    }
+
     //Métodos que efetuam o join das informações.
 
     /**

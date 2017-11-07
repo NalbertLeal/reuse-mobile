@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="br.ufrn.reuse.activity.Vitrine">
+    tools:context="br.ufrn.reuse.activity.VitrineActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"

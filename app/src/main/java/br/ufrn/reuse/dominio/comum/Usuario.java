@@ -1,5 +1,6 @@
 package br.ufrn.reuse.dominio.comum;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -49,8 +50,16 @@ public class Usuario {
      */
     private Integer urlFoto;
 
-    public Usuario(long id){
+    public Usuario(Long id){
         this.id = id;
+        this.unidadesUsuario = new ArrayList<>();
+    }
+
+    public Usuario(Long id, String login, Unidade unidade, Pessoa pessoa) {
+        this(id);
+        this.login = login;
+        this.unidade = unidade;
+        this.pessoa = pessoa;
     }
 
     public Usuario(){

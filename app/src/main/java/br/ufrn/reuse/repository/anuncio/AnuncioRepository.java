@@ -100,4 +100,8 @@ public class AnuncioRepository {
     public List<Anuncio> findAllAnuncios(CategoriaAnuncio categoria, String denominacaoBem, Integer numeroTombamento, List<Etiqueta> etiquetas) {
         return remoteService.findAllAnuncios(categoria,denominacaoBem,numeroTombamento,etiquetas);
     }
+
+    public List<Anuncio> findAllAnunciosPublicados(String textoBusca) {
+        return remoteService.findAllAnunciosPublicados(textoBusca);
+    }
 }

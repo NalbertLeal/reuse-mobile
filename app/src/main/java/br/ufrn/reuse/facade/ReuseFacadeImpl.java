@@ -74,6 +74,11 @@ public class ReuseFacadeImpl implements ReuseFacade {
         return anuncioFacade.findAllAnuncios(usuario);
     }
 
+    @Override
+    public List<Anuncio> findAllAnunciosPublicados(String textoBusca) {
+        return anuncioFacade.findAllAnunciosPublicados(textoBusca);
+    }
+
     /**
      *
      * Busca todos os interesses do usuário

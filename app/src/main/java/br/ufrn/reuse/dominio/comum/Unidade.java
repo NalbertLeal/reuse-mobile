@@ -30,6 +30,10 @@ public class Unidade {
         this.sigla = sigla;
     }
 
+    public Unidade(String sigla) {
+        this.sigla = sigla;
+    }
+
     public Long getId() {
         return id;
     }

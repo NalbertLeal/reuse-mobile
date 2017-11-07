@@ -16,11 +16,12 @@ import br.ufrn.reuse.dominio.patrimonio.Bem;
  * @author Nalbert
  */
 public interface ReuseFacade {
-    Anuncio cadastrar(Anuncio anuncio);
 
     //TODO: PAGINAÇÃO
+    Anuncio cadastrar(Anuncio anuncio);
     List<Anuncio> findAllAnunciosPublicados();
     List<Anuncio> findAllAnuncios(Usuario usuario);
+    List<Anuncio> findAllAnunciosPublicados(String textoBusca);
     List<Interesse> findAllInteresse(Usuario usuario);
     Interesse demonstraInteresse(Usuario usuario, Anuncio anuncio);
     void removerInteresse(Interesse interesse);

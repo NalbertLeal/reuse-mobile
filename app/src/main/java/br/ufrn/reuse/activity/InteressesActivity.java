@@ -15,8 +15,13 @@ import br.ufrn.reuse.activity.interesses.InteressesListAdapter;
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
 import br.ufrn.reuse.facade.ReuseFacadeImpl;
 
+/**
+ * Activity para o caso de uso de acompanhamento dos interesses.
+ */
 public class InteressesActivity extends AbstractActivity {
+
     private String[] situacao = new String[] {"Todos", "Em análise", "Aprovados", "Aguardando aprovação"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +51,6 @@ public class InteressesActivity extends AbstractActivity {
         LinearLayout interessesLayout = (LinearLayout) findViewById(R.id.layout_interesses);
 
         int widthIntereesses = interessesLayout.getWidth();
-
 
         listView.setMinimumWidth(widthIntereesses);
     }

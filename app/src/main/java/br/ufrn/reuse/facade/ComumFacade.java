@@ -12,8 +12,10 @@ import br.ufrn.reuse.dominio.comum.Usuario;
 
 public class ComumFacade {
 
-    public ComumFacade(Context context) {
+    private final Context context;
 
+    public ComumFacade(Context context) {
+        this.context = context;
     }
 
     /**
@@ -23,18 +25,11 @@ public class ComumFacade {
      * @return
      */
     public Usuario autenticar(String usuario, String senha) {
-        Usuario user = new Usuario(5);
-        return user; //new ComumRemoteService().credenciaisValidas(usuario, senha);
+        return findUsuarioById(5L); //new ComumRemoteService().credenciaisValidas(usuario, senha);
     }
 
     public Usuario findUsuarioById(Long idUsuario) {
-        Usuario user = new Usuario(5);
-        Pessoa pessoa = new Pessoa();
-        pessoa.setNome("Apuena");
-        user.setPessoa(pessoa);
-        Unidade unidade = new Unidade();
-        unidade.setSigla("IMD");
-        user.getUnidadesUsuario().add(unidade);
-        return user; //new ComumRemoteService().findUsuarioById(usuario);
+        return new Usuario(5L,"apuena", new Unidade("IMD"), new Pessoa("Apuena")); //new ComumRemoteService().findUsuarioById(usuario);
     }
+
 }

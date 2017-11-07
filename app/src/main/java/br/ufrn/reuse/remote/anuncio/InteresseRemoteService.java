@@ -59,11 +59,15 @@ public class InteresseRemoteService {
 
         Interesse interesse = null;
 
-        Optional<Interesse> optInteresse = interesses.stream()
-                .filter(interesseAnuncio -> interesseAnuncio.getAnuncio().equals(anuncio)
-                        && interesseAnuncio.getInteressado().equals(usuario)).findFirst();
+        for (Interesse interesseAnuncio : interesses) {
+            if (interesseAnuncio.getAnuncio().equals(anuncio)
+                    && interesseAnuncio.getInteressado().equals(usuario)) {
+                interesse = interesseAnuncio;
+                break;
+            }
+        }
 
-        if(!optInteresse.isPresent()){
+        if(interesse == null){
             interesse = new Interesse();
 
             interesse.setId(++interesseSeq);
@@ -72,21 +76,17 @@ public class InteresseRemoteService {
             interesse.setDataInteresse(new Date());
             interesse.setInteressado(usuario);
 
-        }else{
-            interesse = optInteresse.get();
         }
 
         return interesse;
     }
 
     public void removerInteresse(Interesse interesse) {
-        Optional<Interesse> optInteresse = interesses.stream()
-                .filter(interesseAnuncio -> interesseAnuncio.equals(interesse))
-                .findFirst();
-
-        if(optInteresse.isPresent()){
-            interesses.remove(interesse);
+        for (Interesse interesseAnuncio : interesses) {
+            if (interesseAnuncio.equals(interesse)) {
+                interesses.remove(interesse);
+                break;
+            }
         }
-
     }
 }
