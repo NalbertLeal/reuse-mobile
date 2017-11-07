@@ -57,6 +57,24 @@ public class AnuncioRemoteService {
         return null;
     }
 
+    public List<Anuncio> findAllAnunciosCategoria(List<CategoriaAnuncio> categorias) {
+        List<Anuncio> anuncios = new ArrayList<Anuncio>();
+
+        if(categorias != null && categorias.size() > 0) {
+            for (Anuncio anuncio : findAll(null)) {
+                for (CategoriaAnuncio cat : categorias) {
+                    if (anuncio.getCategoria().getDescricao() == cat.getDescricao()) {
+                        anuncios.add(anuncio);
+                        break;
+                    }
+                }
+            }
+        }else{
+            return findAll(null);
+        }
+        return anuncios;
+    }
+
     public List<Anuncio> findAllAnunciosPublicados(String textoBusca) {
 
         List<Anuncio> anuncios = new ArrayList<>();
@@ -84,13 +102,16 @@ public class AnuncioRemoteService {
         Bem bem = new Bem();
         bem.setId(i);
         bem.setNumTombamento(2012121211);
-        if(i%2==1)
+        if(i%2==1) {
             bem.setDenominacao("Cadeira nova, muito boa.");
-        else
+            anuncio.setCategoria(new CategoriaAnuncio("ELETRONICOS", "Eletrônicos"));
+        }else {
             bem.setDenominacao("Cadeira velha, muito ruim.");
-
+            anuncio.setCategoria(new CategoriaAnuncio("OUTROS", "Outros"));
+        }
         anuncio.setBem(bem);
         return anuncio;
     }
+
 
 }

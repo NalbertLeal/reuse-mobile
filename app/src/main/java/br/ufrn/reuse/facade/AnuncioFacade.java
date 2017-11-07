@@ -147,4 +147,8 @@ class AnuncioFacade {
 
     }
 
+    public List<Anuncio> findAllAnunciosPublicadosCategorias(List<CategoriaAnuncio> categoria) {
+        return anuncioRepository.findAllAnunciosPublicadosCategoria(categoria);
+    }
+
 }

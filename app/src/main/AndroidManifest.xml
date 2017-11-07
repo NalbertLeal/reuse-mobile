@@ -18,13 +18,13 @@
         <activity
             android:name=".activity.VitrineActivity"
             android:label="@string/title_activity_main2"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.LoginActivity"
             android:label="@string/title_activity_login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -34,7 +34,6 @@
             android:label="@string/title_activity_interesses" />
         <activity android:name=".activity.AnunciosActivity" />
         <activity android:name=".activity.DetalhamentoAnuncioActivity" />
-        <activity android:name=".activity.MeusAnunciosActivity"></activity>
     </application>
 
 </manifest>

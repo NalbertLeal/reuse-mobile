@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import br.ufrn.reuse.R;
 import br.ufrn.reuse.dominio.comum.Usuario;
@@ -27,6 +28,7 @@ import br.ufrn.reuse.facade.ReuseFacadeImpl;
  */
 public abstract class AbstractActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
+    Logger logger = Logger.getLogger(getClass().getName());
     /**
      * Mapa que contem a associação entre item de menu e activity que será aberta ao clicar.
      */
@@ -101,25 +103,26 @@ public abstract class AbstractActivity extends AppCompatActivity implements Navi
 
     /**
      * Salva o usuario logado nas shared preferences
-     *
      * @param usuario
      */
     protected void salvarUltimoUsuarioLogado(String usuario){
         SharedPreferences sp = getPreferences(Activity.MODE_PRIVATE);
         SharedPreferences.Editor  editor = sp.edit();
         editor.putString("ultimoLogado", usuario);
-        editor.putBoolean("logarAutomaticamente", true);
+        editor.apply();
+        editor.putBoolean("logarAuto", true);
+        editor.apply();
     }
 
     /**
      * Salva a unidade do usuário logado nas shared preferences.
-     *
      * @param unidade
      */
     protected void salvarUnidadeUltimoLogado(Long unidade) {
         SharedPreferences sp = getPreferences(Activity.MODE_PRIVATE);
         SharedPreferences.Editor  editor = sp.edit();
         editor.putLong("unidadeUltimoLogado", unidade);
+        editor.apply();
     }
 
 }
