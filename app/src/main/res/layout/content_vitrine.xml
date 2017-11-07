@@ -9,114 +9,111 @@
     android:paddingRight="16dp"
     android:paddingTop="60dp">
 
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Bem Vindo ao REUSE"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:textSize="30sp" />
+
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Sistema de reaproveitamento de bens da UFRN"
+            android:textSize="12sp" />
+
+        <EditText
+            android:id="@+id/text_busca"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Procurar..." />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:weightSum="1">
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Bem Vindo ao REUSE"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                tools:textSize="30sp" />
-
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Sistema de reaproveitamento de bens da UFRN"
-                android:textSize="12sp" />
-
-            <EditText
-                android:id="@+id/text_busca"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Procurar..." />
-
-            <LinearLayout
+            <Button
+                android:id="@+id/button_buscar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:weightSum="1">
-
-                <Button
-                    android:id="@+id/button_buscar"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="Buscar" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="1">
-
-            </LinearLayout>
-
-            <!--
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <Button
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Mobilia" />
-
-                            <Button
-                                android:id="@+id/button"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Eletronicos" />
-
-                            <Button
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Escritorio" />
-
-                            <Button
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Laboratorial" />
-
-                            <Button
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Material Bibliografico" />
-
-                            <Button
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Outros" />
-
-                        </LinearLayout>
-                        -->
-
-
-            <TextView
-                android:id="@+id/quantidade_resultados"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="0 Anuncio(s) encontrado(s)" />
-
-            <GridView
-                android:id="@+id/lista_vitrine"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </GridView>
+                android:gravity="center"
+                android:text="Buscar" />
         </LinearLayout>
-    </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1">
+
+        </LinearLayout>
+
+        <!--
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mobilia" />
+
+                        <Button
+                            android:id="@+id/button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Eletronicos" />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Escritorio" />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Laboratorial" />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Material Bibliografico" />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Outros" />
+
+                    </LinearLayout>
+                    -->
+
+
+        <TextView
+            android:id="@+id/quantidade_resultados"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0 Anuncio(s) encontrado(s)" />
+
+        <GridView
+            android:id="@+id/lista_vitrine"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </GridView>
+    </LinearLayout>
+
 
 </LinearLayout>
