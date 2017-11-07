@@ -33,6 +33,7 @@ public class BemRepository {
 
     public BemRepository(Context context) {
         this.context = context;
+        this.bemRemote = new BemRemoteService(context);
     }
 
     public Bem findBemById(Long idBem){
