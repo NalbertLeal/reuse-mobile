@@ -11,6 +11,8 @@ import java.util.ArrayList;
 
 import br.ufrn.reuse.R;
 
+import br.ufrn.reuse.R;
+
 public class MeusAnuncios extends AppCompatActivity {
 
     private ArrayList anuncios;

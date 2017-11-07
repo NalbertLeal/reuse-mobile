@@ -1,44 +1,72 @@
 package br.ufrn.reuse.activity;
-import br.ufrn.reuse.facade.ReuseFacade;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 
 import br.ufrn.reuse.R;
+import br.ufrn.reuse.dominio.comum.Usuario;
 import br.ufrn.reuse.facade.ReuseFacadeImpl;
 
 /**
- * A login screen that offers login via email/password.
+ * Tela de login
+ * @author Esther
  */
 public class LoginActivity extends AppCompatActivity{
-
-    private ReuseFacade reuseFacade;
-
-    // UI references.
-    private AutoCompleteTextView mEmailView;
-    private EditText mPasswordView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(view -> {
-            if(new ReuseFacadeImpl(this).autenticar()) {
-                iniciarTimeline("Apuena");
+        autenticarPorToken();
+
+        //EditText usernameText = (Button) findViewById(R.id.username);
+        String username = "Apuena"; //usernameText.getText().toString();
+
+        Button entrarButton = (Button) findViewById(R.id.email_sign_in_button);
+        entrarButton.setOnClickListener(view -> {
+            Usuario usuarioLogado = new ReuseFacadeImpl(this).autenticar(null, null);
+            if (usuarioLogado.getId() >= 0){
+                //Caso ocorra autenticação, usuario logado é salvo para facilitar próximo acesso
+                salvarUltimoUsuarioLogado(username);
+                iniciarTimeline(usuarioLogado.getId(), null);
             }
         });
     }
 
-    private void iniciarTimeline(String usuario){
+    private void iniciarTimeline(Long usuario, Long unidade){
         Intent intent = new Intent(this, Vitrine.class);
-        //intent.putExtra("username", usuario);
+        intent.putExtra("usuarioLogado", usuario);
+        intent.putExtra("unidadeLogada", unidade);
         startActivity(intent);
+    }
+
+    private void salvarUltimoUsuarioLogado(String usuario){
+        SharedPreferences sp = getPreferences(Activity.MODE_PRIVATE);
+        SharedPreferences.Editor  editor = sp.edit();
+        editor.putString("ultimoLogado", usuario);
+        editor.putBoolean("logarAutomaticamente", true);
+    }
+
+    private void autenticarPorToken(){
+        //Recupera preferencias para tentar autenticar por token
+        SharedPreferences sp = getPreferences(Activity.MODE_PRIVATE);
+        SharedPreferences.Editor  editor = sp.edit();
+        Boolean logarAuto = sp.getBoolean("logarAuto", false);
+        if(logarAuto) {
+            String usuario = sp.getString("ultimoLogado", "");
+            Long unidade = sp.getLong("unidadeUltimoLogado", 0);
+            String senha = sp.getString("pswd", "");
+            if (usuario != null && usuario != "" && senha != null && senha != "") {
+                Usuario usuarioLogado = new ReuseFacadeImpl(this).autenticar(null, null);
+                if (usuarioLogado.getId() >= 0)
+                    iniciarTimeline(usuarioLogado.getId(), unidade);
+            }
+        }
     }
 }

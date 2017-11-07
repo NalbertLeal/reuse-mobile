@@ -49,6 +49,13 @@ public class Usuario {
      */
     private Integer urlFoto;
 
+    public Usuario(long id){
+        this.id = id;
+    }
+
+    public Usuario(){
+    }
+
     //Getters e Setters
     public Long getId() {
         return id;

@@ -66,7 +66,10 @@ public class AnuncioRemoteService {
         Bem bem = new Bem();
         bem.setId((long) i);
         bem.setNumTombamento(2012121211);
-        bem.setDenominacao("Cadeira nova, muito boa.");
+        if(i%2==1)
+            bem.setDenominacao("Cadeira nova, muito boa.");
+        else
+            bem.setDenominacao("Cadeira velha, muito ruim.");
 
         anuncio.setBem(bem);
         return anuncio;

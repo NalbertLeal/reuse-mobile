@@ -130,12 +130,15 @@ public class ReuseFacadeImpl implements ReuseFacade {
 
     /**
      * Busca se as credenciais informadas são válidas.
-     *
      * @return sucesso no login
      */
     @Override
-    public boolean autenticar() {
-        //TODO: Handle authentication =)
-        return comumFacade.autenticar(); //new ComumRemoteService().credenciaisValidas(usuario, senha);
+    public Usuario autenticar(String usuario, String senha) {
+        return comumFacade.autenticar(usuario, senha); //new ComumRemoteService().credenciaisValidas(usuario, senha);
     }
+
+    public Usuario findUsuario(Long idUsuario) {
+        return comumFacade.findUsuarioById(idUsuario); //new ComumRemoteService().findUsuarioById(isUsuario);
+    }
+
 }
