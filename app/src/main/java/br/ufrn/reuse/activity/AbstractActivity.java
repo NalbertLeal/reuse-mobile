@@ -11,35 +11,73 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import br.ufrn.reuse.R;
 import br.ufrn.reuse.dominio.comum.Usuario;
 import br.ufrn.reuse.facade.ReuseFacadeImpl;
 
 /**
- * Created by Daniel on 10/31/2017.
+ * Classe que contém comportamentos padrão para todas as activity do sistema.
+ *
+ * @author Daniel
+ * @author Esther
+ *
  */
 public abstract class AbstractActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
+    /**
+     * Mapa que contem a associação entre item de menu e activity que será aberta ao clicar.
+     */
+    private static Map<Integer, Class<? extends Activity>> activitiesMenuMap = getActivitiesMap();
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.nav_anunciar) {
-            Intent intent = new Intent(this, AnunciarActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_interesses) {
-            Intent intent = new Intent(this,InteressesActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_anuncios) {
-            Intent intent = new Intent(this, AnunciosActivity.class);
-            startActivity(intent);
-        }
-
+        startActivity(new Intent(this,getActivityClass(item.getItemId())));
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
 
         return true;
     }
+
+    /**
+     * Retorna a activity que será criada ao abrir um item do menu.
+     *
+     * @param idLink
+     * @return
+     */
+    public Class<?> getActivityClass(int idLink){
+
+        Map<Integer, Class<? extends Activity>> activitiesMenuMap = getActivitiesMap();
+
+        if (activitiesMenuMap.containsKey(idLink)) {
+            return activitiesMenuMap.get(idLink);
+        }
+
+        throw new IllegalArgumentException("O id passado deve estar associado à um menu da aplicação");
+
+    }
+
+    /**
+     * Associa o item do menu à activity que será iniciada no click.
+     *
+     * @return
+     */
+    @NonNull
+    private static Map<Integer, Class<? extends Activity>> getActivitiesMap() {
+
+        if(activitiesMenuMap == null) {
+            activitiesMenuMap = new HashMap<>();
+
+            activitiesMenuMap.put(R.id.nav_anunciar, AnunciarActivity.class);
+            activitiesMenuMap.put(R.id.nav_interesses, InteressesActivity.class);
+            activitiesMenuMap.put(R.id.nav_anuncios, AnunciosActivity.class);
+        }
+
+        return activitiesMenuMap;
+    }
+
 
     /**
      * Recupera o usuario logado e mostra seus dados
@@ -61,6 +99,11 @@ public abstract class AbstractActivity extends AppCompatActivity implements Navi
             unidade.setText(unidadeLogada.toString());
     }
 
+    /**
+     * Salva o usuario logado nas shared preferences
+     *
+     * @param usuario
+     */
     protected void salvarUltimoUsuarioLogado(String usuario){
         SharedPreferences sp = getPreferences(Activity.MODE_PRIVATE);
         SharedPreferences.Editor  editor = sp.edit();
@@ -68,6 +111,11 @@ public abstract class AbstractActivity extends AppCompatActivity implements Navi
         editor.putBoolean("logarAutomaticamente", true);
     }
 
+    /**
+     * Salva a unidade do usuário logado nas shared preferences.
+     *
+     * @param unidade
+     */
     protected void salvarUnidadeUltimoLogado(Long unidade) {
         SharedPreferences sp = getPreferences(Activity.MODE_PRIVATE);
         SharedPreferences.Editor  editor = sp.edit();
@@ -75,3 +123,4 @@ public abstract class AbstractActivity extends AppCompatActivity implements Navi
     }
 
 }
+
