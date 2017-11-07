@@ -4,17 +4,27 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.Arrays;
+import java.util.List;
+
+import br.ufrn.reuse.R;
+import br.ufrn.reuse.utils.ReflectionUtils;
+
 /**
  * Created by Daniel on 10/25/2017.
  */
-public class SqlHelper extends SQLiteOpenHelper{
+public class SqlHelper extends SQLiteOpenHelper {
 
     public static final int DATABASE_VERSION = 1;
-    private static String DATABASE_NAME  = "reuse";
+    private static String DATABASE_NAME = "reuse";
 
+    private Context context;
 
-    public SqlHelper(Context context){
+    public SqlHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
     }
 
     @Override
@@ -27,11 +37,33 @@ public class SqlHelper extends SQLiteOpenHelper{
 
     }
 
-    private void migrateToLatestVersion(SQLiteDatabase database){
-        migrateToLatestVersion(database,0);
+    private void migrateToLatestVersion(SQLiteDatabase database) {
+        migrateToLatestVersion(database, 0);
     }
 
     private void migrateToLatestVersion(SQLiteDatabase database, int oldVersion) {
+        Class<R.raw> classe = R.raw.class;
+        List<Field> fields = ReflectionUtils.getAllStaticField(classe);
+
+        for (Field field : fields) {
+            try {
+                Integer idResource = field.getInt(null);
+                String name = field.getName();
+                String[] split = name.split("_");
+                String versao = split[0];
+                int numVersao = Integer.parseInt(versao);
+
+                String extensaoArquivo = null;
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+
+        }
+
+
+
+
+        Migracao migracao = new Migracao("", 1);
 
     }
 
