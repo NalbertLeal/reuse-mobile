@@ -42,7 +42,13 @@ public class AnuncioRemoteService {
     }
 
     public Anuncio findById(Long idAnuncio) {
-        return createAnuncio(idAnuncio.intValue());
+        //return createAnuncio(idAnuncio.intValue());
+        for(Anuncio anuncio : findAll(null)){
+            if(anuncio.getId()==idAnuncio){
+                return anuncio;
+            }
+        }
+        return null;
     }
 
     public Anuncio cadastrar(Anuncio anuncio) {
@@ -57,6 +63,12 @@ public class AnuncioRemoteService {
         return null;
     }
 
+    /**
+     * Busca todos os anuncios dadas as categorias passadas
+     * Caso nenhuma categoria tenha sido passada, busca todos os anuncios
+     * @param categorias
+     * @return
+     */
     public List<Anuncio> findAllAnunciosCategoria(List<CategoriaAnuncio> categorias) {
         List<Anuncio> anuncios = new ArrayList<Anuncio>();
 

@@ -58,7 +58,7 @@ public class LoginActivity extends AbstractActivity{
 
         if(logarAuto) {
             String usuario = sp.getString("ultimoLogado", "non");
-            logger.log(Level.SEVERE, ">>> "+usuario);
+            //logger.log(Level.SEVERE, ">>> "+usuario);
             Long unidade = sp.getLong("unidadeUltimoLogado", 0);
             String senha = sp.getString("pswd", "123");
             if (usuario != null && usuario != "" && senha != null && senha != "") {

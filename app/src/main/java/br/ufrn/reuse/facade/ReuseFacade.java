@@ -19,6 +19,7 @@ public interface ReuseFacade {
 
     //TODO: PAGINAÇÃO
     Anuncio cadastrar(Anuncio anuncio);
+    Anuncio findAnunciobyId(Long id);
     List<Anuncio> findAllAnunciosPublicados();
     List<Anuncio> findAllAnuncios(Usuario usuario);
     List<Anuncio> findAllAnunciosPublicados(String textoBusca);

@@ -90,7 +90,7 @@ public class AnunciarActivity extends AbstractActivity {
         anuncio.setQuantidadeDiasAtivo(15);
         anuncio.setTextoPublicacao(" ");
 
-        List<String> erros = anuncio.validarCadastro();
+        List<String> erros = new ArrayList<>();//anuncio.validarCadastro();
 
         if(erros.isEmpty()){
             reuseFacade.cadastrar(anuncio);

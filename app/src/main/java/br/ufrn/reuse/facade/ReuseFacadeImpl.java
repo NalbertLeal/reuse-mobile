@@ -58,6 +58,16 @@ public class ReuseFacadeImpl implements ReuseFacade {
      * @return todos os anúncios publicados
      */
     @Override
+    public Anuncio findAnunciobyId(Long id) {
+        return new AnuncioRemoteService().findById(id);
+    }
+
+    /**
+     * Busca todos os anúncios publicados.
+     *
+     * @return todos os anúncios publicados
+     */
+    @Override
     public List<Anuncio> findAllAnunciosPublicados() {
         //List<Anuncio> anuncios = anuncioFacade.findAllAnunciosPublicados();
         return new AnuncioRemoteService().findAll(null);
