@@ -91,6 +91,11 @@ public class Anuncio {
      */
     private Date dataSincronizacao;
 
+    /**
+     * Guarda a url da foto de capa.
+     */
+    private String urlFotoCapa;
+
     public Anuncio() {
     }
 
@@ -240,5 +245,13 @@ public class Anuncio {
         }
 
         return erros;
+    }
+
+    public void setUrlFotoCapa(String urlFotoCapa) {
+        this.urlFotoCapa = urlFotoCapa;
+    }
+
+    public String getUrlFotoCapa() {
+        return urlFotoCapa;
     }
 }
