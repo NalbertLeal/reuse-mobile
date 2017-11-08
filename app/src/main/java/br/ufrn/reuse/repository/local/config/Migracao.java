@@ -1,5 +1,7 @@
 package br.ufrn.reuse.repository.local.config;
 
+import android.database.sqlite.SQLiteDatabase;
+
 /**
  * Created by danielsmith on 07/11/2017.
  */
@@ -8,12 +10,12 @@ public class Migracao {
     /**
      * Nome completo do arquivo;
      */
-    public String nomeArquivo;
+    private String nomeArquivo;
 
     /**
      * Versão do arquivo
      */
-    int versao;
+    private int versao;
 
     public Migracao(String nomeArquivo, int versao) {
         this.nomeArquivo = nomeArquivo;
@@ -50,5 +52,19 @@ public class Migracao {
     @Override
     public int hashCode() {
         return versao;
+    }
+
+
+    /**
+     * Aplica a migração na base de dados
+     *
+      * @param database
+     */
+    public void aplicar(SQLiteDatabase database) {
+        database.execSQL(getSqlMigracao());
+    }
+
+    private String getSqlMigracao() {
+        return null;
     }
 }
