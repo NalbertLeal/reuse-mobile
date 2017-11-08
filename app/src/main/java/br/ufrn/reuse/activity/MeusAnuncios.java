@@ -1,60 +1,42 @@
 package br.ufrn.reuse.activity;
 
-import android.content.Context;
-import android.support.annotation.NonNull;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import java.util.List;
-import java.util.logging.Logger;
+
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 
 import br.ufrn.reuse.R;
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
 import br.ufrn.reuse.utils.PegarImagemAnuncio;
 
 /**
- * @author Nalbert Gabriel Melo Leal
+ * Created by nalbertg on 07/11/2017.
  */
-public class MeusAnuncios extends ArrayAdapter<Anuncio> {
 
-    Logger logger = Logger.getLogger(getClass().getName());
-
-    private List<Anuncio> anuncios;
-
-    public MeusAnuncios(Context context, List<Anuncio> anuncios){
-        super(context,0,anuncios);
-        this.anuncios = anuncios;
-    }
-
-    @NonNull
+public class MeusAnuncios extends AbstractActivity {
     @Override
-    public View getView(int position, View convertView, @NonNull ViewGroup parent){
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_meus_anuncios);
 
-        Anuncio anuncio = this.getItem(position);
+        ImageView fotoUsuario = (ImageView) findViewById(R.id.imageView2);
 
-        convertView = LayoutInflater.from(this.getContext()).inflate(R.layout.anuncio_meus_anuncios,null);
+        PegarImagemAnuncio p = new PegarImagemAnuncio(fotoUsuario);
+        p.execute();
 
-        ImageView anuncioImage = (ImageView) convertView.findViewById(R.id.imagem_anuncio);
+        TextView nomeUsuario = (TextView) findViewById(R.id.nome_usuario);
+        nomeUsuario.setText("Nabert Gabriel");
 
-        PegarImagemAnuncio p = new PegarImagemAnuncio(anuncioImage);
-        p.execute("https://i0.wp.com/ricardohage.com.br/wp-content/uploads/2017/04/computadores_0006_desktop.jpg?resize=800%2C445");
+        ArrayList<Anuncio> anuncios = new ArrayList<Anuncio>();
+        MeusAnunciosAdapter adapter = new MeusAnunciosAdapter(this, anuncios);
 
-        TextView tombamento = (TextView) convertView.findViewById(R.id.anuncio_tombamento);
-        tombamento.setText("SituaÃ§Ã£o: " + anuncio.getBem().getNumTombamento());
-
-        TextView situacao = (TextView) convertView.findViewById(R.id.anuncio_situacao);
-        situacao.setText("Situacao: " + anuncio.getBem().getNumTombamento());
-
-        TextView unidade = (TextView) convertView.findViewById(R.id.anuncio_interresse);
-        unidade.setText("Unidade: " + anuncio.getBem().getNumTombamento());
-
-        TextView interresses = (TextView) convertView.findViewById(R.id.anuncio_unidade);
-        interresses.setText("Interesses: " + anuncio.getBem().getNumTombamento());
-
-        return convertView;
+        LinearLayout linearLayoutMeusAnuncios = (LinearLayout) findViewById(R.id.linear_layout_meus_anuncios);
+        for (int i = 0; i < anuncios.size(); i++) {
+            linearLayoutMeusAnuncios.addView(adapter.getView(i));
+        }
     }
-
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="br.ufrn.reuse.activity.MeusAnuncios"
+    tools:context="br.ufrn.reuse.activity.MeusAnunciosAdapter"
     android:layout_marginTop="5dp">
 
     <LinearLayout
@@ -41,7 +41,8 @@
                 android:layout_marginLeft="155dp"
                 android:layout_marginTop="-80dp"
                 android:text="Nalbert Gabriel"
-                android:textColor="#333"/>
+                android:textColor="#333"
+                android:id="@+id/nome_usuario"/>
 
         </LinearLayout>
 
@@ -54,7 +55,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:id="@+id/linear_layout_meus_anuncios">
 
             </LinearLayout>
 
