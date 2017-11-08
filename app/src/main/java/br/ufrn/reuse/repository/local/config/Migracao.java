@@ -11,6 +11,8 @@ import java.util.logging.Logger;
 
 /**
  * Created by danielsmith on 07/11/2017.
+ * @author Daniel Smith
+ * @author Nalbert Gabriel
  */
 
 public class Migracao {
@@ -24,6 +26,9 @@ public class Migracao {
      */
     private int versao;
 
+    /**
+     * Logger da classe
+     * */
     private Logger logger = Logger.getLogger( this.getClass().toString() );
 
     public Migracao(String nomeArquivo, int versao) {
