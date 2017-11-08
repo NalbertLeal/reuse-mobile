@@ -15,8 +15,12 @@ public class HttpUtils {
     public static InputStream recoverInputStream(String imageUrl) throws IOException {
         URL url = new URL(imageUrl);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.setDoInput(true);
-        connection.connect();
+        int status = connection.getResponseCode();
+        if(status != 200) {
+            return null;
+        }
+        //connection.setDoInput(true);
+        //connection.connect();
         return connection.getInputStream();
     }
 

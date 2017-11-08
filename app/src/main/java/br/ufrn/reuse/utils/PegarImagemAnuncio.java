@@ -7,8 +7,11 @@ import android.widget.ImageView;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.ref.WeakReference;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import br.ufrn.reuse.R;
 
 /**
  * Created by nalbertg on 07/11/2017.
@@ -18,10 +21,10 @@ import java.util.logging.Logger;
 public class PegarImagemAnuncio extends AsyncTask<String, String, Bitmap> {
 
     Logger logger = Logger.getLogger(getClass().getName());
-    ImageView anuncioImage;
+    WeakReference<ImageView> anuncioImageReference;
 
-    public PegarImagemAnuncio(ImageView i) {
-        this.anuncioImage = i;
+    public PegarImagemAnuncio(ImageView imgView) {
+        this.anuncioImageReference = new WeakReference<ImageView>(imgView);
     }
 
     @Override
@@ -29,14 +32,29 @@ public class PegarImagemAnuncio extends AsyncTask<String, String, Bitmap> {
         Bitmap myBitmap = null;
         try {
             InputStream input = HttpUtils.recoverInputStream(params[0]);
-            myBitmap = BitmapFactory.decodeStream(input);
-            this.anuncioImage.setImageBitmap(myBitmap);
+            if(input != null) {
+                myBitmap = BitmapFactory.decodeStream(input);
 
-            return myBitmap;
+                return myBitmap;
+            }
         } catch (IOException ioException) {
             logger.log(Level.SEVERE,"Erro de IO ao recuperar foto do objeto do anÃºncio", ioException);
         }
         return myBitmap;
+    }
+
+    @Override
+    protected void onPostExecute(Bitmap bitmap) {
+        if (isCancelled()) {
+            bitmap = null;
+        }
+
+        ImageView anuncioImage = this.anuncioImageReference.get();
+        if (anuncioImage != null) {
+            if(bitmap != null) {
+                anuncioImage.setImageBitmap(bitmap);
+            }
+        }
     }
 
 }
