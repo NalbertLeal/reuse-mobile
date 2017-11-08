@@ -3,7 +3,6 @@ package br.ufrn.reuse.facade;
 import android.content.Context;
 
 import java.util.List;
-import java.util.StringJoiner;
 
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
 import br.ufrn.reuse.dominio.anuncio.CategoriaAnuncio;
@@ -42,7 +41,7 @@ public class ReuseFacadeImpl implements ReuseFacade {
     private ComumFacade comumFacade;
 
     public ReuseFacadeImpl(Context context){
-        this.anuncioFacade = new AnuncioFacade(context);
+        this.anuncioFacade = new AnuncioFacadeImpl(context);
         this.interesseFacade = new InteresseFacade(context);
         this.patrimonioFacade = new PatrimonioFacade(context);
         this.comumFacade = new ComumFacade(context);
