@@ -16,7 +16,7 @@ public class ReflectionUtils {
         return classe.getDeclaredFields();
     }
 
-    public static List<Field> getAllStaticField(Class classe){
+    public static List<Field> getAllStaticFields(Class classe){
         List<Field> staticFields = new ArrayList<>();
 
         for(Field field : getAllFields(classe)){

@@ -35,4 +35,20 @@ public class Migracao {
     public void setVersao(int versao) {
         this.versao = versao;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Migracao migracao = (Migracao) o;
+
+        return versao == migracao.versao;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return versao;
+    }
 }
