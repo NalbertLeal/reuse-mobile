@@ -7,6 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.CheckBox;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import br.ufrn.reuse.R;
 import br.ufrn.reuse.dominio.comum.Usuario;
@@ -28,7 +32,7 @@ public class LoginActivity extends AbstractActivity{
         //EditText usernameText = (Button) findViewById(R.id.username);
         String username = "Apuena"; //usernameText.getText().toString();
 
-        Button entrarButton = (Button) findViewById(R.id.email_sign_in_button);
+        Button entrarButton = (Button) findViewById(R.id.entrarButton);
         entrarButton.setOnClickListener(view -> {
             Usuario usuarioLogado = new ReuseFacadeImpl(this).autenticar(null, null);
             if (usuarioLogado.getId() >= 0){
@@ -37,6 +41,7 @@ public class LoginActivity extends AbstractActivity{
                 iniciarTimeline(usuarioLogado.getId(), null);
             }
         });
+
     }
 
     private void iniciarTimeline(Long usuario, Long unidade){
@@ -49,16 +54,19 @@ public class LoginActivity extends AbstractActivity{
     private void autenticarPorToken(){
         //Recupera preferencias para tentar autenticar por token
         SharedPreferences sp = getPreferences(Activity.MODE_PRIVATE);
-        SharedPreferences.Editor  editor = sp.edit();
         Boolean logarAuto = sp.getBoolean("logarAuto", false);
+
         if(logarAuto) {
-            String usuario = sp.getString("ultimoLogado", "");
+            String usuario = sp.getString("ultimoLogado", "non");
+            logger.log(Level.SEVERE, ">>> "+usuario);
             Long unidade = sp.getLong("unidadeUltimoLogado", 0);
-            String senha = sp.getString("pswd", "");
+            String senha = sp.getString("pswd", "123");
             if (usuario != null && usuario != "" && senha != null && senha != "") {
                 Usuario usuarioLogado = new ReuseFacadeImpl(this).autenticar(null, null);
-                if (usuarioLogado.getId() >= 0)
+                if (usuarioLogado.getId() >= 0) {
                     iniciarTimeline(usuarioLogado.getId(), unidade);
+                    salvarUltimoUsuarioLogado(usuario);
+                }
             }
         }
     }

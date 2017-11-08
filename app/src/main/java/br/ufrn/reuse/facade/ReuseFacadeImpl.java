@@ -3,6 +3,7 @@ package br.ufrn.reuse.facade;
 import android.content.Context;
 
 import java.util.List;
+import java.util.StringJoiner;
 
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
 import br.ufrn.reuse.dominio.anuncio.CategoriaAnuncio;
@@ -77,6 +78,11 @@ public class ReuseFacadeImpl implements ReuseFacade {
     @Override
     public List<Anuncio> findAllAnunciosPublicados(String textoBusca) {
         return anuncioFacade.findAllAnunciosPublicados(textoBusca);
+    }
+
+    @Override
+    public List<Anuncio> findAllAnunciosPublicadosCategorias(List<CategoriaAnuncio> categoria) {
+        return anuncioFacade.findAllAnunciosPublicadosCategorias(categoria);
     }
 
     /**

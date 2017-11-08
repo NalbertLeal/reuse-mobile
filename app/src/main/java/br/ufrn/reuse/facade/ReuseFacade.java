@@ -22,6 +22,7 @@ public interface ReuseFacade {
     List<Anuncio> findAllAnunciosPublicados();
     List<Anuncio> findAllAnuncios(Usuario usuario);
     List<Anuncio> findAllAnunciosPublicados(String textoBusca);
+    List<Anuncio> findAllAnunciosPublicadosCategorias(List<CategoriaAnuncio> categoria);
     List<Interesse> findAllInteresse(Usuario usuario);
     Interesse demonstraInteresse(Usuario usuario, Anuncio anuncio);
     void removerInteresse(Interesse interesse);

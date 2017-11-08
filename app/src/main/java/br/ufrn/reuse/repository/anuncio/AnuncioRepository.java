@@ -104,4 +104,9 @@ public class AnuncioRepository {
     public List<Anuncio> findAllAnunciosPublicados(String textoBusca) {
         return remoteService.findAllAnunciosPublicados(textoBusca);
     }
+
+    public List<Anuncio> findAllAnunciosPublicadosCategoria(List<CategoriaAnuncio> categoria) {
+        return remoteService.findAllAnunciosCategoria(categoria);
+    }
+
 }

@@ -8,9 +8,7 @@
     android:layout_height="match_parent"
     tools:context="br.ufrn.reuse.activity.InteressesActivity">
 
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+
 
 
         <LinearLayout
@@ -54,19 +52,6 @@
 
 
         </LinearLayout>
-
-
-    </ScrollView>
-
-    <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        android:background="@color/colorBackgroud"
-        app:headerLayout="@layout/nav_header_vitrine"
-        app:menu="@menu/activity_vitrine_drawer" />
 
 
 </LinearLayout>
