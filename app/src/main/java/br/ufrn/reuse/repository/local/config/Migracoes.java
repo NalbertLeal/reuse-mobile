@@ -18,7 +18,7 @@ public class Migracoes {
         for (Integer id : RawResourcesUtils.getRawResourcesIds()) {
             String nomeArquivoMigracao = RawResourcesUtils.getResourceName(context,id);
 
-            if(nomeArquivoMigracao.matches("v([0-9]+)_([a-zA-Z0-9_\\-\\.]+)\\.(sql)")){
+            if(nomeMigracaoIsValid(nomeArquivoMigracao)){
                 int numVersao = Integer.parseInt(nomeArquivoMigracao.split("_")[0].replaceAll("v",""));
 
                 Migracao migracao = new Migracao(nomeArquivoMigracao,numVersao);
@@ -35,6 +35,12 @@ public class Migracoes {
 
         }
 
+        //TODO: Ordenar as versões em ordem crescente
+
         return migracoes;
+    }
+
+    private static boolean nomeMigracaoIsValid(String nomeArquivoMigracao) {
+        return nomeArquivoMigracao.matches("v([0-9]+)_([a-zA-Z0-9_\\-\\.]+)\\.(sql)");
     }
 }
