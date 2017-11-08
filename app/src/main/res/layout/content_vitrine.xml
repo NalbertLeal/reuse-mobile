@@ -22,7 +22,7 @@
             android:gravity="center"
             android:text="Bem Vindo ao REUSE"
             android:paddingBottom="8dp"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/branco"
             android:textSize="32sp"
             android:textStyle="bold"
             tools:textSize="30sp" />
@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/branco"
             android:paddingBottom="24dp"
             android:text="Sistema de reaproveitamento de bens da UFRN"
             android:textSize="18sp" />
@@ -52,7 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0.1"
-                android:background="@color/colorPrimary"
+                android:background="@color/branco"
                 android:hint="Procurar..."
                 android:padding="08dp" />
 
@@ -127,7 +127,7 @@
             android:paddingRight="16dp"
             android:paddingBottom="16dp"
             android:textSize="14sp"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/branco"
             android:text="0 Anuncio(s) encontrado(s)" />
 
         <GridView
