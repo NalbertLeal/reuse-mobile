@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -22,6 +23,8 @@ public class Migracao {
      * Versão do arquivo
      */
     private int versao;
+
+    private Logger logger = Logger.getLogger( this.getClass().toString() );
 
     public Migracao(String nomeArquivo, int versao) {
         this.nomeArquivo = nomeArquivo;
@@ -69,7 +72,7 @@ public class Migracao {
             return content;
         }
         catch(IOException e) {
-            // colocar logger que ñ lembro como instancia
+            this.logger.log(Level.SEVERE, "Não foi possivel ler arquivo " + this.nomeArquivo);
         }
 
         return null;
