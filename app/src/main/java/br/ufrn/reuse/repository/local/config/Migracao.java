@@ -3,8 +3,10 @@ package br.ufrn.reuse.repository.local.config;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.logging.Logger;
 
 /**
  * Created by danielsmith on 07/11/2017.
@@ -53,6 +55,22 @@ public class Migracao {
 
 
         }*/
+        try {
+            FileInputStream fileStream = new FileInputStream(this.nomeArquivo);
+
+            int line;
+            String content = "";
+            while((line = fileStream.read()) != -1) {
+                content += (char) line;
+            }
+
+            fileStream.close();
+
+            return content;
+        }
+        catch(IOException e) {
+            // colocar logger que ñ lembro como instancia
+        }
 
         return null;
     }

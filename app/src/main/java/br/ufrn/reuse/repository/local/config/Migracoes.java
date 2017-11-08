@@ -37,6 +37,18 @@ public class Migracoes {
 
         //TODO: Ordenar as versões em ordem crescente
 
+        // sort da menor para a maior versão
+        // bubble sort
+        for(int index1 = migracoes.size() - 1; index1 > 0 ; index1--) {
+            for(int index2 = 0; index2 < migracoes.size(); index2++) {
+                if(migracoes.get(index2).getVersao() > migracoes.get(index2 + 1).getVersao()) {
+                    Migracao aux =(migracoes.get(index2));
+                    migracoes.set(index2, migracoes.get(index2 + 1) );
+                    migracoes.set(index2 + 1, aux );
+                }
+            }
+        }
+
         return migracoes;
     }
 
