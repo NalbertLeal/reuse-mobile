@@ -7,8 +7,10 @@ import br.ufrn.reuse.dominio.comum.Usuario;
 import br.ufrn.reuse.facade.ReuseFacadeImpl;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 
+import android.drm.DrmStore;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,6 +19,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -26,12 +29,12 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class VitrineActivity extends AbstractActivity{
 
-    private ReuseFacadeImpl reuseFacade;
     private List<CategoriaAnuncio> allCategorias;
 
     @Override
@@ -39,7 +42,7 @@ public class VitrineActivity extends AbstractActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vitrine);
 
-        this.reuseFacade = new ReuseFacadeImpl(this);
+        reuseFacade = new ReuseFacadeImpl(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -70,6 +73,7 @@ public class VitrineActivity extends AbstractActivity{
         buttonBucar.setOnClickListener((view) -> {
             buscar(view);
         });
+
     }
 
     private void buscar(View view) {
@@ -95,6 +99,7 @@ public class VitrineActivity extends AbstractActivity{
             adapter.addAll(anunciosPublicados);
             adapter.notifyDataSetChanged();
 
+            atualizaClickItensVitrine();
         }
     }
 
@@ -119,6 +124,7 @@ public class VitrineActivity extends AbstractActivity{
 
         allCategorias = new ReuseFacadeImpl(this).findAllCategorias();
         LinearLayout categoriasLayout = (LinearLayout) findViewById(R.id.checkboxCategorias);
+
         for(CategoriaAnuncio cat : allCategorias){
             CheckBox checkCategoria = new CheckBox(this);
             checkCategoria.setText(cat.getDescricao());
@@ -129,7 +135,6 @@ public class VitrineActivity extends AbstractActivity{
             if (categoriasLayout.getChildAt(i) instanceof CheckBox) {
                 CheckBox catCheck = (CheckBox) categoriasLayout.getChildAt(i);
                 catCheck.setOnClickListener((view) -> {
-                    logger.log(Level.SEVERE, "cats >>> ");
                     List<CategoriaAnuncio> categoriasSelecionadas = getCategoriasSelecionadas(categoriasLayout);
                     updateConteudoVitrine(reuseFacade.findAllAnunciosPublicadosCategorias(categoriasSelecionadas));
                 });
@@ -154,6 +159,26 @@ public class VitrineActivity extends AbstractActivity{
         }
 
         return categoriasSelecionadas;
+    }
+
+    private void atualizaClickItensVitrine(){
+
+        getGridVitrine().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object listItem = getGridVitrine().getItemAtPosition(position);
+                if(listItem instanceof Anuncio){
+                    iniciaAnuncioView(((Anuncio)listItem).getId());
+                }
+                logger.log(Level.SEVERE, ">>> clicou");
+            }
+        });
+    }
+
+    private void iniciaAnuncioView(Long idAnuncio){
+        Intent intent = new Intent(this, AnuncioViewActivity.class);
+        intent.putExtra("idAnuncio", idAnuncio);
+        startActivity(intent);
     }
 
     private GridView getGridVitrine() {

@@ -28,7 +28,9 @@ import br.ufrn.reuse.facade.ReuseFacadeImpl;
  */
 public abstract class AbstractActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
+    protected ReuseFacadeImpl reuseFacade;
     Logger logger = Logger.getLogger(getClass().getName());
+    protected Usuario usuarioLogado;
     /**
      * Mapa que contem a associação entre item de menu e activity que será aberta ao clicar.
      */
@@ -87,7 +89,8 @@ public abstract class AbstractActivity extends AppCompatActivity implements Navi
     protected void recuperaUsuarioUnidade() {
 
         Long idUsuario = getIntent().getLongExtra("usuarioLogado", 0);
-        Usuario usuarioLogado = new ReuseFacadeImpl(this).findUsuario(idUsuario);
+        usuarioLogado = new ReuseFacadeImpl(this).findUsuario(idUsuario);
+
         TextView nome = (TextView) findViewById(R.id.textUser);
         if(nome != null)
             nome.setText(usuarioLogado.getPessoa().getNome());
