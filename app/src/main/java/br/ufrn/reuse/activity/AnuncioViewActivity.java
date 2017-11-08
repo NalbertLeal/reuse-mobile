@@ -28,8 +28,11 @@ public class AnuncioViewActivity extends AbstractActivity {
 
         Anuncio anuncio = reuseFacade.findAnunciobyId(idAnuncio);
         if(anuncio!=null){
-            TextView t = (TextView)findViewById(R.id.anuncio_overview);
-            t.setText(anuncio.getTextoPublicacao());
+            TextView text1 = (TextView)findViewById(R.id.anuncio_descricao);
+            text1.setText(anuncio.getBem().getDenominacao());
+
+            TextView text2 = (TextView)findViewById(R.id.anuncio_publicacao);
+            text2.setText(anuncio.getTextoPublicacao());
         }
     }
 }
