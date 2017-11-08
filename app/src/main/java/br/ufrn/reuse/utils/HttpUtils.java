@@ -16,9 +16,7 @@ public class HttpUtils {
         URL url = new URL(imageUrl);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setDoInput(true);
-
         connection.connect();
-
         return connection.getInputStream();
     }
 
