@@ -29,21 +29,23 @@ public class AnuncioViewActivity extends AbstractActivity {
             TextView text1 = (TextView)findViewById(R.id.view_descricao);
             text1.setText(anuncio.getBem().getDenominacao());
 
-            TextView text2 = (TextView)findViewById(R.id.view_etiqueta);
+            String etiquetas = ".";
             if(anuncio.getEtiquetas()!=null) {
                 for (Etiqueta etiqueta : anuncio.getEtiquetas()) {
-                    text2.setText(etiqueta.getNome());
+                    etiquetas = etiquetas + ". " + etiqueta.getNome();
                 }
             }
+            TextView text2 = (TextView)findViewById(R.id.view_etiqueta);
+            text2.setText(etiquetas);
 
             TextView text3 = (TextView)findViewById(R.id.view_tombamento);
             text3.setText("Tombamento nº: " + anuncio.getBem().getNumTombamento());
 
             TextView text4 = (TextView)findViewById(R.id.view_publicacao);
-            text2.setText(anuncio.getTextoPublicacao());
+            text4.setText("Publicação: " + anuncio.getTextoPublicacao());
 
             TextView text5 = (TextView)findViewById(R.id.view_ofertante);
-            text2.setText(anuncio.getTextoPublicacao());
+            text5.setText(anuncio.getUsuario() != null ? anuncio.getUsuario().getPessoa().getNome() : "Desconhecido");
         }
     }
 }
