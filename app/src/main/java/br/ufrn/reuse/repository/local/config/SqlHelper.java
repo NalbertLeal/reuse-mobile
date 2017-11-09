@@ -1,9 +1,11 @@
 package br.ufrn.reuse.repository.local.config;
 
 import android.content.Context;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -11,7 +13,6 @@ import java.util.List;
  */
 public class SqlHelper extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION = 1;
     private static String DATABASE_NAME = "reuse";
 
     private Context context;
@@ -42,12 +43,32 @@ public class SqlHelper extends SQLiteOpenHelper {
      * @param versaoAntiga
      */
     private void migrarParaUltimaVersao(SQLiteDatabase database, int versaoAntiga) {
-        List<Migracao> migracoes = Migracoes.getMigracoes(versaoAntiga, context);
+        List<Migracao> migracoes = Migracoes.getMigracoes(context);
 
-        for (Migracao migracao : migracoes) {
-            if(migracao.getVersao() > versaoAntiga){
-                migracao.aplicar(database);
+        int versaoAplicada = 0;
+
+        try{
+            database.beginTransaction();
+
+            for (Migracao migracao : migracoes) {
+                if(migracao.getVersao() > versaoAntiga){
+                    versaoAplicada = migracao.getVersao();
+                    String sqlMigracao = migracao.getSqlMigracao();
+
+                    if(sqlMigracao != null && !sqlMigracao.isEmpty()) {
+                        database.execSQL(sqlMigracao);
+                    }
+
+                }
             }
+
+            database.setTransactionSuccessful();
+        }catch (SQLException exception){
+            throw new DataAcessException("Erro ao efetuar migração da base de dados para a versão "+versaoAplicada);
+        }catch (IOException ex){
+            throw new DataAcessException("Erro ao recuperar os dados do arquivo de migração.");
+        }finally {
+            database.endTransaction();
         }
 
     }
@@ -59,7 +80,7 @@ public class SqlHelper extends SQLiteOpenHelper {
      */
     private static int getVersion(Context context) {
 
-        List<Migracao> migracoes = Migracoes.getMigracoes(0, context);
+        List<Migracao> migracoes = Migracoes.getMigracoes(context);
 
         if(!migracoes.isEmpty()){
             return migracoes.get(migracoes.size()-1).getVersao();
