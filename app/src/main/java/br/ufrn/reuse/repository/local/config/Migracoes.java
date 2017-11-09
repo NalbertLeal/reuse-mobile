@@ -38,17 +38,18 @@ public class Migracoes {
         }
 
         // sort da menor para a maior versão
-        // bubble sort
-        for(int index1 = migracoes.size() - 1; index1 > 0 ; index1--) {
-            for(int index2 = 0; index2 < migracoes.size(); index2++) {
-                if(migracoes.get(index2).getVersao() > migracoes.get(index2 + 1).getVersao()) {
-                    Migracao aux =(migracoes.get(index2));
-                    migracoes.set(index2, migracoes.get(index2 + 1) );
-                    migracoes.set(index2 + 1, aux );
+        //Selection Sort
+        ArrayList<Migracao> migracoesOrd = new ArrayList<>();
+        for(int i=0; i < migracoes.size()-1; i++){
+            Migracao min = migracoes.get(i);
+            for(int j = i+1; j < migracoes.size(); j++){
+                if(migracoes.get(j).getVersao() < min.getVersao()){
+                    min = migracoes.get(j);
                 }
             }
+            migracoesOrd.add(min);
         }
-
+        migracoes = migracoesOrd;
         return migracoes;
     }
 

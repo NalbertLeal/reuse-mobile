@@ -37,6 +37,11 @@ BEGIN TRANSACTION;
              `descricao` TEXT,
              PRIMARY KEY(`id`)
             );
+            INSERT INTO `categoria_anuncio` (`id`, `descricao`)
+            VALUES ('MOBILIA', 'Mobilia'),
+            ('ELETRONICOS', 'Eletrônicos'),
+            ('LABORATORIAL', 'Laboratorial'),
+            ('OUTROS', 'Outros');
             CREATE TABLE IF NOT EXISTS `anuncio` (
              `texto_publciacao` TEXT,
              `id` INTEGER,
