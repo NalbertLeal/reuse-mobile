@@ -20,6 +20,7 @@ public class EtiquetaRepository {
 
     public EtiquetaRepository(Context context) {
         this.context = context;
+        this.localRepository = new EtiquetaLocalRepository(context);
     }
 
     public List<Etiqueta> findAllEtiquetasByAnuncioId(Long id) {

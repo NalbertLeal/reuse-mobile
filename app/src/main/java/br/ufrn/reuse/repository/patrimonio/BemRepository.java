@@ -40,7 +40,7 @@ public class BemRepository {
     public Bem findBemById(Long idBem){
         Bem bem = bemLocalRepository.findBemById(idBem);
 
-        if(bem != null && SincronizacaoUtils.isSincronizado(bem.getDataSincronizacao(),QUANTIDADE_DIAS_SINCRONIZADO_BEM)){
+        if(bem == null || !SincronizacaoUtils.isSincronizado(bem.getDataSincronizacao(),QUANTIDADE_DIAS_SINCRONIZADO_BEM)){
             bem = bemRemote.findBemById(idBem);
             bemLocalRepository.save(bem);
         }

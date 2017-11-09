@@ -1,5 +1,7 @@
 package br.ufrn.reuse.repository.anuncio.local;
 
+import android.content.Context;
+
 import java.util.List;
 
 import br.ufrn.reuse.dominio.anuncio.Etiqueta;
@@ -9,6 +11,12 @@ import br.ufrn.reuse.dominio.anuncio.Etiqueta;
  */
 
 public class EtiquetaLocalRepository {
+    private final Context context;
+
+    public EtiquetaLocalRepository(Context context) {
+        this.context = context;
+    }
+
     public List<Etiqueta> findAllEtiquetas() {
         return null;
     }
