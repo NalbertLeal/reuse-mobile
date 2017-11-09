@@ -157,7 +157,7 @@ public class ReuseFacadeImpl implements ReuseFacade {
         return comumFacade.autenticar(usuario, senha); //new ComumRemoteService().credenciaisValidas(usuario, senha);
     }
 
-    public Usuario findUsuario(Long idUsuario) {
+    public Usuario findUsuarioById(Long idUsuario) {
         return comumFacade.findUsuarioById(idUsuario); //new ComumRemoteService().findUsuarioById(isUsuario);
     }
 

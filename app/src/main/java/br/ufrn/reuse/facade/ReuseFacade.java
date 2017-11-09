@@ -31,6 +31,6 @@ public interface ReuseFacade {
     Bem findBemByNumTombamento(int tombamento);
     List<CategoriaAnuncio> findAllCategorias();
     Usuario autenticar(String usuario, String senha);
-    Usuario findUsuario(Long idUsuario);
+    Usuario findUsuarioById(Long idUsuario);
 
 }

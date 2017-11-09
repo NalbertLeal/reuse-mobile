@@ -24,9 +24,13 @@ public class BemRemoteService {
         Bem bem = new Bem();
 
         bem.setId(idBem);
-        bem.setDenominacao("Cadeira vermelha padrão jogos");
-        bem.setNumTombamento(2014002213);
+        bem.setNumTombamento(201700000+idBem.intValue());
         bem.setObservacoes("Novo.");
+        if(idBem%2==1) {
+            bem.setDenominacao("Cadeira vermelha padrão jogos");
+        }else{
+            bem.setDenominacao("Computador semi-novo.");
+        }
 
         return bem;
     }

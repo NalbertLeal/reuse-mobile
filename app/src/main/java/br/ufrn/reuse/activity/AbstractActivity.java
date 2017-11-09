@@ -9,6 +9,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -16,6 +17,7 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import br.ufrn.reuse.R;
+import br.ufrn.reuse.dominio.comum.Unidade;
 import br.ufrn.reuse.dominio.comum.Usuario;
 import br.ufrn.reuse.facade.ReuseFacadeImpl;
 
@@ -76,7 +78,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements Navi
 
             activitiesMenuMap.put(R.id.nav_anunciar, AnunciarActivity.class);
             activitiesMenuMap.put(R.id.nav_interesses, InteressesActivity.class);
-            activitiesMenuMap.put(R.id.nav_anuncios, AnunciosActivity.class);
+            activitiesMenuMap.put(R.id.nav_anuncios, MeusAnunciosActivity.class);
         }
 
         return activitiesMenuMap;
@@ -89,19 +91,22 @@ public abstract class AbstractActivity extends AppCompatActivity implements Navi
     protected void recuperaUsuarioUnidade() {
 
         Long idUsuario = getIntent().getLongExtra("usuarioLogado", 0);
-        usuarioLogado = new ReuseFacadeImpl(this).findUsuario(idUsuario);
+        usuarioLogado = new ReuseFacadeImpl(this).findUsuarioById(idUsuario);
 
-        TextView nome = (TextView) findViewById(R.id.textUser);
+        View navView = findViewById(R.id.nav_view);
+        TextView nome = (TextView) navView.findViewById(R.id.textUser);
         if(nome != null)
             nome.setText(usuarioLogado.getPessoa().getNome());
-        TextView email = (TextView) findViewById(R.id.textEmailUser);
+        TextView email = (TextView) navView.findViewById(R.id.textEmailUser);
         if(email != null)
             email.setText(usuarioLogado.getEmail());
 
-        Long unidadeLogada = getIntent().getLongExtra("unidadeLogada", 0);
-        TextView unidade = (TextView) findViewById(R.id.textEmailUser);
-        if(unidade != null && unidadeLogada >= 0)
+        /*Long unidadeLogada = getIntent().getLongExtra("unidadeLogada", 0);
+        Unidade uni = new ReuseFacadeImpl(this).findUnidadeById(unidadeLogada);
+        TextView unidade = (TextView) navView.findViewById(R.id.textUnidadeUser);
+        if(unidade != null && unidadeLogada >= 0) {
             unidade.setText(unidadeLogada.toString());
+        }*/
     }
 
     /**

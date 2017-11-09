@@ -42,7 +42,8 @@ public class BemRepository {
 
         if(bem == null || !SincronizacaoUtils.isSincronizado(bem.getDataSincronizacao(),QUANTIDADE_DIAS_SINCRONIZADO_BEM)){
             bem = bemRemote.findBemById(idBem);
-            bemLocalRepository.save(bem);
+            //bemLocalRepository.save(bem);
+            // TODO descomentar
         }
 
         return bem;

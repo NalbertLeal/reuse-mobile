@@ -4,6 +4,9 @@ import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import br.ufrn.reuse.dominio.patrimonio.Bem;
 import br.ufrn.reuse.repository.local.config.DataAcessException;
 import br.ufrn.reuse.repository.local.config.SqlHelper;

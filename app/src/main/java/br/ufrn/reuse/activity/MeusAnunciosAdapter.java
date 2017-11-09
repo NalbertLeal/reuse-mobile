@@ -43,16 +43,16 @@ public class MeusAnunciosAdapter extends ArrayAdapter<Anuncio> {
         p.execute("https://i0.wp.com/ricardohage.com.br/wp-content/uploads/2017/04/computadores_0006_desktop.jpg?resize=800%2C445");
 
         TextView tombamento = (TextView) convertView.findViewById(R.id.anuncio_tombamento);
-        tombamento.setText("SituaÃ§Ã£o: " + anuncio.getBem().getNumTombamento());
+        tombamento.setText("Tombamento: " + anuncio.getBem().getNumTombamento());
 
         TextView situacao = (TextView) convertView.findViewById(R.id.anuncio_situacao);
-        situacao.setText("Situacao: " + anuncio.getBem().getNumTombamento());
+        situacao.setText("Situacao: " + anuncio.getStatusAnuncio());
 
         TextView unidade = (TextView) convertView.findViewById(R.id.anuncio_interresse);
-        unidade.setText("Unidade: " + anuncio.getBem().getNumTombamento());
+        unidade.setText("Interesses: " + anuncio.getBem().getNumTombamento());
 
         TextView interresses = (TextView) convertView.findViewById(R.id.anuncio_unidade);
-        interresses.setText("Interesses: " + anuncio.getBem().getNumTombamento());
+        interresses.setText("Unidade: " + anuncio.getUnidade());
 
         return convertView;
     }

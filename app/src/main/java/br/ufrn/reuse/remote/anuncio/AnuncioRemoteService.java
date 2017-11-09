@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
 import br.ufrn.reuse.dominio.anuncio.CategoriaAnuncio;
@@ -103,11 +105,10 @@ public class AnuncioRemoteService {
 
         List<Anuncio> anuncios = new ArrayList<>();
 
-        for (String nome: Arrays.asList("Cadeira Roxa", "Cadeira azul", "Cadeira Vermelha","Notebook Azul", "Notebook Novo", "Notebook Amarelo")) {
-            if(nome.contains(textoBusca)) {
-                Anuncio anuncio = createAnuncio(1);
-                anuncio.getBem().setDenominacao(nome);
-
+        for (Anuncio anuncio: findAll(null)) {
+            String nomeBem = anuncio.getBem() != null ?  anuncio.getBem().getDenominacao() : null;
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, ">>>>"+nomeBem.toLowerCase()+" / "+textoBusca.toLowerCase());
+            if(nomeBem != null && nomeBem.toLowerCase().contains(textoBusca.toLowerCase())) {
                 anuncios.add(anuncio);
             }
         }
@@ -121,17 +122,24 @@ public class AnuncioRemoteService {
         Anuncio anuncio = new Anuncio();
 
         anuncio.setId(i);
-        anuncio.setTextoPublicacao("Cadeira DXRacer muito massa. Nunca foi usada. Assento regulável! Gira! Mas possui defeito.");
+
+        anuncio.setEtiquetas(new ArrayList<Etiqueta>());
+        Etiqueta cat1 = new Etiqueta(1L,"Nunca Usado");
+        Etiqueta cat2 = new Etiqueta(2L,"Possui defeito");
 
         Bem bem = new Bem();
         bem.setId(i);
-        bem.setNumTombamento(2012121211);
+        bem.setNumTombamento(201700000+(int)i);
         if(i%2==1) {
-            bem.setDenominacao("Cadeira nova, muito boa.");
-            anuncio.setCategoria(new CategoriaAnuncio("ELETRONICOS", "Eletrônicos"));
-        }else {
-            bem.setDenominacao("Cadeira velha, muito ruim.");
+            anuncio.getEtiquetas().add(cat1);
+            anuncio.setTextoPublicacao("Cadeira DXRacer muito massa. Nunca foi usada. Assento regulável! Gira! Mas possui defeito.");
             anuncio.setCategoria(new CategoriaAnuncio("OUTROS", "Outros"));
+            bem.setDenominacao("Cadeira vermelha padrão jogos");
+        }else {
+            anuncio.getEtiquetas().add(cat2);
+            anuncio.setTextoPublicacao("Computador Dellasus muito massa. Nunca foi usado. Mas possui alguns anos.");
+            anuncio.setCategoria(new CategoriaAnuncio("ELETRONICOS", "Eletrônicos"));
+            bem.setDenominacao("Computador semi-novo.");
         }
         anuncio.setBem(bem);
         return anuncio;

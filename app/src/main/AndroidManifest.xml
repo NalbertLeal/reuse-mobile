@@ -35,7 +35,10 @@
             android:label="@string/title_activity_interesses" />
         <activity android:name=".activity.AnunciosActivity" />
         <activity android:name=".activity.DetalhamentoAnuncioActivity" />
-        <activity android:name=".activity.AnuncioViewActivity"></activity>
+        <activity
+            android:name=".activity.AnuncioViewActivity"
+            android:label="Anuncio Detalhado" />
+        <activity android:name=".activity.MeusAnunciosActivity"/>
     </application>
 
 </manifest>
