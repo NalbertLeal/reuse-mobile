@@ -3,6 +3,7 @@ package br.ufrn.reuse.activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.TextureView;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -28,6 +29,11 @@ public class AnuncioViewActivity extends AbstractActivity {
         if(anuncio!=null){
             TextView text1 = (TextView)findViewById(R.id.view_descricao);
             text1.setText(anuncio.getBem().getDenominacao());
+
+            Button butInteresse = (Button)findViewById(R.id.demonstrar_interesse);
+            butInteresse.setOnClickListener((view) -> {
+                butInteresse.setText("Interessado!");
+            });
 
             String etiquetas = ".";
             if(anuncio.getEtiquetas()!=null) {

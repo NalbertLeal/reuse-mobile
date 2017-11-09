@@ -35,6 +35,7 @@ public class CategoriaRepository {
 
     @NonNull
     public List<CategoriaAnuncio> findAllCategorias() {
+        //return this.categoriaLocalRepository.findAllCategorias();
         return categoriaRemoteService.findAllCategorias();
     }
 

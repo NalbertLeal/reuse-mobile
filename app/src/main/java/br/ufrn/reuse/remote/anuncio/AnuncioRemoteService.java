@@ -84,6 +84,7 @@ public class AnuncioRemoteService {
      * @return
      */
     public List<Anuncio> findAllAnunciosCategoria(List<CategoriaAnuncio> categorias) {
+
         List<Anuncio> anuncios = new ArrayList<Anuncio>();
 
         if(categorias != null && categorias.size() > 0) {

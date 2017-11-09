@@ -80,6 +80,7 @@ public class VitrineActivity extends AbstractActivity{
         buttonBuscar.setOnClickListener((view) -> {
             buscar();
         });
+
         TextView textBusca = (TextView) findViewById(R.id.text_busca);
         textBusca.setOnKeyListener(new View.OnKeyListener() {
             @Override
