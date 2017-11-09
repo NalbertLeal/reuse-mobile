@@ -45,11 +45,13 @@ public class Migracao {
         try {
             database.beginTransaction();
             database.execSQL(getSqlMigracao());
+            database.setTransactionSuccessful();
         }catch (SQLException exception){
-            database.endTransaction();
             throw new DataAcessException("Erro ao efetuar migração da base de dados para a versão "+this.versao);
         }catch (IOException ex){
             throw new DataAcessException("Erro ao recuperar os dados do arquivo de migração.");
+        }finally {
+            database.endTransaction();
         }
     }
 

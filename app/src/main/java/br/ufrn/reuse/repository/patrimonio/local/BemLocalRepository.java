@@ -36,9 +36,11 @@ public class BemLocalRepository {
         try {
             database.beginTransaction();
             database.execSQL("");
+            database.setTransactionSuccessful();
         } catch (SQLException ex) {
-            database.endTransaction();
             throw new DataAcessException(ex.getMessage());
+        }finally {
+            database.endTransaction();
         }
 
     }

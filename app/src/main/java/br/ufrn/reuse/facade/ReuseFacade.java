@@ -17,7 +17,7 @@ import br.ufrn.reuse.dominio.patrimonio.Bem;
  */
 public interface ReuseFacade {
 
-    //TODO: PAGINAÇÃO
+    //TODO: PAGINAÇÃO, Async
     Anuncio cadastrar(Anuncio anuncio);
     Anuncio findAnunciobyId(Long id);
     List<Anuncio> findAllAnunciosPublicados();

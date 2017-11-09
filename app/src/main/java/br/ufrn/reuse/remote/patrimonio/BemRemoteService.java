@@ -37,7 +37,7 @@ public class BemRemoteService {
         String tombamento = String.valueOf(numTombamento);
 
         if(tombamento.length() == 10) {
-            int anoTombamento = Integer.parseInt(tombamento.substring(0, 3));
+            int anoTombamento = Integer.parseInt(tombamento.substring(0, 4));
 
             if (anoTombamento > 1950 && anoTombamento < 2017) {
                 bem = new Bem();
