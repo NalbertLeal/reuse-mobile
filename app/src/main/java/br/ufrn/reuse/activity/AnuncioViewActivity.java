@@ -1,5 +1,6 @@
 package br.ufrn.reuse.activity;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.TextureView;
@@ -33,6 +34,8 @@ public class AnuncioViewActivity extends AbstractActivity {
             Button butInteresse = (Button)findViewById(R.id.demonstrar_interesse);
             butInteresse.setOnClickListener((view) -> {
                 butInteresse.setText("Interessado!");
+                //Color.parseColor("#6AB344")
+                butInteresse.setBackgroundColor(Color.GREEN);
             });
 
             String etiquetas = ".";

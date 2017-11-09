@@ -16,11 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.VitrineActivity"
-            android:label="@string/title_activity_main2"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".activity.LoginActivity"
             android:label="@string/title_activity_login">
             <intent-filter>
@@ -29,16 +24,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.AnunciarActivity" />
+        <activity
+            android:name=".activity.VitrineActivity"
+            android:label="@string/title_activity_vitrine"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.AnunciarActivity"
+            android:label="@string/title_activity_anunciar" />
         <activity
             android:name=".activity.InteressesActivity"
             android:label="@string/title_activity_interesses" />
-        <activity android:name=".activity.AnunciosActivity" />
-        <activity android:name=".activity.DetalhamentoAnuncioActivity" />
         <activity
             android:name=".activity.AnuncioViewActivity"
-            android:label="Anuncio Detalhado" />
-        <activity android:name=".activity.MeusAnunciosActivity"/>
+            android:label="@string/title_activity_anuncio" />
+        <activity
+            android:name=".activity.MeusAnunciosActivity"
+            android:label="@string/title_activity_meus_anuncios" />
+        <activity android:name=".activity.DetalhamentoAnuncioActivity" />
     </application>
 
 </manifest>
