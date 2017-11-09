@@ -1,5 +1,7 @@
 package br.ufrn.reuse.repository.patrimonio.local;
 
+import android.content.Context;
+
 import br.ufrn.reuse.dominio.patrimonio.Bem;
 
 /**
@@ -7,6 +9,12 @@ import br.ufrn.reuse.dominio.patrimonio.Bem;
  */
 
 public class BemLocalRepository {
+
+    private final Context context;
+
+    public BemLocalRepository(Context context) {
+        this.context = context;
+    }
 
     public Bem findBemById(Long idBem) {
         return null;
