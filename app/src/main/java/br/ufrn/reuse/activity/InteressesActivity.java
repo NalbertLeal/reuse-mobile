@@ -35,6 +35,8 @@ public class InteressesActivity extends AbstractActivity {
 
         Spinner spinner = (Spinner) findViewById(R.id.situacao);
         spinner.setAdapter(adapter);
+
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int posicao, long id) {
@@ -65,6 +67,7 @@ public class InteressesActivity extends AbstractActivity {
 
         List<Anuncio> anuncios = new ReuseFacadeImpl(this).findAllAnunciosPublicados();
         GridView listView = (GridView) findViewById(R.id.lista_interesses);
+
         listView.setAdapter(new InteressesListAdapter(this, anuncios));
 
         LinearLayout interessesLayout = (LinearLayout) findViewById(R.id.layout_interesses);
@@ -72,5 +75,6 @@ public class InteressesActivity extends AbstractActivity {
         int widthIntereesses = interessesLayout.getWidth();
 
         listView.setMinimumWidth(widthIntereesses);
+
     }
 }
