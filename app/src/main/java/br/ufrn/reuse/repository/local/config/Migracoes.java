@@ -16,12 +16,13 @@ public class Migracoes {
         List<Migracao> migracoes = new ArrayList<>();
 
         for (Integer id : RawResourcesUtils.getRawResourcesIds()) {
-            String nomeArquivoMigracao = RawResourcesUtils.getResourceName(context,id);
+            String resourceName = RawResourcesUtils.getResourceName(context, id);
+            String nomeArquivoMigracao =  resourceName.replaceAll("br.ufrn.reuse:raw/",""); ;
 
-            if(nomeMigracaoIsValid(nomeArquivoMigracao)){
+            if(nomeMigracaoIsValid(nomeArquivoMigracao+".sql")){
                 int numVersao = Integer.parseInt(nomeArquivoMigracao.split("_")[0].replaceAll("v",""));
 
-                Migracao migracao = new Migracao(nomeArquivoMigracao,numVersao);
+                Migracao migracao = new Migracao(nomeArquivoMigracao,numVersao,id,resourceName);
                 if(!migracoes.contains(migracao)) {
                     migracoes.add(migracao);
                 }else{

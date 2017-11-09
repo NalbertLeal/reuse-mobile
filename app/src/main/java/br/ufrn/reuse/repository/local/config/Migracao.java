@@ -1,5 +1,6 @@
 package br.ufrn.reuse.repository.local.config;
 
+import android.content.res.Resources;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -26,14 +27,24 @@ public class Migracao {
      */
     private int versao;
 
+    private int resourceId;
+
+    /**
+     *
+     */
+    private String nomeResource;
+
+
     /**
      * Logger da classe
      * */
     private Logger logger = Logger.getLogger( this.getClass().toString() );
 
-    public Migracao(String nomeArquivo, int versao) {
+    public Migracao(String nomeArquivo, int versao,int resourceId, String nomeResource) {
         this.nomeArquivo = nomeArquivo;
         this.versao = versao;
+        this.resourceId = resourceId;
+        this.nomeResource = nomeResource;
     }
 
     /**
@@ -66,7 +77,7 @@ public class Migracao {
 
         }*/
         try {
-            FileInputStream fileStream = new FileInputStream(this.nomeArquivo);
+            InputStream fileStream = Resources.getSystem().openRawResource(resourceId);
 
             int line;
             String content = "";

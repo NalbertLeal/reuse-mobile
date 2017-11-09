@@ -17,7 +17,7 @@ public class SqlHelper extends SQLiteOpenHelper {
     private Context context;
 
     public SqlHelper(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        super(context, DATABASE_NAME, null, getVersion(context));
         this.context = context;
     }
 
@@ -51,4 +51,21 @@ public class SqlHelper extends SQLiteOpenHelper {
         }
 
     }
+
+    /**
+     *
+     * @param context
+     * @return
+     */
+    private static int getVersion(Context context) {
+
+        List<Migracao> migracoes = Migracoes.getMigracoes(0, context);
+
+        if(!migracoes.isEmpty()){
+            return migracoes.get(migracoes.size()-1).getVersao();
+        }
+
+        return 1;
+    }
+
 }
