@@ -3,6 +3,7 @@ package br.ufrn.reuse.repository.local.config;
 import android.content.Context;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import br.ufrn.reuse.utils.RawResourcesUtils;
@@ -35,8 +36,6 @@ public class Migracoes {
             }
 
         }
-
-        //TODO: Ordenar as versões em ordem crescente
 
         // sort da menor para a maior versão
         // bubble sort

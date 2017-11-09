@@ -3,6 +3,7 @@ package br.ufrn.reuse.repository.local.config;
 import android.content.res.Resources;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -16,7 +17,7 @@ import java.util.logging.Logger;
  * @author Nalbert Gabriel
  */
 
-public class Migracao {
+public class Migracao implements Comparable{
     /**
      * Nome completo do arquivo;
      */
@@ -129,5 +130,8 @@ public class Migracao {
     }
 
 
-
+    @Override
+    public int compareTo(@NonNull Object o) {
+        return Integer.compare(this.getVersao(),((Migracao)o).getVersao());
+    }
 }
