@@ -1,6 +1,7 @@
 package br.ufrn.reuse.facade;
 
 import android.content.Context;
+import android.os.AsyncTask;
 
 import java.util.List;
 

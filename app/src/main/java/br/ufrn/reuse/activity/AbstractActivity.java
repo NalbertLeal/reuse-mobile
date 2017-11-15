@@ -10,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -126,6 +127,10 @@ public abstract class AbstractActivity extends AppCompatActivity implements Navi
         SharedPreferences.Editor  editor = sp.edit();
         editor.putLong("unidadeUltimoLogado", unidade);
         editor.apply();
+    }
+
+    public void showErrorOnToast(String error, int duration){
+        Toast.makeText(this,error, duration);
     }
 
 }
