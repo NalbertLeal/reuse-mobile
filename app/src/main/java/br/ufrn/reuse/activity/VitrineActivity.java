@@ -17,6 +17,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -24,6 +25,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -59,24 +61,41 @@ public class VitrineActivity extends AbstractActivity{
         //Recupera o usuario logado e o mostra
         recuperaUsuarioUnidade();
 
+        //Inicializa as categorias de acordo com as existentes para usar como filtros na vitrine
         geraCategorias();
         
         List<Anuncio> anuncios = reuseFacade.findAllAnunciosPublicados();
 
-        GridView gridVitrine = getGridVitrine();
-        gridVitrine.setAdapter(new VitrineListAdapter(this, anuncios));
-
+        //Setar o adater ao gridView, o atualiza
         GridView listView = (GridView) findViewById(R.id.lista_vitrine);
         listView.setAdapter(new VitrineListAdapter(this, anuncios));
+        ((VitrineListAdapter)listView.getAdapter()).notifyDataSetChanged();
 
-        Button buttonBucar = (Button) findViewById(R.id.button_buscar);
-        buttonBucar.setOnClickListener((view) -> {
-            buscar(view);
+        //Seta a quantidade de resultados da busca inicial
+        TextView textView = (TextView) findViewById(R.id.quantidade_resultados);
+        textView.setText(anuncios.size() + " Anúncio(s) encontrados");
+
+        //Setar a busca tanto pelo botão buscar como pelo enter na caixa de texto
+        Button buttonBuscar = (Button) findViewById(R.id.button_buscar);
+        buttonBuscar.setOnClickListener((view) -> {
+            buscar();
+        });
+
+        TextView textBusca = (TextView) findViewById(R.id.text_busca);
+        textBusca.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if(event.getAction()==KeyEvent.ACTION_DOWN && keyCode==KeyEvent.KEYCODE_ENTER){
+                    buscar();
+                    return true;
+                }
+                return false;
+            }
         });
 
     }
 
-    private void buscar(View view) {
+    private void buscar() {
 
         EditText editTextBusca = (EditText) findViewById(R.id.text_busca);
 
@@ -92,7 +111,7 @@ public class VitrineActivity extends AbstractActivity{
         if(anunciosPublicados != null) {
 
             TextView textView = (TextView) findViewById(R.id.quantidade_resultados);
-            textView.setText(anunciosPublicados.size() + " Anúncio(s) encontradas");
+            textView.setText(anunciosPublicados.size() + " Anúncio(s) encontrados");
 
             VitrineListAdapter adapter = (VitrineListAdapter) getGridVitrine().getAdapter();
             adapter.clear();
@@ -101,23 +120,6 @@ public class VitrineActivity extends AbstractActivity{
 
             atualizaClickItensVitrine();
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.vitrine, menu);
-        return true;
     }
 
     public void geraCategorias(){
@@ -170,7 +172,6 @@ public class VitrineActivity extends AbstractActivity{
                 if(listItem instanceof Anuncio){
                     iniciaAnuncioView(((Anuncio)listItem).getId());
                 }
-                logger.log(Level.SEVERE, ">>> clicou");
             }
         });
     }
@@ -183,6 +184,23 @@ public class VitrineActivity extends AbstractActivity{
 
     private GridView getGridVitrine() {
         return (GridView) findViewById(R.id.lista_vitrine);
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.vitrine, menu);
+        return true;
     }
 
 }

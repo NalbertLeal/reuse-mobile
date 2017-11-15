@@ -17,7 +17,7 @@ import br.ufrn.reuse.utils.PegarImagemAnuncio;
  * Created by nalbertg on 07/11/2017.
  */
 
-public class MeusAnuncios extends AbstractActivity {
+public class MeusAnunciosActivity extends AbstractActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

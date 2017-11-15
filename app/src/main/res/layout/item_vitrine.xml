@@ -35,7 +35,7 @@
             >
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/itemVitrineDenominacao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Denominação"
@@ -44,7 +44,7 @@
                 android:paddingLeft="16dp"/>
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/itemVitrineTombamento"
                 android:layout_width="match_parent"
                 android:layout_height="46dp"
                 android:text="Tombamento"

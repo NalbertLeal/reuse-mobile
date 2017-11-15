@@ -94,7 +94,7 @@ public class AnunciarActivity extends AbstractActivity {
 
         if(erros.isEmpty()){
             reuseFacade.cadastrar(anuncio);
-            startActivity(new Intent(this,AnunciosActivity.class));
+            startActivity(new Intent(this,MeusAnunciosActivity.class));
         }
 
         //TODO: lançar os erros para a tela

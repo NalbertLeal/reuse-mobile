@@ -74,12 +74,12 @@ public class VitrineListAdapter extends ArrayAdapter<Anuncio>{
             }
         });
 
-        TextView textView = (TextView) convertView.findViewById(R.id.textView2);
-        textView.setText(String.valueOf(anuncio != null ? String.valueOf(anuncio.getBem().getNumTombamento()) : "0"));
+        TextView text1 = (TextView) convertView.findViewById(R.id.itemVitrineDenominacao);
+        text1.setText(anuncio.getBem() != null ? anuncio.getBem().getDenominacao() : " ");
 
-
-        TextView textView2 = (TextView) convertView.findViewById(R.id.textView2);
-        textView2.setText(anuncio.getBem().getDenominacao());
+        TextView text2 = (TextView) convertView.findViewById(R.id.itemVitrineTombamento);
+        text2.setText("Tombamento: " + String.valueOf(anuncio.getBem() != null ?
+                String.valueOf(anuncio.getBem().getNumTombamento()) : "Desconhecido"));
 
         return convertView;
     }
