@@ -1,8 +1,10 @@
 package br.ufrn.reuse.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.TextureView;
 import android.widget.Button;
 import android.widget.TextView;
@@ -22,6 +24,9 @@ public class AnuncioViewActivity extends AbstractActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anuncio_view);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle("Anuncios");
 
         reuseFacade = new ReuseFacadeImpl(this);
 
@@ -56,5 +61,16 @@ public class AnuncioViewActivity extends AbstractActivity {
             TextView text5 = (TextView)findViewById(R.id.view_ofertante);
             text5.setText(anuncio.getUsuario() != null ? anuncio.getUsuario().getPessoa().getNome() : "Desconhecido");
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                startActivity(new Intent(this, VitrineActivity.class));
+                finishAffinity();
+                break;
+            default:break;
+        }
+        return true;
     }
 }

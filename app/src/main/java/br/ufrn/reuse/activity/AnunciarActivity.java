@@ -2,6 +2,7 @@ package br.ufrn.reuse.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,7 +31,9 @@ public class AnunciarActivity extends AbstractActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anunciar);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle("Anunciar");
         reuseFacade = new ReuseFacadeImpl(this);
         anuncio = new Anuncio();
 
@@ -112,5 +115,17 @@ public class AnunciarActivity extends AbstractActivity {
 
     public Unidade getUnidade() {
         return new Unidade();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                startActivity(new Intent(this, VitrineActivity.class));
+                finishAffinity();
+                break;
+            default:break;
+        }
+        return true;
     }
 }
