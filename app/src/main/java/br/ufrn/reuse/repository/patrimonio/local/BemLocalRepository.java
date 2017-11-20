@@ -4,11 +4,8 @@ import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import br.ufrn.reuse.dominio.patrimonio.Bem;
-import br.ufrn.reuse.repository.local.config.DataAcessException;
+import br.ufrn.reuse.repository.local.config.DataAccessException;
 import br.ufrn.reuse.repository.local.config.SqlHelper;
 
 /**
@@ -41,7 +38,7 @@ public class BemLocalRepository {
             database.execSQL("");
             database.setTransactionSuccessful();
         } catch (SQLException ex) {
-            throw new DataAcessException(ex.getMessage());
+            throw new DataAccessException(ex.getMessage());
         }finally {
             database.endTransaction();
         }

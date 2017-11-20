@@ -64,9 +64,9 @@ public class SqlHelper extends SQLiteOpenHelper {
 
             database.setTransactionSuccessful();
         }catch (SQLException exception){
-            throw new DataAcessException("Erro ao efetuar migração da base de dados para a versão "+versaoAplicada);
+            throw new DataAccessException("Erro ao efetuar migração da base de dados para a versão "+versaoAplicada);
         }catch (IOException ex){
-            throw new DataAcessException("Erro ao recuperar os dados do arquivo de migração.");
+            throw new DataAccessException("Erro ao recuperar os dados do arquivo de migração.");
         }finally {
             database.endTransaction();
         }

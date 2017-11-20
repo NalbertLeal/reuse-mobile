@@ -8,9 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.ufrn.reuse.dominio.anuncio.Anuncio;
 import br.ufrn.reuse.dominio.anuncio.CategoriaAnuncio;
-import br.ufrn.reuse.repository.local.config.DataAcessException;
+import br.ufrn.reuse.repository.local.config.DataAccessException;
 import br.ufrn.reuse.repository.local.config.SqlHelper;
 
 /**
@@ -44,7 +43,7 @@ public class CategoriaLocalRepositor {
             database.execSQL("");
             database.setTransactionSuccessful();
         } catch (SQLException ex) {
-            throw new DataAcessException(ex.getMessage());
+            throw new DataAccessException(ex.getMessage());
         }finally {
             database.endTransaction();
         }

@@ -1,58 +1,13 @@
 package br.ufrn.reuse.remote.patrimonio;
 
-import android.content.Context;
-import android.support.annotation.NonNull;
-
 import br.ufrn.reuse.dominio.patrimonio.Bem;
 
 /**
- * Implementação do serviço remoto de bens.
- *
- * @author Daniel
- * @author Nalbert
+ * Created by Daniel on 11/19/2017.
  */
-public class BemRemoteService {
 
-    private final Context context;
+interface BemRemoteService {
+    Bem findBemById(Long idBem);
 
-    public BemRemoteService(Context context) {
-        this.context = context;
-    }
-
-    public Bem findBemById(Long idBem) {
-
-        Bem bem = new Bem();
-
-        bem.setId(idBem);
-        bem.setNumTombamento(201700000+idBem.intValue());
-        bem.setObservacoes("Novo.");
-        if(idBem%2==1) {
-            bem.setDenominacao("Cadeira vermelha padrão jogos");
-        }else{
-            bem.setDenominacao("Computador semi-novo.");
-        }
-
-        return bem;
-    }
-
-    public Bem findByTombamento(int numTombamento) {
-        Bem bem = null;
-
-        String tombamento = String.valueOf(numTombamento);
-
-        if(tombamento.length() == 10) {
-            int anoTombamento = Integer.parseInt(tombamento.substring(0, 4));
-
-            if (anoTombamento > 1950 && anoTombamento < 2017) {
-                bem = new Bem();
-
-                bem.setId(1L);
-                bem.setDenominacao("Cadeira");
-                bem.setNumTombamento(numTombamento);
-
-            }
-        }
-
-        return bem;
-    }
+    Bem findByTombamento(int numTombamento);
 }

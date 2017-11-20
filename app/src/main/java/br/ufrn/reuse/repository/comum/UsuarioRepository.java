@@ -4,6 +4,7 @@ import android.content.Context;
 
 import br.ufrn.reuse.dominio.comum.Usuario;
 import br.ufrn.reuse.remote.comum.UsuarioRemoteService;
+import br.ufrn.reuse.remote.comum.impl.UsuarioRemoteServiceSimulacaoImpl;
 
 /**
  * Created by Daniel on 10/27/2017.
@@ -16,7 +17,7 @@ public class UsuarioRepository {
 
     public UsuarioRepository(Context context) {
         this.context = context;
-        this.remoteService = new UsuarioRemoteService(context);
+        this.remoteService = new UsuarioRemoteServiceSimulacaoImpl(context);
     }
 
     public Usuario findUsuarioById(Long id) {

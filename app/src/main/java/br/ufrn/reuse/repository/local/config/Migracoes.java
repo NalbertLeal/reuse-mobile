@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import br.ufrn.reuse.utils.IOUtils;
 import br.ufrn.reuse.utils.RawResourcesUtils;
 
 /**
@@ -50,16 +51,14 @@ public class Migracoes {
             int line;
             String content = "";
 
-                while((line = fileStream.read()) != -1) {
-                    content += (char) line;
-                }
+            content = IOUtils.toString(fileStream);
 
             fileStream.close();
 
             return content;
         }
         catch(IOException e) {
-            throw new DataAcessException(e.getMessage());
+            throw new DataAccessException(e.getMessage());
         }
     }
 

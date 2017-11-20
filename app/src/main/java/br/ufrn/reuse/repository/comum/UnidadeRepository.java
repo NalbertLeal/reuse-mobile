@@ -4,6 +4,7 @@ import android.content.Context;
 
 import br.ufrn.reuse.dominio.comum.Unidade;
 import br.ufrn.reuse.remote.comum.UnidadeRemoteService;
+import br.ufrn.reuse.remote.comum.impl.UnidadeRemoteServiceSimulacaoImpl;
 
 /**
  * Created by Daniel on 10/27/2017.
@@ -15,7 +16,7 @@ public class UnidadeRepository {
 
     public UnidadeRepository(Context context) {
         this.context = context;
-        this.remoteService = new UnidadeRemoteService(context);
+        this.remoteService = new UnidadeRemoteServiceSimulacaoImpl(context);
     }
 
     public Unidade findUnidadeById(Long unidade) {

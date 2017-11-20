@@ -61,7 +61,7 @@ public class AnuncioRepository {
 
         Anuncio anuncio = localRepository.findById(idAnuncio);
 
-        if(anuncio != null && SincronizacaoUtils.isSincronizado(anuncio.getDataSincronizacao(), QUANTIDADE_DIAS_SINCRONIZADO_ANUNCIO)){
+        if(anuncio != null && !SincronizacaoUtils.isSincronizado(anuncio.getDataSincronizacao(), QUANTIDADE_DIAS_SINCRONIZADO_ANUNCIO)){
             anuncio = remoteService.findById(idAnuncio);
             localRepository.save(anuncio);
         }
