@@ -33,6 +33,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements Navi
 
     protected ReuseFacadeImpl reuseFacade;
     Logger logger = Logger.getLogger(getClass().getName());
+    public String tombamento_g;
     protected Usuario usuarioLogado;
     /**
      * Mapa que contem a associação entre item de menu e activity que será aberta ao clicar.

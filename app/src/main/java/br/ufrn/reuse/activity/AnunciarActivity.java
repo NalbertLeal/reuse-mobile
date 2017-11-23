@@ -1,7 +1,16 @@
 package br.ufrn.reuse.activity;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.hardware.Camera;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -9,9 +18,30 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.TextView;
+
+import com.google.zxing.Result;
+
 import java.util.ArrayList;
 import java.util.List;
 
+
+import br.ufrn.reuse.LerTombamento;
 import br.ufrn.reuse.R;
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
 import br.ufrn.reuse.dominio.anuncio.CategoriaAnuncio;
@@ -20,17 +50,27 @@ import br.ufrn.reuse.dominio.comum.Usuario;
 import br.ufrn.reuse.dominio.patrimonio.Bem;
 import br.ufrn.reuse.facade.ReuseFacade;
 import br.ufrn.reuse.facade.ReuseFacadeImpl;
+import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
-public class AnunciarActivity extends AbstractActivity {
+
+public class AnunciarActivity extends AbstractActivity implements ZXingScannerView.ResultHandler{
 
     private ReuseFacade reuseFacade;
 
     private Anuncio anuncio;
 
+    private static final int REQUISICAO_CAM = 1;
+    private ZXingScannerView scannerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        scannerView = new ZXingScannerView(this);
+
         setContentView(R.layout.activity_anunciar);
+
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle("Anunciar");
@@ -40,6 +80,24 @@ public class AnunciarActivity extends AbstractActivity {
         iniciarComponentes();
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private void iniciarComponentes() {
         Button buttonSelecionarBem = (Button) findViewById(R.id.btn_buscar_bem);
@@ -55,11 +113,14 @@ public class AnunciarActivity extends AbstractActivity {
     }
 
     private void selecionarBem() {
+
+
         EditText editText = (EditText) findViewById(R.id.edt_tombamento);
 
         int tombamento = 0;
 
         try{
+            //editText.setHint(tombamento);
             tombamento = Integer.parseInt(editText.getText().toString());
         }catch (NumberFormatException ex){
             // TODO: 10/31/2017 Jogar mensagem de erro caso tombamento seja inválido.
@@ -128,4 +189,29 @@ public class AnunciarActivity extends AbstractActivity {
         }
         return true;
     }
+
+
+    @Override
+    public void handleResult(Result result) {
+
+    }
+
+    public void lerTombamento(View view){
+        Intent intent = new Intent(this, LerTombamento.class);
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK){
+                String resultado = data.getStringExtra("resultado");
+                //Coloque no EditText
+                //seuEditText.setText(resultado);
+                Log.d(">>>>", resultado);
+            }
+        }
+    }
+
 }
