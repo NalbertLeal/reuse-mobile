@@ -3,6 +3,8 @@ package br.ufrn.reuse.repository.patrimonio;
 import android.content.Context;
 
 import br.ufrn.reuse.dominio.patrimonio.Bem;
+import br.ufrn.reuse.remote.RemoteServiceConfig;
+import br.ufrn.reuse.remote.patrimonio.BemRemoteService;
 import br.ufrn.reuse.remote.patrimonio.BemRemoteServiceSimulacao;
 import br.ufrn.reuse.repository.patrimonio.local.BemLocalRepository;
 import br.ufrn.reuse.utils.SincronizacaoUtils;
@@ -22,7 +24,7 @@ public class BemRepository {
     /**
      * Dependencia da implementação do serviço remoto.
      */
-    public BemRemoteServiceSimulacao bemRemote;
+    public BemRemoteService bemRemote;
 
     /**
      * Dependencia da implementação do repositório local.
@@ -33,7 +35,7 @@ public class BemRepository {
 
     public BemRepository(Context context) {
         this.context = context;
-        this.bemRemote = new BemRemoteServiceSimulacao(context);
+        this.bemRemote = RemoteServiceConfig.getAPISinfoServiceFactory().createBemRemoteService(context);
         this.bemLocalRepository = new BemLocalRepository(context);
     }
 

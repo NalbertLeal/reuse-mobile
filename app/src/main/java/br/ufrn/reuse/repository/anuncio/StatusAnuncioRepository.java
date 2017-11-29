@@ -3,6 +3,7 @@ package br.ufrn.reuse.repository.anuncio;
 import android.content.Context;
 
 import br.ufrn.reuse.dominio.anuncio.StatusAnuncio;
+import br.ufrn.reuse.remote.RemoteServiceConfig;
 import br.ufrn.reuse.remote.anuncio.StatusAnuncioRemoteService;
 
 /**
@@ -14,7 +15,7 @@ public class StatusAnuncioRepository {
 
     public StatusAnuncioRepository(Context context) {
         this.context = context;
-        this.remoteService = new StatusAnuncioRemoteService(context);
+        this.remoteService = RemoteServiceConfig.getReuseServiceFactory().createStatusAnuncioRemoteService(context);
     }
 
     public StatusAnuncio findStatusAnuncioById(String identificador) {

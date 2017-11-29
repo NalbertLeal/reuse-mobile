@@ -9,6 +9,7 @@ import java.util.List;
 
 import br.ufrn.reuse.dominio.anuncio.CategoriaAnuncio;
 import br.ufrn.reuse.dominio.patrimonio.Bem;
+import br.ufrn.reuse.remote.RemoteServiceConfig;
 import br.ufrn.reuse.remote.anuncio.CategoriaRemoteService;
 import br.ufrn.reuse.repository.anuncio.local.CategoriaLocalRepositor;
 import br.ufrn.reuse.repository.patrimonio.local.BemLocalRepository;
@@ -25,7 +26,7 @@ public class CategoriaRepository {
 
     public CategoriaRepository(Context context) {
         this.context = context;
-        this.categoriaRemoteService = new CategoriaRemoteService(context);
+        this.categoriaRemoteService = RemoteServiceConfig.getReuseServiceFactory().createCategoriaRemoteService(context);
         this.categoriaLocalRepository = new CategoriaLocalRepositor(context);
     }
 

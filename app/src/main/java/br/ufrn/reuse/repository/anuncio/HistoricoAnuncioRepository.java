@@ -5,6 +5,7 @@ import android.content.Context;
 import java.util.List;
 
 import br.ufrn.reuse.dominio.anuncio.HistoricoAnuncio;
+import br.ufrn.reuse.remote.RemoteServiceConfig;
 import br.ufrn.reuse.remote.anuncio.HistoricoAnuncioRemoteService;
 
 /**
@@ -17,8 +18,7 @@ public class HistoricoAnuncioRepository {
 
     public HistoricoAnuncioRepository(Context context) {
         this.context = context;
-
-        this.remoteService = new HistoricoAnuncioRemoteService(context);
+        this.remoteService = RemoteServiceConfig.getReuseServiceFactory().createHistoricoAnuncioRemoteService(context);
     }
 
     public List<HistoricoAnuncio> findAllHistoricosByAnuncioId(Long id) {

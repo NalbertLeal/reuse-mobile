@@ -5,6 +5,7 @@ import android.content.Context;
 import java.util.List;
 
 import br.ufrn.reuse.dominio.anuncio.Foto;
+import br.ufrn.reuse.remote.RemoteServiceConfig;
 import br.ufrn.reuse.remote.anuncio.FotoRemoteService;
 
 /**
@@ -17,7 +18,7 @@ public class FotoRepository {
 
     public FotoRepository(Context context) {
         this.context = context;
-        this.remoteService = new FotoRemoteService(context);
+        this.remoteService = RemoteServiceConfig.getReuseServiceFactory().createFotoRemoteService(context);
     }
 
     public List<Foto> findAllFotosByAnuncioId(Long idAnuncio) {

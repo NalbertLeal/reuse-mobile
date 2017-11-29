@@ -20,7 +20,6 @@ public class UnidadeRemoteServiceSimulacaoImpl implements UnidadeRemoteService {
 
     public UnidadeRemoteServiceSimulacaoImpl(Context context) {
         this.context = context;
-
         this.unidades = Arrays.asList(new Unidade(1L,1135L,"Superintendencia de Informatica", "SINFO"),new Unidade(2L,1123L,"Departamento de Matemática e Informática Aplicada", "DIMAP"),new Unidade(3L,1102L,"Divisão de material e patrimonio", "DMP"));
 
     }
@@ -29,7 +28,7 @@ public class UnidadeRemoteServiceSimulacaoImpl implements UnidadeRemoteService {
     public Unidade findUnidadeById(Long idUnidade) {
         for (Unidade unidade : this.unidades) {
             if (unidade.getId().equals(idUnidade)) {
-                return null;
+                return unidade;
             }
         }
 

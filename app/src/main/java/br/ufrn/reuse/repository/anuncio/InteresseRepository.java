@@ -7,6 +7,7 @@ import java.util.List;
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
 import br.ufrn.reuse.dominio.anuncio.Interesse;
 import br.ufrn.reuse.dominio.comum.Usuario;
+import br.ufrn.reuse.remote.RemoteServiceConfig;
 import br.ufrn.reuse.remote.anuncio.InteresseRemoteService;
 
 /**
@@ -19,7 +20,7 @@ public class InteresseRepository {
 
     public InteresseRepository(Context context) {
         this.context = context;
-        this.remoteService = new InteresseRemoteService(context);
+        this.remoteService = RemoteServiceConfig.getReuseServiceFactory().createInteresseAnuncioRemoteService(context);
     }
 
     public List<Interesse> findInteressesByIdAnuncio(Long id) {
