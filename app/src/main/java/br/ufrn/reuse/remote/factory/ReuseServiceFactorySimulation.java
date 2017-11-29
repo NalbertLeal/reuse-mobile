@@ -18,36 +18,37 @@ public class ReuseServiceFactorySimulation implements ReuseServiceFactory {
 
     @Override
     public AnuncioRemoteService createAnuncioRemoteService(Context context) {
-        return null;
+        return new AnuncioRemoteService();
     }
 
     @Override
     public CategoriaRemoteService createCategoriaRemoteService(Context context) {
-        return null;
+        return new CategoriaRemoteService(context);
     }
 
     @Override
     public EtiquetaRemoteService createEtiquetaRemoteService(Context context) {
-        return null;
+        return new EtiquetaRemoteService(context);
     }
 
     @Override
     public FotoRemoteService createFotoRemoteService(Context context) {
-        return null;
+        return new FotoRemoteService(context);
     }
 
     @Override
     public HistoricoAnuncioRemoteService createHistoricoAnuncioRemoteService(Context context) {
-        return null;
+        return new HistoricoAnuncioRemoteService(context);
     }
 
     @Override
     public InteresseRemoteService createInteresseAnuncioRemoteService(Context context) {
-        return null;
+        return new InteresseRemoteService(context);
     }
 
     @Override
     public StatusAnuncioRemoteService createStatusAnuncioRemoteService(Context context) {
-        return null;
+        return new StatusAnuncioRemoteService(context);
     }
+
 }
