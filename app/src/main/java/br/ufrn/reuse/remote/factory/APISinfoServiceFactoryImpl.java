@@ -34,7 +34,7 @@ public class APISinfoServiceFactoryImpl implements APISinfoServiceFactory{
 
     public static APISinfoServiceFactoryImpl getInstance(){
         if(apiSinfoServiceFactory == null){
-            APISinfoServiceFactoryImpl apiSinfoServiceFactory = new APISinfoServiceFactoryImpl();
+            apiSinfoServiceFactory = new APISinfoServiceFactoryImpl();
         }
 
         return apiSinfoServiceFactory;

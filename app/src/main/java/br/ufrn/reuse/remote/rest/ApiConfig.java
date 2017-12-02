@@ -6,27 +6,25 @@ package br.ufrn.reuse.remote.rest;
 
 public class ApiConfig {
     public static String getApiKey() {
-        return null;
+        return "rmQUF0E487oFoFUMzTuiGiNTAUXspNnEo72VKH6A";
     }
 
     public static String getClientId() {
-        return null;
+        return "reuse-mobile-id";
     }
 
     public static String getClientSecret() {
-        return null;
+        return "segredo";
     }
 
     public static String getAuthUrl() {
-        return null;
+        return getBaseUrl()+"/authz-server/ouauth/token";
     }
 
-    public static String getBaseUrl(){
-        return null;
-    }
+    public static String getBaseUrl(){ return "https://apitestes.info.ufrn.br"; }
 
     public static String getGrantType() {
-        return null;
+        return "client-credentials";
     }
 
     public static ClientDetails getClientDetails(){
