@@ -36,8 +36,16 @@ public class CategoriaRepository {
 
     @NonNull
     public List<CategoriaAnuncio> findAllCategorias() {
-        //return this.categoriaLocalRepository.findAllCategorias();
-        return categoriaRemoteService.findAllCategorias();
+        List<CategoriaAnuncio> list = this.categoriaLocalRepository.findAllCategorias();
+        if(list!=null && !list.isEmpty()){
+            return list;
+        }else {
+            list = categoriaRemoteService.findAllCategorias();
+            for(CategoriaAnuncio ca : list) {
+                this.categoriaLocalRepository.save(ca);
+            }
+            return list;
+        }
     }
 
     public CategoriaAnuncio findBemById(String idCategoria){

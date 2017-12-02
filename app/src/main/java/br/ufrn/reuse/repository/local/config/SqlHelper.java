@@ -56,7 +56,9 @@ public class SqlHelper extends SQLiteOpenHelper {
                     String sqlMigracao = migracao.getSqlMigracao();
 
                     if(sqlMigracao != null && !sqlMigracao.isEmpty()) {
-                        database.execSQL(sqlMigracao);
+                        for(String s : sqlMigracao.split(";")){
+                            database.execSQL(s+";");
+                        }
                     }
 
                 }

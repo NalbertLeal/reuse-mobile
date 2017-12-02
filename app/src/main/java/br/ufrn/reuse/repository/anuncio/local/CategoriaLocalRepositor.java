@@ -40,7 +40,9 @@ public class CategoriaLocalRepositor {
 
         try {
             database.beginTransaction();
-            database.execSQL("");
+            database.execSQL(
+                    "            INSERT INTO `categoria_anuncio` (`id`, `descricao`)\n" +
+                    "            VALUES ('" + cat.getIdentificador() + "', '" + cat.getDescricao() + "');");
             database.setTransactionSuccessful();
         } catch (SQLException ex) {
             throw new DataAccessException(ex.getMessage());
