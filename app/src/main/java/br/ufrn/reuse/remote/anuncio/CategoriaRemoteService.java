@@ -37,7 +37,6 @@ public class CategoriaRemoteService {
                 return categoria;
             }
         }
-
         return null;
     }
 

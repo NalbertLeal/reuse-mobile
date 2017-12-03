@@ -5,28 +5,42 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import br.ufrn.reuse.dominio.patrimonio.Bem;
+import br.ufrn.reuse.repository.anuncio.local.LocalRepository;
 import br.ufrn.reuse.repository.local.config.DataAccessException;
-import br.ufrn.reuse.repository.local.config.SqlHelper;
+
+import android.database.Cursor;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Created by nalbertg on 26/10/17.
+ * Created by Esther on 03/12/2017.
  */
 
-public class BemLocalRepository {
-
-    private final Context context;
-    private SqlHelper sqlHelper;
+public class BemLocalRepository extends LocalRepository {
 
     public BemLocalRepository(Context context) {
-        this.context = context;
-        this.sqlHelper = new SqlHelper(context);
+        super(context);
     }
 
-    public Bem findBemById(Long idBem) {
+    public Bem findBemById(String idBem) throws ParseException {
+        SQLiteDatabase database = sqlHelper.getReadableDatabase();
+        Cursor rs = database.rawQuery(
+                " SELECT id, denominacao, numTombamento, observacoes, dataSincronizacao " +
+                        " FROM bem" +
+                        " WHERE bem.id = " + idBem, null);
 
-        SQLiteDatabase database = sqlHelper.getWritableDatabase();
-        return null;
+        Bem bem = null;
 
+        while(rs.moveToNext()){
+            bem = new Bem(rs.getLong(0), rs.getString(1), rs.getInt(2));
+            bem.setObservacoes(rs.getString(3));
+            bem.setDataSincronizacao(new SimpleDateFormat().parse(rs.getString(4)));
+        }
+        rs.close();
+        return bem;
     }
 
     public void save(Bem bem) {
@@ -35,13 +49,36 @@ public class BemLocalRepository {
 
         try {
             database.beginTransaction();
-            database.execSQL("");
+            database.execSQL(
+                    " INSERT INTO `bem` (`id`, `denominacao`, 'numTombamento')" +
+                    " VALUES ('" + bem.getId() +
+                            "', '" + bem.getDenominacao() +
+                            "', '" + bem.getNumTombamento() +
+                            "', '" + bem.getObservacoes() +
+                            "', '" + bem.getDataSincronizacao() + "');");
             database.setTransactionSuccessful();
         } catch (SQLException ex) {
             throw new DataAccessException(ex.getMessage());
         }finally {
             database.endTransaction();
         }
+    }
 
+    public List<Bem> findAllBens() throws ParseException {
+        SQLiteDatabase database = sqlHelper.getReadableDatabase();
+        Cursor rs = database.rawQuery(
+                " SELECT id, denominacao, numTombamento, observacoes, dataSincronizacao " +
+                        " FROM bem", null);
+
+        List<Bem> bens = new ArrayList<Bem>();
+
+        while(rs.moveToNext()){
+            Bem bem = new Bem(rs.getLong(0), rs.getString(1), rs.getInt(2));
+            bem.setObservacoes(rs.getString(3));
+            bem.setDataSincronizacao(new SimpleDateFormat().parse(rs.getString(4)));
+            bens.add(bem);
+        }
+        rs.close();
+        return bens;
     }
 }

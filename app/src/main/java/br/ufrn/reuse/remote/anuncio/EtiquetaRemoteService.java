@@ -29,7 +29,7 @@ public class EtiquetaRemoteService {
         return new CopyOnWriteArrayList<>(this.etiquetas);
     }
 
-    public List<Etiqueta> finAllEtiquetasByAnuncioId(Long id) {
+    public List<Etiqueta> findAllEtiquetasByAnuncioId(Long id) {
         return findAllEtiquetas();
     }
 }

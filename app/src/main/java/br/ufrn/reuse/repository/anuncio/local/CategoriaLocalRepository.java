@@ -16,40 +16,36 @@ import br.ufrn.reuse.repository.local.config.SqlHelper;
  * Created by Daniel on 10/27/2017.
  */
 
-public class CategoriaLocalRepositor {
+public class CategoriaLocalRepository extends LocalRepository{
 
-    private final Context context;
-    private SqlHelper sqlHelper;
-
-    public CategoriaLocalRepositor(Context context) {
-        this.context = context;
-        this.sqlHelper = new SqlHelper(context);
+    public CategoriaLocalRepository(Context context) {
+        super(context);
     }
 
 
-    public CategoriaAnuncio findCategoriaById(String idBem) {
+    public CategoriaAnuncio findCategoriaById(String idCategoria) {
 
         SQLiteDatabase database = sqlHelper.getWritableDatabase();
         return null;
-
     }
 
-    public void save(CategoriaAnuncio cat) {
+    public void save(List<CategoriaAnuncio> categorias) {
 
         SQLiteDatabase database = sqlHelper.getWritableDatabase();
 
         try {
             database.beginTransaction();
-            database.execSQL(
-                    "            INSERT INTO `categoria_anuncio` (`id`, `descricao`)\n" +
-                    "            VALUES ('" + cat.getIdentificador() + "', '" + cat.getDescricao() + "');");
-            database.setTransactionSuccessful();
+            for (CategoriaAnuncio cat : categorias) {
+                database.execSQL(
+                        "            INSERT INTO `categoria_anuncio` (`id`, `descricao`)" +
+                                "            VALUES ('" + cat.getIdentificador() + "', '" + cat.getDescricao() + "');");
+                database.setTransactionSuccessful();
+            }
         } catch (SQLException ex) {
             throw new DataAccessException(ex.getMessage());
         }finally {
             database.endTransaction();
         }
-
     }
 
     public List<CategoriaAnuncio> findAllCategorias() {
@@ -59,7 +55,7 @@ public class CategoriaLocalRepositor {
         List<CategoriaAnuncio> categorias = new ArrayList<CategoriaAnuncio>();
 
         while(rs.moveToNext()){
-            String id = rs.getString(1);
+            String id = rs.getString(0);
             String descricao = rs.getString(1);
             CategoriaAnuncio categoria = new CategoriaAnuncio(id, descricao);
             categorias.add(categoria);

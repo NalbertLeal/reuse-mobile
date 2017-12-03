@@ -9,6 +9,13 @@ import java.util.Date;
  */
 public class Bem {
 
+    public Bem(){}
+
+    public Bem(Long id, String denominacao, int numTombamento){
+        this.id = id;
+        this.denominacao = denominacao;
+        this.numTombamento = numTombamento;
+    }
     /**
      * Identificador do bem.
      */

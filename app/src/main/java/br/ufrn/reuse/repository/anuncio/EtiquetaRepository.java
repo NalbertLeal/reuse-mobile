@@ -26,10 +26,20 @@ public class EtiquetaRepository {
     }
 
     public List<Etiqueta> findAllEtiquetasByAnuncioId(Long id) {
-        return localRepository.finAllEtiquetasByAnuncioId(id);
+        List<Etiqueta> etiquetas = localRepository.findAllEtiquetasByAnuncioId(id);
+        if(etiquetas==null || etiquetas.isEmpty()){
+            etiquetas = remoteService.findAllEtiquetasByAnuncioId(id);
+            localRepository.saveByAnuncio(etiquetas, id);
+        }
+        return etiquetas;
     }
 
     public List<Etiqueta> findAllEtiquetas() {
-        return localRepository.findAllEtiquetas();
+        List<Etiqueta> etiquetas = localRepository.findAllEtiquetas();
+        if(etiquetas==null || etiquetas.isEmpty()){
+            etiquetas = remoteService.findAllEtiquetas();
+            localRepository.save(etiquetas);
+        }
+        return etiquetas;
     }
 }
