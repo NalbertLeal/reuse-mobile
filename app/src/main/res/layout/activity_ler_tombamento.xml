@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="br.ufrn.reuse.LerTombamento">
+    tools:context="br.ufrn.reuse.activity.LerTombamento">
 
 </android.support.constraint.ConstraintLayout>

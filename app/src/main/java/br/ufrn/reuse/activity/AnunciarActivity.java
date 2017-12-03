@@ -1,15 +1,7 @@
 package br.ufrn.reuse.activity;
 
-import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.hardware.Camera;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -18,22 +10,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.app.AlertDialog;
-import android.content.ActivityNotFoundException;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.google.zxing.Result;
 
@@ -41,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import br.ufrn.reuse.LerTombamento;
+import br.ufrn.reuse.Cadastro;
 import br.ufrn.reuse.R;
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
 import br.ufrn.reuse.dominio.anuncio.CategoriaAnuncio;
@@ -61,6 +38,8 @@ public class AnunciarActivity extends AbstractActivity implements ZXingScannerVi
 
     private static final int REQUISICAO_CAM = 1;
     private ZXingScannerView scannerView;
+
+    public Bem bem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,15 +80,16 @@ public class AnunciarActivity extends AbstractActivity implements ZXingScannerVi
 
     private void iniciarComponentes() {
         Button buttonSelecionarBem = (Button) findViewById(R.id.btn_buscar_bem);
+
         buttonSelecionarBem.setOnClickListener((view) -> selecionarBem());
 
-        Button buttonCadastrar = (Button) findViewById(R.id.btn_cadastrar);
-        buttonCadastrar.setOnClickListener((view) -> cadastrar());
+        Button buttonCadastrar = (Button) findViewById(R.id.btn_avancar);
+        buttonCadastrar.setOnClickListener((view) -> avancarCadastro());
 
         List<CategoriaAnuncio> categoriaAnuncios = reuseFacade.findAllCategorias();
 
-        Spinner spinnerCategoria = (Spinner) findViewById(R.id.spinner_categoria);
-        spinnerCategoria.setAdapter(new ArrayAdapter<CategoriaAnuncio>(this,R.layout.support_simple_spinner_dropdown_item, categoriaAnuncios));
+        //Spinner spinnerCategoria = (Spinner) findViewById(R.id.spinner_categoria);
+        //spinnerCategoria.setAdapter(new ArrayAdapter<CategoriaAnuncio>(this,R.layout.support_simple_spinner_dropdown_item, categoriaAnuncios));
     }
 
     private void selecionarBem() {
@@ -126,9 +106,13 @@ public class AnunciarActivity extends AbstractActivity implements ZXingScannerVi
             // TODO: 10/31/2017 Jogar mensagem de erro caso tombamento seja inválido.
         }
 
+        selecionarBem(tombamento);
+    }
+
+    private void selecionarBem(int tombamento) {
         if(tombamento != 0) {
 
-            Bem bem = reuseFacade.findBemByNumTombamento(tombamento);
+            bem = reuseFacade.findBemByNumTombamento(tombamento);
 
             if(bem != null) {
 
@@ -147,7 +131,7 @@ public class AnunciarActivity extends AbstractActivity implements ZXingScannerVi
 
         anuncio.setUnidade(getUnidade());
         anuncio.setUsuario(getUsuario());
-        anuncio.setCategoria(getCategoriaSelecionada());
+        //anuncio.setCategoria(getCategoriaSelecionada());
 
         //TEM QUE RECUPERAR ESSAS INFORMAÇÕES DA VIEW
         anuncio.setEtiquetas(new ArrayList<>());
@@ -165,10 +149,10 @@ public class AnunciarActivity extends AbstractActivity implements ZXingScannerVi
 
     }
 
-    private CategoriaAnuncio getCategoriaSelecionada() {
+   /* private CategoriaAnuncio getCategoriaSelecionada() {
         Spinner spinnerCategoria = (Spinner) findViewById(R.id.spinner_categoria);
         return (CategoriaAnuncio) spinnerCategoria.getSelectedItem();
-    }
+    }*/
 
     private Usuario getUsuario() {
         return new Usuario();
@@ -206,12 +190,32 @@ public class AnunciarActivity extends AbstractActivity implements ZXingScannerVi
 
         if (requestCode == 1) {
             if(resultCode == RESULT_OK){
-                String resultado = data.getStringExtra("resultado");
+                String tombamento = data.getStringExtra("resultado");
                 //Coloque no EditText
                 //seuEditText.setText(resultado);
-                Log.d(">>>>", resultado);
+                Log.d(">>>>", tombamento);
+
+                if(tombamento.length() != 10) {
+                    Log.d("Tombamento", "Errado");
+                }else{
+
+                    try {
+                        int numTombamento = Integer.parseInt(tombamento);
+                        selecionarBem(numTombamento);
+                    }catch (NumberFormatException exception){
+                        showErrorOnToast("O codigo de Barras  do tombamento invalido",10000);
+                    }
+
+                }
+
             }
         }
+    }
+
+    public void avancarCadastro() {
+        Intent intent = new Intent(this, Cadastro.class);
+        intent.putExtra("Bem", bem);
+        this.startActivity(intent);
     }
 
 }

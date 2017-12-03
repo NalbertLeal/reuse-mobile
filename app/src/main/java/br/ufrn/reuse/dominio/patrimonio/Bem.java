@@ -1,5 +1,6 @@
 package br.ufrn.reuse.dominio.patrimonio;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Date;
  *
  * @author Daniel
  */
-public class Bem {
+public class Bem implements Serializable{
 
     /**
      * Identificador do bem.
