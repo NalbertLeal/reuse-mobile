@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import br.ufrn.reuse.dominio.patrimonio.Bem;
 import br.ufrn.reuse.repository.anuncio.local.LocalRepository;
 import br.ufrn.reuse.repository.local.config.DataAccessException;
+import br.ufrn.reuse.utils.DateFormatUtils;
 
 import android.database.Cursor;
 
@@ -25,7 +26,7 @@ public class BemLocalRepository extends LocalRepository {
         super(context);
     }
 
-    public Bem findBemById(String idBem) throws ParseException {
+    public Bem findBemById(Long idBem) {
         SQLiteDatabase database = sqlHelper.getReadableDatabase();
         Cursor rs = database.rawQuery(
                 " SELECT id, denominacao, numTombamento, observacoes, dataSincronizacao " +
@@ -37,7 +38,7 @@ public class BemLocalRepository extends LocalRepository {
         while(rs.moveToNext()){
             bem = new Bem(rs.getLong(0), rs.getString(1), rs.getInt(2));
             bem.setObservacoes(rs.getString(3));
-            bem.setDataSincronizacao(new SimpleDateFormat().parse(rs.getString(4)));
+            bem.setDataSincronizacao(DateFormatUtils.stringToDate(rs.getString(4)));
         }
         rs.close();
         return bem;

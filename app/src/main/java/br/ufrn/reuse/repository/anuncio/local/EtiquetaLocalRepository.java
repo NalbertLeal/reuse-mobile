@@ -83,8 +83,8 @@ public class EtiquetaLocalRepository extends LocalRepository{
         SQLiteDatabase database = sqlHelper.getReadableDatabase();
         Cursor rs = database.rawQuery(
                     "SELECT etiqueta.id, etiqueta.nome " +
-                            "LEFT JOIN id_etiqueta etiqueta" +
                             "FROM etiquetasAnuncio " +
+                            "LEFT JOIN id_etiqueta etiqueta" +
                             "WHERE id_anuncio =" + idAnuncio, null);
 
         List<Etiqueta> etiquetas = new ArrayList<Etiqueta>();

@@ -17,7 +17,7 @@ import br.ufrn.reuse.repository.local.config.DataAccessException;
 import br.ufrn.reuse.utils.DateFormatUtils;
 
 /**
- * Created by nalbertg on 26/10/17.
+ * Created by nalbertg, Esther on 26/10/17.
  */
 public class AnuncioLocalRepository extends LocalRepository{
 
@@ -31,8 +31,8 @@ public class AnuncioLocalRepository extends LocalRepository{
             "SELECT id, texto_publicacao, st.id, st.nome, data_cadastro, data_publicacao," +
                     "bem.id, bem.denominacao, bem.numTombamento, uni.id, uni.codigo, uni.nome, uni.sigla, " +
                     "quantidade_dias_ativo, data_sincronizacao, cat.identificador, cat.descricao " +
-                "LEFT JOIN status_anuncio st, id_bem bem, categoria_anuncio cat, id_unidade uni" +
                 "FROM anuncio" +
+                "LEFT JOIN status_anuncio st, id_bem bem, categoria_anuncio cat, id_unidade uni" +
                 "WHERE anuncio.id = " + idAnuncio, null);
 
         Anuncio anuncio = new Anuncio();

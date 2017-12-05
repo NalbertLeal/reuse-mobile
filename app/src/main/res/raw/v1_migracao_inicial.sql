@@ -47,19 +47,26 @@ CREATE TABLE IF NOT EXISTS `anuncio` (
  `id_unidade` INTEGER,
  `categoria_anuncio` TEXT,
  `quantidade_dias_ativo` INTEGER,
- `data_sincronizacao` TEXT
+ `data_sincronizacao` TEXT,
+ PRIMARY KEY(`id`),
+ FOREIGN KEY(status_anuncio) REFERENCES status_anuncio(id),
+ FOREIGN KEY(id_bem) REFERENCES bem(id),
+ FOREIGN KEY(categoria_anuncio) REFERENCES categoria_anuncio(id),
+ FOREIGN KEY(id_unidade) REFERENCES unidade(id)
 );
 CREATE TABLE IF NOT EXISTS etiquetasAnuncio (
  id_etiqueta INTEGER,
  id_anuncio INTEGER,
- FOREIGN KEY(id_etiqueta) REFERENCES etiqueta(id)
+ FOREIGN KEY(id_anuncio) REFERENCES anuncio(id)
 );
 CREATE TABLE IF NOT EXISTS `Usuario` (
  `id` INTEGER,
  `login` TEXT,
  `id_unidade` INTEGER,
  `email` TEXT,
- `url_foto` TEXT
+ `url_foto` TEXT,
+ PRIMARY KEY(`id`),
+ FOREIGN KEY(id_unidade) REFERENCES unidade(id)
 );
 CREATE TABLE IF NOT EXISTS `Interesse` (
  `id` INTEGER UNIQUE,
@@ -67,7 +74,8 @@ CREATE TABLE IF NOT EXISTS `Interesse` (
  `data_interesse` TEXT,
  `id_anuncio` INTEGER,
  `data_aprovacao` TEXT,
- PRIMARY KEY(`id`)
+ PRIMARY KEY(`id`),
+ FOREIGN KEY(id_anuncio) REFERENCES anuncio(id)
 );
 CREATE TABLE IF NOT EXISTS `bem` (
  `id` INTEGER,
@@ -75,4 +83,5 @@ CREATE TABLE IF NOT EXISTS `bem` (
  `numTombamento` INTEGER,
  `observacoes` TEXT,
  `dataSincronizacao` TEXT
+ PRIMARY KEY(`id`)
 );
