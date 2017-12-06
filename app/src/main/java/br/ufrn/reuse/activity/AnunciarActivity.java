@@ -131,7 +131,7 @@ public class AnunciarActivity extends AbstractActivity implements ZXingScannerVi
 
         anuncio.setUnidade(getUnidade());
         anuncio.setUsuario(getUsuario());
-        //anuncio.setCategoria(getCategoriaSelecionada());
+        anuncio.setCategoria(getCategoriaSelecionada());
 
         //TEM QUE RECUPERAR ESSAS INFORMAÇÕES DA VIEW
         anuncio.setEtiquetas(new ArrayList<>());
@@ -149,10 +149,10 @@ public class AnunciarActivity extends AbstractActivity implements ZXingScannerVi
 
     }
 
-   /* private CategoriaAnuncio getCategoriaSelecionada() {
-        Spinner spinnerCategoria = (Spinner) findViewById(R.id.spinner_categoria);
+    private CategoriaAnuncio getCategoriaSelecionada() {
+        Spinner spinnerCategoria = (Spinner) findViewById(R.id.spinner2);
         return (CategoriaAnuncio) spinnerCategoria.getSelectedItem();
-    }*/
+    }
 
     private Usuario getUsuario() {
         return new Usuario();
@@ -191,10 +191,6 @@ public class AnunciarActivity extends AbstractActivity implements ZXingScannerVi
         if (requestCode == 1) {
             if(resultCode == RESULT_OK){
                 String tombamento = data.getStringExtra("resultado");
-                //Coloque no EditText
-                //seuEditText.setText(resultado);
-                Log.d(">>>>", tombamento);
-
                 if(tombamento.length() != 10) {
                     Log.d("Tombamento", "Errado");
                 }else{

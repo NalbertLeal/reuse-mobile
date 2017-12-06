@@ -18,39 +18,39 @@ import br.ufrn.reuse.dominio.anuncio.CategoriaAnuncio;
 import br.ufrn.reuse.dominio.comum.Unidade;
 import br.ufrn.reuse.dominio.comum.Usuario;
 import br.ufrn.reuse.facade.ReuseFacade;
+import br.ufrn.reuse.facade.ReuseFacadeImpl;
 
 public class Cadastro extends AbstractActivity {
 
     private ReuseFacade reuseFacade;
-
     private Anuncio anuncio;
+    List<CategoriaAnuncio> categoriaAnuncios;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
+        reuseFacade = new ReuseFacadeImpl(this);
+        anuncio = new Anuncio();
+
+        iniciarComponentes();
     }
 
 
-
-
     private void iniciarComponentes() {
+        Button cadastrar = (Button) findViewById(R.id.btn_cadastrar);
+        cadastrar.setOnClickListener((view) -> cadastrar());
 
-        List<CategoriaAnuncio> categoriaAnuncios = reuseFacade.findAllCategorias();
+        categoriaAnuncios = reuseFacade.findAllCategorias();
 
         Spinner spinnerCategoria = (Spinner) findViewById(R.id.spinner2);
         spinnerCategoria.setAdapter(new ArrayAdapter<CategoriaAnuncio>(this,R.layout.support_simple_spinner_dropdown_item, categoriaAnuncios));
     }
 
 
-    private CategoriaAnuncio getCategoriaSelecionada() {
-        Spinner spinnerCategoria = (Spinner) findViewById(R.id.spinner2);
-        return (CategoriaAnuncio) spinnerCategoria.getSelectedItem();
-    }
+    public void cadastrar(){
 
-
-
-    public void cadastrar(View view){
-        // Isso não funcionaaa
+        Log.d("Cadastrar","...");
         anuncio.setUnidade(getUnidade());
         anuncio.setUsuario(getUsuario());
         anuncio.setCategoria(getCategoriaSelecionada());
@@ -60,6 +60,13 @@ public class Cadastro extends AbstractActivity {
         anuncio.setQuantidadeDiasAtivo(15);
         anuncio.setTextoPublicacao(" ");
 
+        List<String> erros = new ArrayList<>();//anuncio.validarCadastro();
+
+        if(erros.isEmpty()){
+            Log.d("Error","...");
+            reuseFacade.cadastrar(anuncio);
+            //startActivity(new Intent(this,MeusAnunciosActivity.class));
+        }
 
         //TODO: lançar os erros para a tela
 
@@ -72,6 +79,12 @@ public class Cadastro extends AbstractActivity {
     public Unidade getUnidade() {
         return new Unidade();
     }
+
+    private CategoriaAnuncio getCategoriaSelecionada() {
+        Spinner spinnerCategoria = (Spinner) findViewById(R.id.spinner2);
+        return (CategoriaAnuncio) spinnerCategoria.getSelectedItem();
+    }
+
 
 }
 
