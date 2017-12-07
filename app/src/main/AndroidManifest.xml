@@ -42,6 +42,7 @@
             android:name=".activity.MeusAnunciosActivity"
             android:label="@string/title_activity_meus_anuncios" />
         <activity android:name=".activity.DetalhamentoAnuncioActivity" />
+        <activity android:name=".activity.APISinfoLoginActivity"></activity>
     </application>
 
 </manifest>

@@ -21,4 +21,7 @@ public interface AuthenticationClient {
                                             @Query("client_id") String clientId,
                                             @Query("grant_type") String grantType);
 
+
+
+
 }

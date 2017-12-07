@@ -10,6 +10,9 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 import br.ufrn.reuse.R;
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
@@ -30,7 +33,13 @@ public class MeusAnunciosActivity extends AbstractActivity {
         ImageView fotoUsuario = (ImageView) findViewById(R.id.imageView2);
 
         PegarImagemAnuncio p = new PegarImagemAnuncio(fotoUsuario);
-        p.execute();
+        List<String> urlFotosMock = Arrays.asList("https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAuiAAAAJGMyZmQ1MjgwLTUxYjUtNGFmZC04ZmU4LTc5ODZkZWI0ZTkzOQ.jpg");
+        Random r= new Random();
+        int randomNumber = (r.nextInt() % urlFotosMock.size());
+        if(randomNumber < 0) {
+            randomNumber = randomNumber * -1;
+        }
+        p.execute(urlFotosMock.get(randomNumber));
 
         TextView nomeUsuario = (TextView) findViewById(R.id.nome_usuario);
         nomeUsuario.setText("Nabert Gabriel");
