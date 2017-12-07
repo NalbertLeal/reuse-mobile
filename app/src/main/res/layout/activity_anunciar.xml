@@ -31,11 +31,10 @@
 
             <EditText
                 android:id="@+id/edt_tombamento"
-                android:layout_width="match_parent"
+                android:layout_width="145dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.2"
                 android:background="@color/colorPrimary"
-                android:hint="Tombamento do bem..."
+                android:hint="Tombamento..."
                 />
 
             <Button
@@ -48,6 +47,16 @@
                 android:gravity="center"
                 android:padding="08dp" />
 
+            <Button
+                android:id="@+id/btn_codigo_barras"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8"
+                android:background="@color/colorAccent"
+                android:gravity="center"
+                android:padding="01dp"
+                android:onClick="lerTombamento"
+                android:text="ler Código" />
         </LinearLayout>
 
         <LinearLayout
@@ -85,43 +94,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp"
-                android:text="Categoria" />
 
-            <Spinner
-                android:id="@+id/spinner_categoria"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-            </Spinner>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp"
-                android:text="Texto:" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Digite as informações que desejar"
-                android:inputType="textMultiLine" />
 
             <Button
-                android:id="@+id/btn_cadastrar"
+                android:id="@+id/btn_avancar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/colorAccent"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="8dp"
-                android:text="Cadastrar" />
+                android:text="Avançar" />
 
         </LinearLayout>
 

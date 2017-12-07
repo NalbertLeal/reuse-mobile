@@ -17,6 +17,7 @@
     <string name="prompt_password">Senha</string>
     <string name="action_sign_in_short">Entrar</string>
     <string name="error_field_required">Campo obrigatório</string>
+    <string name="title_activity_cadastro_final">Cadastro_final</string>
 
 </resources>
 
