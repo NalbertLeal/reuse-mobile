@@ -21,6 +21,7 @@ import br.ufrn.reuse.R;
 import br.ufrn.reuse.dominio.comum.Unidade;
 import br.ufrn.reuse.dominio.comum.Usuario;
 import br.ufrn.reuse.facade.ReuseFacadeImpl;
+import br.ufrn.reuse.remote.comum.impl.UsuarioRemoteServiceImpl;
 
 /**
  * Classe que contém comportamentos padrão para todas as activity do sistema.

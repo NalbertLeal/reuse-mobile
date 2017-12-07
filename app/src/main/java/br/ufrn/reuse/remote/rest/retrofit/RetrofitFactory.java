@@ -13,6 +13,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Daniel on 11/19/2017.
@@ -22,10 +23,10 @@ public class RetrofitFactory {
 
 
     private static final Retrofit retrofitBuilder = new Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(ApiConfig.getBaseUrl())
             .build();
     private static final OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
-    private static AuthorizationDTO authorization;
 
     public static <T> T getOAuth2Client(Class<T> clientClass) {
         ClientDetails clientDetails = ApiConfig.getClientDetails();
@@ -38,7 +39,6 @@ public class RetrofitFactory {
 
                         Request request = oldRequest.newBuilder()
                                 .header("x-api-key", clientDetails.getApiKey())
-                                .header("Authorization", getAuthorization().getAuthorizationHeader())
                                 .method(oldRequest.method(),oldRequest.body())
                                 .build();
 
@@ -48,20 +48,5 @@ public class RetrofitFactory {
 
         return retrofitBuilder.create(clientClass);
     }
-
-    private static AuthorizationDTO getAuthorization() {
-        if (authorization == null) {
-            AuthRemoteService authService = new AuthRemoteService();
-
-            try {
-                authorization = authService.authorize().execute().body();
-            } catch (IOException e) {
-                throw new DataAccessException("");
-            }
-        }
-
-        return authorization;
-    }
-
 
 }

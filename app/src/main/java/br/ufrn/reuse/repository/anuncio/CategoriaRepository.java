@@ -50,8 +50,6 @@ public class CategoriaRepository {
 
         if(categoria == null){
             categoria = categoriaRemoteService.findCategoriaById(idCategoria);
-            //bemLocalRepository.save(bem);
-            // TODO descomentar
         }
 
         return categoria;

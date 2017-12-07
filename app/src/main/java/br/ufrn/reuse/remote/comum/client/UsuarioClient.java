@@ -1,8 +1,10 @@
 package br.ufrn.reuse.remote.comum.client;
 
 import br.ufrn.reuse.dominio.comum.Usuario;
+import br.ufrn.reuse.remote.DTO.UsuarioDTO;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Path;
 
 /**
@@ -12,6 +14,6 @@ import retrofit2.http.Path;
 public interface UsuarioClient {
 
     @GET("/usuario/v0.1/usuarios/{idUsuario}")
-    Call<Usuario> findUsuarioById(@Path("idUsuario") long idUsuario);
+    Call<UsuarioDTO> findUsuarioById(@Header("Authentication") String authentication, @Path("idUsuario") long idUsuario);
 
 }
