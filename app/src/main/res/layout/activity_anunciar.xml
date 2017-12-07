@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.ufrn.reuse.activity.AnunciarActivity">
+
+    <LinearLayout
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        android:orientation="vertical"
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="0dp">
+
+        <TextView
+            android:id="@+id/label_tombamento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="8dp"
+            android:text="Tombamento:" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edt_tombamento"
+                android:layout_width="145dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:hint="Tombamento..."
+                />
+
+            <Button
+                android:id="@+id/btn_buscar_bem"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8"
+                android:background="@color/colorAccent"
+                android:text="Buscar"
+                android:gravity="center"
+                android:padding="08dp" />
+
+            <Button
+                android:id="@+id/btn_codigo_barras"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8"
+                android:background="@color/colorAccent"
+                android:gravity="center"
+                android:padding="01dp"
+                android:onClick="lerTombamento"
+                android:text="ler Código" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="8dp"
+                android:text="Informações do bem:" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginBottom="8dp"
+                android:text="Tombamento:" />
+
+            <TextView
+                android:id="@+id/txt_tombamento"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Denominação do bem: " />
+
+            <TextView
+                android:id="@+id/txt_denominacao"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+
+
+            <Button
+                android:id="@+id/btn_avancar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="Avançar" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

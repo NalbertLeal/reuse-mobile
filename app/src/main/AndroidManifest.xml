@@ -2,6 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.ufrn.reuse">
 
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,13 +19,36 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".activity.LoginActivity"
+            android:label="REUSE">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.VitrineActivity"
+            android:label="@string/title_activity_vitrine"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.AnunciarActivity"
+            android:label="@string/title_activity_anunciar" />
+        <activity
+            android:name=".activity.InteressesActivity"
+            android:label="@string/title_activity_interesses" />
+        <activity
+            android:name=".activity.AnuncioViewActivity"
+            android:label="@string/title_activity_anuncio" />
+        <activity
+            android:name=".activity.MeusAnunciosActivity"
+            android:label="@string/title_activity_meus_anuncios" />
+        <activity android:name=".activity.DetalhamentoAnuncioActivity" />
+        <activity android:name=".activity.LerTombamento" />
+        <activity android:name=".Cadastro"></activity>
+        <activity android:name=".activity.APISinfoLoginActivity"></activity>
     </application>
 
 </manifest>

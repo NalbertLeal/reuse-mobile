@@ -1,6 +1,12 @@
 package br.ufrn.reuse;
 
+import android.util.Log;
+
 import org.junit.Test;
+
+import java.util.Date;
+
+import br.ufrn.reuse.utils.DateFormatUtils;
 
 import static org.junit.Assert.*;
 
@@ -12,6 +18,9 @@ import static org.junit.Assert.*;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
+        String teste = DateFormatUtils.dateToString(new Date());
+        Date data = DateFormatUtils.stringToDate(teste);
+        String teste2 = DateFormatUtils.dateToString(data);
+        assert(true);
     }
 }
