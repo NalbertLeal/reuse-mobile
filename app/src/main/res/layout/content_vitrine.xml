@@ -49,9 +49,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.9"
                 android:background="@color/colorAccent"
-                android:drawableLeft="@drawable/ic_menu_camera"
+                android:drawableLeft="@drawable/lupa_busca"
                 android:gravity="center"
-                android:padding="08dp" />
+                android:padding="1dp" />
 
         </LinearLayout>
 
