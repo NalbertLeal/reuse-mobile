@@ -35,7 +35,7 @@ public class ApiConfig {
     public static final String EQUALS = "=";
 
     public static String getApiKey() {
-        return "rmQUF0E487oFoFUMzTuiGiNTAUXspNnEo72VKH6A";
+        return "rmQUF0E487oFoFUMzTuiGlNTAUXspNnEo72VKH6A";
     }
 
     public static String getClientId() {

@@ -10,10 +10,12 @@ import br.ufrn.reuse.remote.DTO.UsuarioDTO;
 import br.ufrn.reuse.remote.auth.TokenRepository;
 import br.ufrn.reuse.remote.comum.UsuarioRemoteService;
 import br.ufrn.reuse.remote.comum.client.UsuarioClient;
+import br.ufrn.reuse.remote.rest.ApiConfig;
 import br.ufrn.reuse.remote.rest.retrofit.RetrofitFactory;
 import br.ufrn.reuse.repository.local.config.DataAccessException;
 import br.ufrn.reuse.utils.AuthorizationUtils;
 import retrofit2.Call;
+import retrofit2.Response;
 
 /**
  * Created by Daniel on 11/19/2017.
@@ -37,10 +39,11 @@ public class UsuarioRemoteServiceImpl implements UsuarioRemoteService {
         //TODO: Fazer de forma Assincrona.
         //TODO: Recuperar quantidade de resultados.
         //TODO: Devolver paginação.
-        Call<UsuarioDTO> findUsuarioCall = usuarioClient.findUsuarioById(AuthorizationUtils.getAuthroizationBearer(tokenRepository.getToken()),id);
+        Call<UsuarioDTO> findUsuarioCall = usuarioClient.findUsuarioById(AuthorizationUtils.getAuthroizationBearer(tokenRepository.getToken()), ApiConfig.getApiKey(),id);
 
         try {
-            return toUsuario(findUsuarioCall.execute().body());
+            Response<UsuarioDTO> execute = findUsuarioCall.execute();
+            return toUsuario(execute.body());
         } catch (IOException e) {
             throw new DataAccessException("");
         }
@@ -50,6 +53,8 @@ public class UsuarioRemoteServiceImpl implements UsuarioRemoteService {
         Usuario usuario = null;
 
         if(usuarioDTO != null && usuarioDTO.getIdUsuario() > 0){
+            usuario = new Usuario();
+
             usuario.setId(Long.valueOf(usuarioDTO.getIdUsuario()));
 
             if(usuarioDTO.getCpfCnpj() != null) {

@@ -22,6 +22,7 @@ import android.support.v7.app.AppCompatActivity;
 import br.ufrn.reuse.R;
 import br.ufrn.reuse.remote.auth.TokenRepository;
 import br.ufrn.reuse.remote.comum.impl.UsuarioRemoteServiceImpl;
+import br.ufrn.reuse.remote.patrimonio.BemRemoteServiceImpl;
 import br.ufrn.reuse.remote.rest.ApiConfig;
 import ca.mimic.oauth2library.OAuth2Client;
 import ca.mimic.oauth2library.OAuthResponse;
@@ -126,8 +127,6 @@ public class APISinfoLoginActivity extends AppCompatActivity {
 
                     tokenRepository.putToken(response.getAccessToken());
                     tokenRepository.putAuthorizationCode(authorizationCode);
-
-                    new UsuarioRemoteServiceImpl(APISinfoLoginActivity.this).findUsuarioById(6069l);
 
                     return true;
                 }

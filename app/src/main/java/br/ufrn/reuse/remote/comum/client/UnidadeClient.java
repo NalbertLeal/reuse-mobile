@@ -14,5 +14,5 @@ import retrofit2.http.Path;
 public interface UnidadeClient {
 
     @GET("/unidade/v0.1/unidades/{idUnidade}")
-    Call<UnidadeDTO> findUnidadeById(@Header("Authentication") String authentication, @Path("idUnidade") long idUnidade);
+    Call<UnidadeDTO> findUnidadeById(@Header("Authorization") String authentication, @Header("x-api-key") String apiKey, @Path("idUnidade") long idUnidade);
 }

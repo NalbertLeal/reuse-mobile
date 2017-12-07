@@ -31,20 +31,16 @@ public class RetrofitFactory {
     public static <T> T getOAuth2Client(Class<T> clientClass) {
         ClientDetails clientDetails = ApiConfig.getClientDetails();
 
-        clientBuilder.authenticator(new OAuth2Autenticator(clientDetails))
-                .addInterceptor(new Interceptor() {
-                    @Override
-                    public Response intercept(Chain chain) throws IOException {
-                        Request oldRequest = chain.request();
+        clientBuilder.addInterceptor(chain -> {
+            Request oldRequest = chain.request();
 
-                        Request request = oldRequest.newBuilder()
-                                .header("x-api-key", clientDetails.getApiKey())
-                                .method(oldRequest.method(),oldRequest.body())
-                                .build();
+            Request request = oldRequest.newBuilder()
+                    .header("x-api-key", clientDetails.getApiKey())
+                    .method(oldRequest.method(),oldRequest.body())
+                    .build();
 
-                        return chain.proceed(oldRequest);
-                    }
-                });
+            return chain.proceed(oldRequest);
+        });
 
         return retrofitBuilder.create(clientClass);
     }

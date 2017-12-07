@@ -14,6 +14,6 @@ import retrofit2.http.Path;
 public interface UsuarioClient {
 
     @GET("/usuario/v0.1/usuarios/{idUsuario}")
-    Call<UsuarioDTO> findUsuarioById(@Header("Authentication") String authentication, @Path("idUsuario") long idUsuario);
+    Call<UsuarioDTO> findUsuarioById(@Header("Authorization") String authentication, @Header("x-api-key") String apiKey, @Path("idUsuario") long idUsuario);
 
 }

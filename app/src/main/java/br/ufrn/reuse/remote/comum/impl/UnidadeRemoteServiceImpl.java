@@ -9,6 +9,7 @@ import br.ufrn.reuse.remote.DTO.UnidadeDTO;
 import br.ufrn.reuse.remote.auth.TokenRepository;
 import br.ufrn.reuse.remote.comum.client.UnidadeClient;
 import br.ufrn.reuse.remote.comum.UnidadeRemoteService;
+import br.ufrn.reuse.remote.rest.ApiConfig;
 import br.ufrn.reuse.remote.rest.retrofit.RetrofitFactory;
 import br.ufrn.reuse.repository.local.config.DataAccessException;
 import br.ufrn.reuse.utils.AuthorizationUtils;
@@ -32,11 +33,8 @@ public class UnidadeRemoteServiceImpl implements UnidadeRemoteService {
 
     @Override
     public Unidade findUnidadeById(Long idUnidade) {
-        //TODO: Fazer de forma Assincrona.
-        //TODO: Recuperar quantidade de resultados.
-        //TODO: Devolver paginação.
 
-        Call<UnidadeDTO> findUnidadeCall = unidadeClient.findUnidadeById(AuthorizationUtils.getAuthroizationBearer(tokenRepository.getToken()),idUnidade);
+        Call<UnidadeDTO> findUnidadeCall = unidadeClient.findUnidadeById(AuthorizationUtils.getAuthroizationBearer(tokenRepository.getToken()), ApiConfig.getApiKey(),idUnidade);
 
         try {
             UnidadeDTO unidadeDTO = findUnidadeCall.execute().body();
@@ -55,6 +53,8 @@ public class UnidadeRemoteServiceImpl implements UnidadeRemoteService {
         Unidade unidade = null;
 
         if(unidadeDTO != null){
+            unidade = new Unidade();
+
             unidade.setId(Long.valueOf(unidadeDTO.getIdUnidade()));
             unidade.setNome(unidadeDTO.getNomeUnidade());
             unidade.setCodigo(Long.valueOf(unidadeDTO.getCodigoUnidade()));

@@ -19,6 +19,7 @@ import java.util.List;
 
 
 import br.ufrn.reuse.Cadastro;
+import br.ufrn.reuse.LerTombamento;
 import br.ufrn.reuse.R;
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
 import br.ufrn.reuse.dominio.anuncio.CategoriaAnuncio;
@@ -49,7 +50,6 @@ public class AnunciarActivity extends AbstractActivity implements ZXingScannerVi
 
         setContentView(R.layout.activity_anunciar);
 
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle("Anunciar");
@@ -59,24 +59,6 @@ public class AnunciarActivity extends AbstractActivity implements ZXingScannerVi
         iniciarComponentes();
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     private void iniciarComponentes() {
         Button buttonSelecionarBem = (Button) findViewById(R.id.btn_buscar_bem);
