@@ -34,12 +34,15 @@ public class LoginActivity extends AbstractActivity{
 
         Button entrarButton = (Button) findViewById(R.id.entrarButton);
         entrarButton.setOnClickListener(view -> {
-            Usuario usuarioLogado = new ReuseFacadeImpl(this).autenticar(null, null);
-            if (usuarioLogado.getId() >= 0){
-                //Caso ocorra autenticação, usuario logado é salvo para facilitar próximo acesso
-                salvarUltimoUsuarioLogado(username);
-                iniciarTimeline(usuarioLogado.getId(), null);
-            }
+
+            startActivity(new Intent(this, APISinfoLoginActivity.class));
+
+//            Usuario usuarioLogado = new ReuseFacadeImpl(this).autenticar(null, null);
+//            if (usuarioLogado.getId() >= 0){
+//                //Caso ocorra autenticação, usuario logado é salvo para facilitar próximo acesso
+//                salvarUltimoUsuarioLogado(username);
+//                iniciarTimeline(usuarioLogado.getId(), null);
+//            }
         });
 
     }
