@@ -3,6 +3,7 @@ package br.ufrn.reuse.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import java.util.Random;
 
 import br.ufrn.reuse.R;
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
+import br.ufrn.reuse.facade.ReuseFacadeImpl;
 import br.ufrn.reuse.utils.PegarImagemAnuncio;
 
 /**
@@ -27,9 +29,12 @@ public class MeusAnunciosActivity extends AbstractActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meus_anuncios);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle("Meus anúncios");
+
+        // seta imagem de usuario
         ImageView fotoUsuario = (ImageView) findViewById(R.id.imageView2);
 
         PegarImagemAnuncio p = new PegarImagemAnuncio(fotoUsuario);
@@ -41,16 +46,24 @@ public class MeusAnunciosActivity extends AbstractActivity {
         }
         p.execute(urlFotosMock.get(randomNumber));
 
+        // seta nome de usuario
+
         TextView nomeUsuario = (TextView) findViewById(R.id.nome_usuario);
         nomeUsuario.setText("Nabert Gabriel");
 
-        ArrayList<Anuncio> anuncios = new ArrayList<Anuncio>();
+        //List<Anuncio> anuncios = reuseFacade.findAllAnunciosPublicados();
+        ReuseFacadeImpl reuseFacade = new ReuseFacadeImpl(this);
+        List<Anuncio> anuncios = reuseFacade.findAllAnunciosPublicados();
         MeusAnunciosAdapter adapter = new MeusAnunciosAdapter(this, anuncios);
 
-        LinearLayout linearLayoutMeusAnuncios = (LinearLayout) findViewById(R.id.linear_layout_meus_anuncios);
-        for (int i = 0; i < anuncios.size(); i++) {
-            linearLayoutMeusAnuncios.addView(adapter.getView(i));
-        }
+        //LinearLayout linearLayoutMeusAnuncios = (LinearLayout) findViewById(R.id.linear_layout_meus_anuncios);
+        //for (int i = 0; i < anuncios.size(); i++) {
+        //    linearLayoutMeusAnuncios.addView(adapter.getView(this, anuncios));
+        //}
+
+        GridView gv = (GridView) findViewById(R.id.lista_meus_anuncios);
+        gv.setAdapter(adapter);
+        ((MeusAnunciosAdapter)gv.getAdapter()).notifyDataSetChanged();
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
