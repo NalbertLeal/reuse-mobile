@@ -67,14 +67,14 @@ public class InteressesListAdapter extends ArrayAdapter<Anuncio>{
 
 
         TextView datalabel = (TextView) convertView.findViewById(R.id.data_label);
-        datalabel.setText("DATAMOCADA");
+        datalabel.setText("10/12/2017");
 
         TextView situacaolabel = (TextView) convertView.findViewById(R.id.situacao_label);
-        situacaolabel.setText("SITUACAOMOCADA");
+        situacaolabel.setText("ANUNCIADO");
 
 
         TextView usuariolabel = (TextView) convertView.findViewById(R.id.nomelabel);
-        usuariolabel.setText("NOMEMOCADO");
+        usuariolabel.setText("---");
 
         return convertView;
     }
