@@ -28,4 +28,8 @@ public class DateFormatUtils {
         }
     }
 
+    public static Date dataAtual(){
+        return new Date();
+    }
+
 }

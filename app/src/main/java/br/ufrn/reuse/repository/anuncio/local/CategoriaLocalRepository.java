@@ -38,9 +38,9 @@ public class CategoriaLocalRepository extends LocalRepository{
             for (CategoriaAnuncio cat : categorias) {
                 database.execSQL(
                         "            INSERT INTO `categoria_anuncio` (`id`, `descricao`)" +
-                                "            VALUES ('" + cat.getIdentificador() + "', '" + cat.getDescricao() + "');");
-                database.setTransactionSuccessful();
+                        "            VALUES ('" + cat.getIdentificador() + "', '" + cat.getDescricao() + "');");
             }
+            database.setTransactionSuccessful();
         } catch (SQLException ex) {
             throw new DataAccessException(ex.getMessage());
         }finally {

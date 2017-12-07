@@ -82,6 +82,6 @@ CREATE TABLE IF NOT EXISTS `bem` (
  `denominacao` TEXT,
  `numTombamento` INTEGER,
  `observacoes` TEXT,
- `dataSincronizacao` TEXT
+ `dataSincronizacao` TEXT,
  PRIMARY KEY(`id`)
 );
