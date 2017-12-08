@@ -3,8 +3,12 @@ package br.ufrn.reuse.facade;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import br.ufrn.reuse.activity.APISinfoLoginActivity;
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
 import br.ufrn.reuse.dominio.anuncio.CategoriaAnuncio;
 import br.ufrn.reuse.dominio.anuncio.Etiqueta;
@@ -12,6 +16,10 @@ import br.ufrn.reuse.dominio.anuncio.Interesse;
 import br.ufrn.reuse.dominio.comum.Usuario;
 import br.ufrn.reuse.dominio.patrimonio.Bem;
 import br.ufrn.reuse.remote.anuncio.AnuncioRemoteService;
+import br.ufrn.reuse.remote.auth.TokenRepository;
+import br.ufrn.reuse.remote.rest.ApiConfig;
+import ca.mimic.oauth2library.OAuth2Client;
+import ca.mimic.oauth2library.OAuthResponse;
 
 /**
  * Implementação da fachada da aplicação.
@@ -21,6 +29,7 @@ import br.ufrn.reuse.remote.anuncio.AnuncioRemoteService;
  */
 public class ReuseFacadeImpl implements ReuseFacade {
 
+    private final Context context;
     /**
      * Dependência do módulo de anúncios.
      */
@@ -42,6 +51,7 @@ public class ReuseFacadeImpl implements ReuseFacade {
     private ComumFacade comumFacade;
 
     public ReuseFacadeImpl(Context context){
+        this.context = context;
         this.anuncioFacade = new AnuncioFacadeImpl(context);
         this.interesseFacade = new InteresseFacade(context);
         this.patrimonioFacade = new PatrimonioFacade(context);
@@ -156,6 +166,34 @@ public class ReuseFacadeImpl implements ReuseFacade {
     @Override
     public Usuario autenticar(String usuario, String senha) {
         return comumFacade.autenticar(usuario, senha); //new ComumRemoteService().credenciaisValidas(usuario, senha);
+    }
+
+    @Override
+    public boolean autenticar(String authorizationCode) throws IOException {
+
+        Map<String, String> map = new HashMap<>();
+        map.put(ApiConfig.REDIRECT_URI_PARAM, ApiConfig.REDIRECT_URI);
+        map.put(ApiConfig.RESPONSE_TYPE_VALUE, authorizationCode);
+
+        OAuthResponse response = new OAuth2Client.Builder(ApiConfig.getClientId(), ApiConfig.getClientSecret(), ApiConfig.ACCESS_TOKEN_URL)
+                .grantType(ApiConfig.getGrantType())
+                .parameters(map)
+                .build()
+                .requestAccessToken();
+
+        if (response != null) {
+            if(response.isSuccessful()){
+
+                TokenRepository tokenRepository = TokenRepository.createTokenRepository(this.context);
+
+                tokenRepository.putToken(response.getAccessToken());
+                tokenRepository.putAuthorizationCode(authorizationCode);
+
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public Usuario findUsuarioById(Long idUsuario) {

@@ -1,5 +1,6 @@
 package br.ufrn.reuse.facade;
 
+import java.io.IOException;
 import java.util.List;
 
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
@@ -31,6 +32,9 @@ public interface ReuseFacade {
     Bem findBemByNumTombamento(int tombamento);
     List<CategoriaAnuncio> findAllCategorias();
     Usuario autenticar(String usuario, String senha);
+
+    boolean autenticar(String authorizationCode) throws IOException;
+
     Usuario findUsuarioById(Long idUsuario);
 
 }

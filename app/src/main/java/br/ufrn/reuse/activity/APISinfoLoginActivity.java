@@ -20,9 +20,8 @@ import android.webkit.WebViewClient;
 
 import android.support.v7.app.AppCompatActivity;
 import br.ufrn.reuse.R;
+import br.ufrn.reuse.facade.ReuseFacadeImpl;
 import br.ufrn.reuse.remote.auth.TokenRepository;
-import br.ufrn.reuse.remote.comum.impl.UsuarioRemoteServiceImpl;
-import br.ufrn.reuse.remote.patrimonio.BemRemoteServiceImpl;
 import br.ufrn.reuse.remote.rest.ApiConfig;
 import ca.mimic.oauth2library.OAuth2Client;
 import ca.mimic.oauth2library.OAuthResponse;
@@ -96,8 +95,7 @@ public class APISinfoLoginActivity extends AppCompatActivity {
         protected Boolean doInBackground(String... authroizationCodes) {
             if (authroizationCodes.length > 0) {
                 try {
-                    return authenticate(authroizationCodes[0]);
-
+                    return new ReuseFacadeImpl(APISinfoLoginActivity.this).autenticar(authroizationCodes[0]);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -108,32 +106,7 @@ public class APISinfoLoginActivity extends AppCompatActivity {
             return false;
         }
 
-        private boolean authenticate(String authorizationCode) throws IOException {
 
-            Map<String, String> map = new HashMap<>();
-            map.put(ApiConfig.REDIRECT_URI_PARAM, ApiConfig.REDIRECT_URI);
-            map.put(ApiConfig.RESPONSE_TYPE_VALUE, authorizationCode);
-
-            OAuthResponse response = new OAuth2Client.Builder(ApiConfig.getClientId(), ApiConfig.getClientSecret(), ApiConfig.ACCESS_TOKEN_URL)
-                    .grantType(ApiConfig.getGrantType())
-                    .parameters(map)
-                    .build()
-                    .requestAccessToken();
-
-            if (response != null) {
-                if(response.isSuccessful()){
-
-                    TokenRepository tokenRepository = TokenRepository.createTokenRepository(APISinfoLoginActivity.this);
-
-                    tokenRepository.putToken(response.getAccessToken());
-                    tokenRepository.putAuthorizationCode(authorizationCode);
-
-                    return true;
-                }
-            }
-
-            return false;
-        }
 
         @Override
         protected void onPostExecute(Boolean status) {
@@ -149,5 +122,4 @@ public class APISinfoLoginActivity extends AppCompatActivity {
 
     }
 
-    ;
 }
