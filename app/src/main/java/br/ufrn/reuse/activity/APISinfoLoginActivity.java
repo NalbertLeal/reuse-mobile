@@ -21,10 +21,7 @@ import android.webkit.WebViewClient;
 import android.support.v7.app.AppCompatActivity;
 import br.ufrn.reuse.R;
 import br.ufrn.reuse.facade.ReuseFacadeImpl;
-import br.ufrn.reuse.remote.auth.TokenRepository;
 import br.ufrn.reuse.remote.rest.ApiConfig;
-import ca.mimic.oauth2library.OAuth2Client;
-import ca.mimic.oauth2library.OAuthResponse;
 
 public class APISinfoLoginActivity extends AppCompatActivity {
 
@@ -36,7 +33,6 @@ public class APISinfoLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apisinfo_login);
 
-        //get the webView from the layout
         webView = (WebView) findViewById(R.id.login_sinfo_web_view);
         webView.requestFocus(View.FOCUS_DOWN);
 
@@ -105,8 +101,6 @@ public class APISinfoLoginActivity extends AppCompatActivity {
 
             return false;
         }
-
-
 
         @Override
         protected void onPostExecute(Boolean status) {

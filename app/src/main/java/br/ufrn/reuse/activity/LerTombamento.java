@@ -22,6 +22,7 @@ import static android.Manifest.permission.CAMERA;
 public class LerTombamento extends AbstractActivity implements ZXingScannerView.ResultHandler {
 
     private static final int REQUEST_CAMERA = 1;
+    public String tombamento_g;
     private ZXingScannerView scannerView;
     private static int camId = Camera.CameraInfo.CAMERA_FACING_BACK;
 

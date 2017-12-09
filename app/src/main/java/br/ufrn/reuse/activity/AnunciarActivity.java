@@ -31,6 +31,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class AnunciarActivity extends AbstractActivity implements ZXingScannerView.ResultHandler{
 
+    public String tombamento_g;
     private ReuseFacade reuseFacade;
 
     private Anuncio anuncio;

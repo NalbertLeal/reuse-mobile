@@ -2,15 +2,10 @@ package br.ufrn.reuse.activity;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.CheckBox;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import br.ufrn.reuse.R;
 import br.ufrn.reuse.dominio.comum.Usuario;
@@ -21,6 +16,8 @@ import br.ufrn.reuse.facade.ReuseFacadeImpl;
  * @author Esther
  */
 public class LoginActivity extends AbstractActivity{
+
+    public String tombamento_g;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

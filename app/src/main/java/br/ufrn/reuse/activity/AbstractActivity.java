@@ -33,8 +33,7 @@ import br.ufrn.reuse.remote.comum.impl.UsuarioRemoteServiceImpl;
 public abstract class AbstractActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     protected ReuseFacadeImpl reuseFacade;
-    Logger logger = Logger.getLogger(getClass().getName());
-    public String tombamento_g;
+    protected Logger logger = Logger.getLogger(getClass().getName());
     protected Usuario usuarioLogado;
     /**
      * Mapa que contem a associação entre item de menu e activity que será aberta ao clicar.
@@ -64,7 +63,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements Navi
             return activitiesMenuMap.get(idLink);
         }
 
-        throw new IllegalArgumentException("O id passado deve estar associado à um menu da aplicação");
+        throw new IllegalStateException("O id passado deve estar associado à um menu da aplicação");
 
     }
 

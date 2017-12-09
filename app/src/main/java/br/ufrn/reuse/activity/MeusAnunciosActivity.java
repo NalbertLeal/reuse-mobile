@@ -5,12 +5,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -25,6 +21,7 @@ import br.ufrn.reuse.utils.PegarImagemAnuncio;
  */
 
 public class MeusAnunciosActivity extends AbstractActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
