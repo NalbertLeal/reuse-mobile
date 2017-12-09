@@ -41,6 +41,7 @@ public class MeusAnunciosAdapter extends ArrayAdapter<Anuncio> {
 
         ImageView imageView = (ImageView) convertView.findViewById(R.id.imagem_anuncio);
 
+        //TODO: Tirar isso
         PegarImagemAnuncio pegarImg = new PegarImagemAnuncio(imageView);
         List<String> urlFotosMock = Arrays.asList("http://www.pokerproductos.com/WebRoot/StoreES/Shops/61976209/4D3F/07EA/8A46/F9B0/3645/C0A8/29BB/BFC4/Mesa_de_poker_redonda_CAIMAN_OCIO_negra_c.jpg", "https://images.etna.com.br/produtos/95/373995/373995_ampliada.jpg","https://i0.wp.com/ricardohage.com.br/wp-content/uploads/2017/04/computadores_0006_desktop.jpg?resize=800%2C445","https://http2.mlstatic.com/D_Q_NP_984415-MLB25225395850_122016-Q.jpg");
         Random r= new Random();

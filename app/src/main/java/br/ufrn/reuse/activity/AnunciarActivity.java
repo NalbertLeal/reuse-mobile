@@ -2,7 +2,6 @@ package br.ufrn.reuse.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,21 +30,24 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class AnunciarActivity extends AbstractActivity implements ZXingScannerView.ResultHandler{
 
-    public String tombamento_g;
+    /**
+     * Dependência da fachada da aplicação.
+     */
     private ReuseFacade reuseFacade;
 
+    /**
+     * Anúncio que está sendo populado com os dados do cadastro.
+     */
     private Anuncio anuncio;
 
-    private static final int REQUISICAO_CAM = 1;
-    private ZXingScannerView scannerView;
-
+    /**
+     * Bem selecionado.
+     */
     public Bem bem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        scannerView = new ZXingScannerView(this);
 
         setContentView(R.layout.activity_anunciar);
 
@@ -59,6 +61,9 @@ public class AnunciarActivity extends AbstractActivity implements ZXingScannerVi
 
     }
 
+    /**
+     * Carrega os componentes da view.
+     */
     private void iniciarComponentes() {
         Button buttonSelecionarBem = (Button) findViewById(R.id.btn_buscar_bem);
 
@@ -73,24 +78,27 @@ public class AnunciarActivity extends AbstractActivity implements ZXingScannerVi
         //spinnerCategoria.setAdapter(new ArrayAdapter<CategoriaAnuncio>(this,R.layout.support_simple_spinner_dropdown_item, categoriaAnuncios));
     }
 
+    /**
+     * Efetua a seleção do bem com base no tombamento informado na view.
+     */
     private void selecionarBem() {
 
-
-        EditText editText = (EditText) findViewById(R.id.edt_tombamento);
-
-        int tombamento = 0;
-
         try{
-            //editText.setHint(tombamento);
-            tombamento = Integer.parseInt(editText.getText().toString());
+            EditText editText = (EditText) findViewById(R.id.edt_tombamento);
+            int tombamento = Integer.parseInt(editText.getText().toString());
+            carregarBem(tombamento);
         }catch (NumberFormatException ex){
-            // TODO: 10/31/2017 Jogar mensagem de erro caso tombamento seja inválido.
+            showErrorOnToast("O codigo de Barras do tombamento é invalido",10000);
         }
 
-        selecionarBem(tombamento);
     }
 
-    private void selecionarBem(int tombamento) {
+    /**
+     * Carrega o bem de acordo com o tombamento passado.
+     *
+     * @param tombamento
+     */
+    private void carregarBem(int tombamento) {
         if(tombamento != 0) {
 
             bem = reuseFacade.findBemByNumTombamento(tombamento);
@@ -108,18 +116,22 @@ public class AnunciarActivity extends AbstractActivity implements ZXingScannerVi
         }
     }
 
+    /**
+     * Efetua o cadastro do anúncio.
+     */
     public void cadastrar(){
-
         anuncio.setUnidade(getUnidade());
         anuncio.setUsuario(getUsuario());
         anuncio.setCategoria(getCategoriaSelecionada());
 
-        //TEM QUE RECUPERAR ESSAS INFORMAÇÕES DA VIEW
+        //TODO: Recuperar da view
         anuncio.setEtiquetas(new ArrayList<>());
         anuncio.setQuantidadeDiasAtivo(15);
         anuncio.setTextoPublicacao(" ");
 
-        List<String> erros = new ArrayList<>();//anuncio.validarCadastro();
+        List<String> erros = new ArrayList<>();
+
+        //TODO: List<String> erros = anuncio.validarCadastro();
 
         if(erros.isEmpty()){
             reuseFacade.cadastrar(anuncio);
@@ -130,37 +142,38 @@ public class AnunciarActivity extends AbstractActivity implements ZXingScannerVi
 
     }
 
+    /**
+     * Retorna a categoria selecionada na view do cadastro.
+     *
+     * @return
+     */
     private CategoriaAnuncio getCategoriaSelecionada() {
         Spinner spinnerCategoria = (Spinner) findViewById(R.id.spinner2);
         return (CategoriaAnuncio) spinnerCategoria.getSelectedItem();
     }
 
-    private Usuario getUsuario() {
-        return new Usuario();
-    }
-
-    public Unidade getUnidade() {
-        return new Unidade();
-    }
-
+    /**
+     * Retorna para a vitrine
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                startActivity(new Intent(this, VitrineActivity.class));
-                finishAffinity();
-                break;
-            default:break;
+
+        if (item.getItemId() == android.R.id.home) {
+            startActivity(new Intent(this, VitrineActivity.class));
+            finishAffinity();
         }
+
         return true;
     }
 
-
-    @Override
-    public void handleResult(Result result) {
-
-    }
-
+    /**
+     *  Inicia a activity de leitura de tombamento com scanner.
+     *
+     * @param view
+     */
     public void lerTombamento(View view){
         Intent intent = new Intent(this, LerTombamento.class);
         startActivityForResult(intent, 1);
@@ -171,16 +184,18 @@ public class AnunciarActivity extends AbstractActivity implements ZXingScannerVi
 
         if (requestCode == 1) {
             if(resultCode == RESULT_OK){
+
                 String tombamento = data.getStringExtra("resultado");
+
                 if(tombamento.length() != 10) {
-                    Log.d("Tombamento", "Errado");
+                    showErrorOnToast("O codigo de Barras  do tombamento é invalido",10000);
                 }else{
 
                     try {
                         int numTombamento = Integer.parseInt(tombamento);
-                        selecionarBem(numTombamento);
+                        carregarBem(numTombamento);
                     }catch (NumberFormatException exception){
-                        showErrorOnToast("O codigo de Barras  do tombamento invalido",10000);
+                        showErrorOnToast("O codigo de Barras  do tombamento é invalido",10000);
                     }
 
                 }
@@ -189,10 +204,27 @@ public class AnunciarActivity extends AbstractActivity implements ZXingScannerVi
         }
     }
 
+    /**
+     * Avança o cadastro para a etapa da inserção dos dados do anúncio.
+     */
     public void avancarCadastro() {
         Intent intent = new Intent(this, Cadastro.class);
         intent.putExtra("Bem", bem);
         this.startActivity(intent);
     }
+
+
+    private Usuario getUsuario() {
+        //TODO: Retornar usuário
+        return new Usuario();
+    }
+
+    public Unidade getUnidade() {
+        //TODO: Retornar unidade do usuário
+        return new Unidade();
+    }
+
+    @Override
+    public void handleResult(Result result) {}
 
 }

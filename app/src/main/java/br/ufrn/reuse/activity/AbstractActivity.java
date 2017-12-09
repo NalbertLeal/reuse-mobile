@@ -18,10 +18,9 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import br.ufrn.reuse.R;
-import br.ufrn.reuse.dominio.comum.Unidade;
 import br.ufrn.reuse.dominio.comum.Usuario;
+import br.ufrn.reuse.facade.ReuseFacade;
 import br.ufrn.reuse.facade.ReuseFacadeImpl;
-import br.ufrn.reuse.remote.comum.impl.UsuarioRemoteServiceImpl;
 
 /**
  * Classe que contém comportamentos padrão para todas as activity do sistema.
@@ -32,9 +31,21 @@ import br.ufrn.reuse.remote.comum.impl.UsuarioRemoteServiceImpl;
  */
 public abstract class AbstractActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
-    protected ReuseFacadeImpl reuseFacade;
+    /**
+     * Dependência da Fachada do Reuse.
+     */
+    protected ReuseFacade reuseFacade;
+
+    /**
+     * Logger da aplicação.
+     */
     protected Logger logger = Logger.getLogger(getClass().getName());
+
+    /**
+     * Usuário logado.
+     */
     protected Usuario usuarioLogado;
+
     /**
      * Mapa que contem a associação entre item de menu e activity que será aberta ao clicar.
      */
@@ -92,6 +103,7 @@ public abstract class AbstractActivity extends AppCompatActivity implements Navi
      */
     protected void recuperaUsuarioUnidade() {
 
+        //TODO: Olhar isso
         Long idUsuario = getIntent().getLongExtra("usuarioLogado", 0);
         usuarioLogado = new ReuseFacadeImpl(this).findUsuarioById(idUsuario);
 
@@ -139,5 +151,10 @@ public abstract class AbstractActivity extends AppCompatActivity implements Navi
         Toast.makeText(this,error, duration);
     }
 
+    public void iniciaBarraSuperior(String titulo) {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle(titulo);
+    }
 }
 

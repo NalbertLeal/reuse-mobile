@@ -16,7 +16,6 @@ import java.util.List;
 import br.ufrn.reuse.R;
 import br.ufrn.reuse.activity.interesses.InteressesListAdapter;
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
-import br.ufrn.reuse.facade.InteresseFacade;
 import br.ufrn.reuse.facade.ReuseFacadeImpl;
 
 /**
@@ -26,7 +25,6 @@ public class InteressesActivity extends AbstractActivity {
 
     private String[] situacao = new String[] {"Todos", "Em análise", "Aprovados", "Aguardando aprovação"};
     private ReuseFacadeImpl reuseFacade;
-    private InteresseFacade interessesFacade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +47,6 @@ public class InteressesActivity extends AbstractActivity {
                 switch (posicao){
                     case 0:
                         Log.d("Situação", "Todos");
-
                         break;
                     case 1:
                         Log.d("Situação", "Em análise");

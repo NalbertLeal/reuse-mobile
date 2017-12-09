@@ -44,6 +44,7 @@ public class LoginActivity extends AbstractActivity{
 
     }
 
+    //TODO: Olhar isso
     private void iniciarTimeline(Long usuario, Long unidade){
         Intent intent = new Intent(this, VitrineActivity.class);
         intent.putExtra("usuarioLogado", usuario);
@@ -51,6 +52,7 @@ public class LoginActivity extends AbstractActivity{
         startActivity(intent);
     }
 
+    //TODO: Olhar isso
     private void autenticarPorToken(){
         //Recupera preferencias para tentar autenticar por token
         SharedPreferences sp = getPreferences(Activity.MODE_PRIVATE);
