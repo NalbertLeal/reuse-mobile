@@ -48,7 +48,7 @@ public class BemRemoteServiceSimulacao implements BemRemoteService {
                 bem = new Bem();
 
                 bem.setId(1L);
-                bem.setDenominacao("Cadeira");
+                bem.setDenominacao("Computador HP");
                 bem.setNumTombamento(numTombamento);
 
             }

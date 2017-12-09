@@ -48,11 +48,7 @@ CREATE TABLE IF NOT EXISTS `anuncio` (
  `categoria_anuncio` TEXT,
  `quantidade_dias_ativo` INTEGER,
  `data_sincronizacao` TEXT,
- PRIMARY KEY(`id`),
- FOREIGN KEY(status_anuncio) REFERENCES status_anuncio(id),
- FOREIGN KEY(id_bem) REFERENCES bem(id),
- FOREIGN KEY(categoria_anuncio) REFERENCES categoria_anuncio(id),
- FOREIGN KEY(id_unidade) REFERENCES unidade(id)
+ PRIMARY KEY(`id`)
 );
 CREATE TABLE IF NOT EXISTS etiquetasAnuncio (
  id_etiqueta INTEGER,
@@ -65,8 +61,7 @@ CREATE TABLE IF NOT EXISTS `Usuario` (
  `id_unidade` INTEGER,
  `email` TEXT,
  `url_foto` TEXT,
- PRIMARY KEY(`id`),
- FOREIGN KEY(id_unidade) REFERENCES unidade(id)
+ PRIMARY KEY(`id`)
 );
 CREATE TABLE IF NOT EXISTS `Interesse` (
  `id` INTEGER UNIQUE,

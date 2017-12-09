@@ -17,6 +17,10 @@ public class CategoriaAnuncio {
      */
     private String descricao;
 
+    public CategoriaAnuncio(String identificador) {
+        this.identificador = identificador;
+    }
+
     public CategoriaAnuncio(String identificador, String descricao) {
         this.identificador = identificador;
         this.descricao = descricao;

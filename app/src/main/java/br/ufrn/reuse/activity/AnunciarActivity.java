@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -19,7 +18,6 @@ import java.util.List;
 
 
 import br.ufrn.reuse.Cadastro;
-import br.ufrn.reuse.LerTombamento;
 import br.ufrn.reuse.R;
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
 import br.ufrn.reuse.dominio.anuncio.CategoriaAnuncio;

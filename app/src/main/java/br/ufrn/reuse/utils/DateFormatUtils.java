@@ -16,7 +16,10 @@ public class DateFormatUtils {
     private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     public static String dateToString(Date data){
-        String dataString = data.toLocaleString();
+        String dataString = "";
+        if(data!=null) {
+            dataString = data.toLocaleString();
+        }
         return dataString;
     }
 

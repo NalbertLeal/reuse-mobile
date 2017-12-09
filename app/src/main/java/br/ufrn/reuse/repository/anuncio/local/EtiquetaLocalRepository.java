@@ -80,19 +80,16 @@ public class EtiquetaLocalRepository extends LocalRepository{
 
     public List<Etiqueta> findAllEtiquetasByAnuncioId(Long idAnuncio) {
 
-        SQLiteDatabase database = sqlHelper.getReadableDatabase();
-        Cursor rs = database.rawQuery(
-                    "SELECT etiqueta.id, etiqueta.nome " +
-                            "FROM etiquetasAnuncio " +
-                            "LEFT JOIN id_etiqueta etiqueta" +
-                            "WHERE id_anuncio =" + idAnuncio, null);
-
         List<Etiqueta> etiquetas = new ArrayList<Etiqueta>();
 
+        SQLiteDatabase database = sqlHelper.getReadableDatabase();
+        Cursor rs = database.rawQuery(
+                    "SELECT id_etiqueta " +
+                            "FROM etiquetasAnuncio " +
+                            "WHERE id_anuncio = " + idAnuncio, null);
+
         while(rs.moveToNext()){
-            long id = rs.getLong(1);
-            String nome = rs.getString(1);
-            Etiqueta etiqueta = new Etiqueta(id, nome);
+            Etiqueta etiqueta = new Etiqueta(rs.getLong(0));
             etiquetas.add(etiqueta);
         }
         rs.close();

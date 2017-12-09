@@ -33,13 +33,14 @@ public class AnuncioRepository {
     /**
      * Dependência do repositório local.
      */
-    private AnuncioLocalRepository localRepository;
+    private AnuncioLocalRepository anuncioLocalRepository;
 
     private final Context context;
 
     public AnuncioRepository(Context context) {
         this.context = context;
         this.remoteService = RemoteServiceConfig.getReuseServiceFactory().createAnuncioRemoteService(context);
+        this.anuncioLocalRepository = new AnuncioLocalRepository(context);
     }
 
     /**
@@ -60,11 +61,11 @@ public class AnuncioRepository {
      */
     public Anuncio findAnuncioById(Long idAnuncio) {
 
-        Anuncio anuncio = localRepository.findById(idAnuncio);
+        Anuncio anuncio = anuncioLocalRepository.findById(idAnuncio);
 
         if(anuncio != null && !SincronizacaoUtils.isSincronizado(anuncio.getDataSincronizacao(), QUANTIDADE_DIAS_SINCRONIZADO_ANUNCIO)){
             anuncio = remoteService.findById(idAnuncio);
-            localRepository.save(anuncio);
+            anuncioLocalRepository.save(anuncio);
         }
 
         return anuncio;
@@ -86,6 +87,7 @@ public class AnuncioRepository {
      * @return todos os anúncios publicados
      */
     public List<Anuncio> findAllAnunciosPublicados() {
+        //List<Anuncio> anuncios = new AnuncioRemoteService().findAll(null);
         return remoteService.findAllAnunciosPublicados();
     }
 
@@ -103,11 +105,47 @@ public class AnuncioRepository {
     }
 
     public List<Anuncio> findAllAnunciosPublicados(String textoBusca) {
-        return remoteService.findAllAnunciosPublicados(textoBusca);
+
+        List<Anuncio> anuncios = anuncioLocalRepository.findAllAnunciosPublicadosTexto(textoBusca);
+        //Caso ao menos um esteja desincronizado, atualiza toda a listaa
+        if(anuncios != null && !anuncios.isEmpty()){
+            for(Anuncio an : anuncios) {
+                if (!SincronizacaoUtils.isSincronizado(an.getDataSincronizacao(), QUANTIDADE_DIAS_SINCRONIZADO_ANUNCIO)){
+                    anuncios = remoteService.findAllAnunciosPublicados(textoBusca);
+                    saveAnuncios(anuncios);
+                }
+            }
+        }else {
+            anuncios = remoteService.findAllAnunciosPublicados(textoBusca);
+            saveAnuncios(anuncios);
+        }
+        return anuncios;
     }
 
     public List<Anuncio> findAllAnunciosPublicadosCategoria(List<CategoriaAnuncio> categoria) {
-        return remoteService.findAllAnunciosCategoria(categoria);
+        List<Anuncio> anuncios = anuncioLocalRepository.findAllAnunciosPublicadosCategoria(categoria);
+        //Caso ao menos um esteja desincronizado, ou não traga resultados, atualiza toda a lista
+        if(anuncios != null && !anuncios.isEmpty()){
+            for(Anuncio an : anuncios) {
+                if (!SincronizacaoUtils.isSincronizado(an.getDataSincronizacao(), QUANTIDADE_DIAS_SINCRONIZADO_ANUNCIO)){
+                    anuncios = remoteService.findAllAnunciosCategoria(categoria);
+                    saveAnuncios(anuncios);
+                }
+            }
+        }else {
+            anuncios = remoteService.findAllAnunciosCategoria(categoria);
+            saveAnuncios(anuncios);
+        }
+        return anuncios;
     }
 
+    private void saveAnuncio(Anuncio anuncio){
+        anuncioLocalRepository.delete(anuncio);
+        anuncioLocalRepository.save(anuncio);
+    }
+
+    private void saveAnuncios(List<Anuncio> anuncios){
+        anuncioLocalRepository.delete(anuncios);
+        anuncioLocalRepository.save(anuncios);
+    }
 }

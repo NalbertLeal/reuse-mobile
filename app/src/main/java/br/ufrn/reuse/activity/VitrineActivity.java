@@ -3,14 +3,10 @@ import br.ufrn.reuse.R;
 import br.ufrn.reuse.activity.vitrine.VitrineListAdapter;
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
 import br.ufrn.reuse.dominio.anuncio.CategoriaAnuncio;
-import br.ufrn.reuse.dominio.comum.Usuario;
 import br.ufrn.reuse.facade.ReuseFacadeImpl;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 
-import android.drm.DrmStore;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -25,15 +21,11 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class VitrineActivity extends AbstractActivity{
 
@@ -70,6 +62,7 @@ public class VitrineActivity extends AbstractActivity{
         GridView listView = (GridView) findViewById(R.id.lista_vitrine);
         listView.setAdapter(new VitrineListAdapter(this, anuncios));
         ((VitrineListAdapter)listView.getAdapter()).notifyDataSetChanged();
+        atualizaClickItensVitrine();
 
         //Seta a quantidade de resultados da busca inicial
         TextView textView = (TextView) findViewById(R.id.quantidade_resultados);
@@ -103,6 +96,8 @@ public class VitrineActivity extends AbstractActivity{
 
         if(textoBusca != null && !textoBusca.isEmpty()){
             updateConteudoVitrine(reuseFacade.findAllAnunciosPublicados(textoBusca));
+        }else{
+            updateConteudoVitrine(reuseFacade.findAllAnunciosPublicados());
         }
 
     }
@@ -138,7 +133,11 @@ public class VitrineActivity extends AbstractActivity{
                 CheckBox catCheck = (CheckBox) categoriasLayout.getChildAt(i);
                 catCheck.setOnClickListener((view) -> {
                     List<CategoriaAnuncio> categoriasSelecionadas = getCategoriasSelecionadas(categoriasLayout);
-                    updateConteudoVitrine(reuseFacade.findAllAnunciosPublicadosCategorias(categoriasSelecionadas));
+                    if(!categoriasSelecionadas.isEmpty()) {
+                        updateConteudoVitrine(reuseFacade.findAllAnunciosPublicadosCategorias(categoriasSelecionadas));
+                    }else{
+                        updateConteudoVitrine(reuseFacade.findAllAnunciosPublicados());
+                    }
                 });
             }
         }

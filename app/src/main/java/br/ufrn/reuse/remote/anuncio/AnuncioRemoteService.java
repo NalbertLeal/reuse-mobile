@@ -97,14 +97,13 @@ public class AnuncioRemoteService {
                 }
             }
         }else{
+            //return new AnuncioRemoteService().findAll(null);
             return findAll(null);
         }
         return anuncios;
     }
 
     public List<Anuncio> findAllAnunciosPublicados(String textoBusca) {
-
-        List<Anuncio> anuncios = new ArrayList<>();
 
         for (Anuncio anuncio: findAll(null)) {
             String nomeBem = anuncio.getBem() != null ?  anuncio.getBem().getDenominacao() : null;

@@ -19,6 +19,10 @@ public class StatusAnuncio {
 
     public StatusAnuncio(){}
 
+    public StatusAnuncio(String identificador) {
+        this.identificador = identificador;
+    }
+
     public StatusAnuncio(String identificador, String nome) {
         this.identificador = identificador;
         this.nome = nome;

@@ -12,6 +12,8 @@ public class Bem implements Serializable{
 
     public Bem(){}
 
+    public Bem(Long id){
+    }
     public Bem(Long id, String denominacao, int numTombamento){
         this.id = id;
         this.denominacao = denominacao;

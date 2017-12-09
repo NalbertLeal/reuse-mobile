@@ -1,7 +1,9 @@
 package br.ufrn.reuse.repository.anuncio.local;
 
 import android.content.Context;
-
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import br.ufrn.reuse.repository.local.config.DataAccessException;
 import br.ufrn.reuse.repository.local.config.SqlHelper;
 
 /**
@@ -15,5 +17,20 @@ public class LocalRepository {
     public LocalRepository(Context context) {
         this.context = context;
         this.sqlHelper = new SqlHelper(context);
+    }
+
+    protected void delete(String tabela, Long id) {
+
+        SQLiteDatabase database = sqlHelper.getWritableDatabase();
+
+        try {
+            database.beginTransaction();
+            database.execSQL("DELETE FROM " + tabela + " WHERE id == " + id + " ;");
+            database.setTransactionSuccessful();
+        } catch (SQLException ex) {
+            throw new DataAccessException(ex.getMessage() + ". Não utilize esse método para este tipo de objeto");
+        }finally {
+            database.endTransaction();
+        }
     }
 }

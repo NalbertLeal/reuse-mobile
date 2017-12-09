@@ -20,6 +20,9 @@ public class APISinfoServiceFactorySimulated implements APISinfoServiceFactory {
     private static APISinfoServiceFactory instance;
 
     public static APISinfoServiceFactory getInstance() {
+        if(instance==null){
+            instance = new APISinfoServiceFactorySimulated();
+        }
         return instance;
     }
 
