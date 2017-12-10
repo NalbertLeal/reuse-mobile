@@ -1,13 +1,8 @@
 package br.ufrn.reuse.repository.local.config;
 
-import android.content.res.Resources;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**

@@ -76,7 +76,7 @@ public class BemLocalRepository extends LocalRepository {
         while(rs.moveToNext()){
             Bem bem = new Bem(rs.getLong(0), rs.getString(1), rs.getInt(2));
             bem.setObservacoes(rs.getString(3));
-            bem.setDataSincronizacao(new SimpleDateFormat().parse(rs.getString(4)));
+            bem.setDataSincronizacao(SimpleDateFormat.getInstance().parse(rs.getString(4)));
             bens.add(bem);
         }
         rs.close();

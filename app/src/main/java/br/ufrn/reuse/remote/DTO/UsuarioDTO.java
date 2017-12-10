@@ -27,7 +27,7 @@ public class UsuarioDTO {
 
     @SerializedName("cpf-cnpj")
     @Expose
-    private Integer cpfCnpj;
+    private String cpfCnpj;
 
     @SerializedName("ativo")
     @Expose
@@ -77,11 +77,11 @@ public class UsuarioDTO {
         this.nomePessoa = nomePessoa;
     }
 
-    public Integer getCpfCnpj() {
+    public String getCpfCnpj() {
         return cpfCnpj;
     }
 
-    public void setCpfCnpj(Integer cpfCnpj) {
+    public void setCpfCnpj(String cpfCnpj) {
         this.cpfCnpj = cpfCnpj;
     }
 

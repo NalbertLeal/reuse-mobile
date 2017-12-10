@@ -5,7 +5,6 @@ import android.content.Context;
 import br.ufrn.reuse.dominio.patrimonio.Bem;
 import br.ufrn.reuse.remote.RemoteServiceConfig;
 import br.ufrn.reuse.remote.patrimonio.BemRemoteService;
-import br.ufrn.reuse.remote.patrimonio.BemRemoteServiceSimulacao;
 import br.ufrn.reuse.repository.patrimonio.local.BemLocalRepository;
 import br.ufrn.reuse.utils.SincronizacaoUtils;
 

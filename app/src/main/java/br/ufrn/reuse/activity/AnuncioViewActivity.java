@@ -18,44 +18,46 @@ public class AnuncioViewActivity extends AbstractActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anuncio_view);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("Anuncios");
+        iniciaBarraSuperior("Anuncios");
 
         reuseFacade = new ReuseFacadeImpl(this);
 
+        //TODO: CHAMAR COM ASYNCTASK
         Long idAnuncio = getIntent().getLongExtra("idAnuncio", 0);
         Anuncio anuncio = reuseFacade.findAnunciobyId(idAnuncio);
+
         if(anuncio!=null){
-            TextView text1 = (TextView)findViewById(R.id.view_descricao);
-            text1.setText(anuncio.getBem().getDenominacao());
+            TextView textViewDescricaoBem = (TextView)findViewById(R.id.view_descricao);
+            textViewDescricaoBem.setText(anuncio.getBem().getDenominacao());
 
             Button butInteresse = (Button)findViewById(R.id.demonstrar_interesse);
             butInteresse.setOnClickListener((view) -> {
                 butInteresse.setText("Interessado!");
-                //Color.parseColor("#6AB344")
                 butInteresse.setBackgroundColor(Color.GREEN);
             });
 
             String etiquetas = ".";
-            if(anuncio.getEtiquetas()!=null) {
+            if(anuncio.getEtiquetas()!= null) {
                 for (Etiqueta etiqueta : anuncio.getEtiquetas()) {
                     etiquetas = etiquetas + ". " + etiqueta.getNome();
                 }
             }
-            TextView text2 = (TextView)findViewById(R.id.view_etiqueta);
-            text2.setText(etiquetas);
 
-            TextView text3 = (TextView)findViewById(R.id.view_tombamento);
-            text3.setText("Tombamento nº: " + anuncio.getBem().getNumTombamento());
+            TextView textViewEtiqueta = (TextView)findViewById(R.id.view_etiqueta);
+            textViewEtiqueta.setText(etiquetas);
 
-            TextView text4 = (TextView)findViewById(R.id.view_publicacao);
-            text4.setText("Publicação: " + anuncio.getTextoPublicacao());
+            TextView textViewNumeroTombamento = (TextView)findViewById(R.id.view_tombamento);
+            textViewNumeroTombamento.setText("Tombamento nº: " + anuncio.getBem().getNumTombamento());
 
-            TextView text5 = (TextView)findViewById(R.id.view_ofertante);
-            text5.setText(anuncio.getUsuario() != null ? anuncio.getUsuario().getPessoa().getNome() : "Desconhecido");
+            TextView textViewPublicacao = (TextView)findViewById(R.id.view_publicacao);
+            textViewPublicacao.setText("Publicação: " + anuncio.getTextoPublicacao());
+
+            TextView textViewOfertante = (TextView)findViewById(R.id.view_ofertante);
+            textViewOfertante.setText(anuncio.getUsuario() != null ? anuncio.getUsuario().getPessoa().getNome() : "Desconhecido");
         }
+
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -67,4 +69,5 @@ public class AnuncioViewActivity extends AbstractActivity {
         }
         return true;
     }
+
 }

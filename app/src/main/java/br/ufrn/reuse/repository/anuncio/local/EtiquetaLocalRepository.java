@@ -8,10 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.ufrn.reuse.dominio.anuncio.CategoriaAnuncio;
 import br.ufrn.reuse.dominio.anuncio.Etiqueta;
 import br.ufrn.reuse.repository.local.config.DataAccessException;
-import br.ufrn.reuse.repository.local.config.SqlHelper;
 
 /**
  * Created by Daniel on 10/27/2017.

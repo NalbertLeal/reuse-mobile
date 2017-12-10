@@ -4,10 +4,8 @@ import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import br.ufrn.reuse.dominio.anuncio.Anuncio;
 import br.ufrn.reuse.dominio.anuncio.StatusAnuncio;
 import br.ufrn.reuse.repository.local.config.DataAccessException;
-import br.ufrn.reuse.utils.DateFormatUtils;
 
 /**
  * Created by Daniel on 10/27/2017.

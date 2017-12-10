@@ -4,7 +4,6 @@ import android.content.Context;
 
 import java.io.IOException;
 
-import br.ufrn.reuse.dominio.comum.Unidade;
 import br.ufrn.reuse.dominio.patrimonio.Bem;
 import br.ufrn.reuse.remote.DTO.BemDTO;
 import br.ufrn.reuse.remote.auth.TokenRepository;

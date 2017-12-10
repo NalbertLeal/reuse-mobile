@@ -1,6 +1,5 @@
 package br.ufrn.reuse.remote.patrimonio;
 
-import br.ufrn.reuse.dominio.patrimonio.Bem;
 import br.ufrn.reuse.remote.DTO.BemDTO;
 import retrofit2.Call;
 import retrofit2.http.GET;

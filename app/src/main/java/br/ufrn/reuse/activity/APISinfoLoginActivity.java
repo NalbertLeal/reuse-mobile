@@ -1,10 +1,6 @@
 package br.ufrn.reuse.activity;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import android.app.ProgressDialog;
 import android.content.Intent;

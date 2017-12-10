@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import br.ufrn.reuse.dominio.comum.Unidade;
-import br.ufrn.reuse.remote.auth.AuthRemoteService;
 import br.ufrn.reuse.remote.comum.UnidadeRemoteService;
 
 /**

@@ -8,4 +8,5 @@ import br.ufrn.reuse.dominio.comum.Usuario;
 
 public interface UsuarioRemoteService {
     Usuario findUsuarioById(Long id);
+    Usuario findUsuarioLogado();
 }

@@ -1,9 +1,6 @@
 package br.ufrn.reuse.activity.vitrine;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,17 +9,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import br.ufrn.reuse.R;
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
-import br.ufrn.reuse.utils.HttpUtils;
 import br.ufrn.reuse.utils.PegarImagemAnuncio;
 
 /**
@@ -68,10 +61,8 @@ public class VitrineListAdapter extends ArrayAdapter<Anuncio>{
         } */
         //imageView.setImageResource(R.drawable.ic_logo_reuse);
 
-        imageView.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // v.getContext().startActivity(new Intent(v.getContext(), NomeDaActivityDeAnuncio.class));
-            }
+        imageView.setOnClickListener(v -> {
+            // v.getContext().startActivity(new Intent(v.getContext(), NomeDaActivityDeAnuncio.class));
         });
 
         TextView text1 = (TextView) convertView.findViewById(R.id.itemVitrineDenominacao);

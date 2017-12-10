@@ -11,8 +11,6 @@ import java.lang.ref.WeakReference;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import br.ufrn.reuse.R;
-
 /**
  * Created by nalbertg on 07/11/2017.
  * @author Nalbert Gabriel Melo Leal

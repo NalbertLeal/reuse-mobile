@@ -10,7 +10,6 @@ import br.ufrn.reuse.dominio.comum.Usuario;
 import br.ufrn.reuse.remote.RemoteServiceConfig;
 import br.ufrn.reuse.remote.anuncio.InteresseRemoteService;
 import br.ufrn.reuse.repository.anuncio.local.InteresseLocalRepository;
-import br.ufrn.reuse.utils.SincronizacaoUtils;
 
 /**
  * Created by Daniel on 10/27/2017.

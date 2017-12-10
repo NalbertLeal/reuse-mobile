@@ -17,7 +17,7 @@ public class RemoteServiceConfig {
 
     public static APISinfoServiceFactory getAPISinfoServiceFactory(){
 
-        switch (REUSE_FACTORY){
+        switch (API_SINFO_FACTORY){
             case "IMPLEMENTACAO":
                 return APISinfoServiceFactoryImpl.getInstance();
             case "SIMULACAO":

@@ -30,4 +30,9 @@ public class UsuarioRemoteServiceSimulacaoImpl implements UsuarioRemoteService {
 
         return usuario;
     }
+
+    @Override
+    public Usuario findUsuarioLogado() {
+        return findUsuarioById(2l);
+    }
 }

@@ -1,6 +1,7 @@
 package br.ufrn.reuse.activity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -48,12 +49,9 @@ public class AnunciarActivity extends AbstractActivity implements ZXingScannerVi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_anunciar);
+        iniciaBarraSuperior("Anunciar");
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("Anunciar");
         reuseFacade = new ReuseFacadeImpl(this);
         anuncio = new Anuncio();
 
@@ -72,10 +70,19 @@ public class AnunciarActivity extends AbstractActivity implements ZXingScannerVi
         Button buttonCadastrar = (Button) findViewById(R.id.btn_avancar);
         buttonCadastrar.setOnClickListener((view) -> avancarCadastro());
 
-        List<CategoriaAnuncio> categoriaAnuncios = reuseFacade.findAllCategorias();
+        new AsyncTask<Void,Void,Void>(){
 
-        //Spinner spinnerCategoria = (Spinner) findViewById(R.id.spinner_categoria);
-        //spinnerCategoria.setAdapter(new ArrayAdapter<CategoriaAnuncio>(this,R.layout.support_simple_spinner_dropdown_item, categoriaAnuncios));
+            @Override
+            protected Void doInBackground(Void... params) {
+                List<CategoriaAnuncio> categoriaAnuncios = reuseFacade.findAllCategorias();
+
+                //Spinner spinnerCategoria = (Spinner) findViewById(R.id.spinner_categoria);
+                //spinnerCategoria.setAdapter(new ArrayAdapter<CategoriaAnuncio>(this,R.layout.support_simple_spinner_dropdown_item, categoriaAnuncios));
+
+                return null;
+            }
+        }.execute();
+
     }
 
     /**
@@ -101,18 +108,32 @@ public class AnunciarActivity extends AbstractActivity implements ZXingScannerVi
     private void carregarBem(int tombamento) {
         if(tombamento != 0) {
 
-            bem = reuseFacade.findBemByNumTombamento(tombamento);
+            new AsyncTask<Void,Void,Void>(){
+                @Override
+                protected Void doInBackground(Void... params) {
 
-            if(bem != null) {
+                    bem = reuseFacade.findBemByNumTombamento(tombamento);
 
-                anuncio.setBem(bem);
+                    if(bem != null) {
 
-                TextView textViewDenominacao = (TextView) findViewById(R.id.txt_denominacao);
-                textViewDenominacao.setText(bem.getDenominacao());
+                        anuncio.setBem(bem);
 
-                TextView textViewTombamento = (TextView) findViewById(R.id.txt_tombamento);
-                textViewTombamento.setText(String.valueOf(bem.getNumTombamento()));
-            }
+                        runOnUiThread(()-> {
+                            TextView textViewDenominacao = (TextView) findViewById(R.id.txt_denominacao);
+                            textViewDenominacao.setText(bem.getDenominacao());
+
+                            TextView textViewTombamento = (TextView) findViewById(R.id.txt_tombamento);
+                            textViewTombamento.setText(String.valueOf(bem.getNumTombamento()));
+                        });
+
+                    }else{
+                        showErrorOnToast("Bem não encontrado.", 10000);
+                    }
+
+                    return null;
+                }
+            }.execute();
+
         }
     }
 
@@ -130,15 +151,24 @@ public class AnunciarActivity extends AbstractActivity implements ZXingScannerVi
         anuncio.setTextoPublicacao(" ");
 
         List<String> erros = new ArrayList<>();
-
         //TODO: List<String> erros = anuncio.validarCadastro();
 
         if(erros.isEmpty()){
-            reuseFacade.cadastrar(anuncio);
-            startActivity(new Intent(this,MeusAnunciosActivity.class));
-        }
+            //TODO: CHAMAR COM ASYNC TASK
+            new AsyncTask<Void,Void,Void>(){
 
-        //TODO: lançar os erros para a tela
+                @Override
+                protected Void doInBackground(Void... params) {
+                    reuseFacade.cadastrar(anuncio);
+                    startActivity(new Intent(AnunciarActivity.this,MeusAnunciosActivity.class));
+
+                    return null;
+                }
+            }.execute();
+
+        } else {
+            erros.forEach(erro -> showErrorOnToast(erro,10000));
+        }
 
     }
 

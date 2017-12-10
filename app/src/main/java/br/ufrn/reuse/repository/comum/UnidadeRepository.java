@@ -5,7 +5,6 @@ import android.content.Context;
 import br.ufrn.reuse.dominio.comum.Unidade;
 import br.ufrn.reuse.remote.RemoteServiceConfig;
 import br.ufrn.reuse.remote.comum.UnidadeRemoteService;
-import br.ufrn.reuse.remote.comum.impl.UnidadeRemoteServiceSimulacaoImpl;
 
 /**
  * Created by Daniel on 10/27/2017.

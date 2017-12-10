@@ -1,14 +1,12 @@
 package br.ufrn.reuse.facade;
 
 import android.content.Context;
-import android.os.AsyncTask;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import br.ufrn.reuse.activity.APISinfoLoginActivity;
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
 import br.ufrn.reuse.dominio.anuncio.CategoriaAnuncio;
 import br.ufrn.reuse.dominio.anuncio.Etiqueta;
@@ -196,8 +194,14 @@ public class ReuseFacadeImpl implements ReuseFacade {
         return false;
     }
 
+    @Override
     public Usuario findUsuarioById(Long idUsuario) {
-        return comumFacade.findUsuarioById(idUsuario); //new ComumRemoteService().findUsuarioById(isUsuario);
+        return comumFacade.findUsuarioById(idUsuario);
+    }
+
+    @Override
+    public Usuario findUsuarioLogado(){
+        return comumFacade.findUsuarioLogado();
     }
 
 }

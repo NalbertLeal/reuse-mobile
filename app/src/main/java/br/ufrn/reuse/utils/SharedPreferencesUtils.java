@@ -14,5 +14,4 @@ public class SharedPreferencesUtils {
         return context.getSharedPreferences(name, Activity.MODE_PRIVATE);
     }
 
-
 }

@@ -4,9 +4,7 @@ import android.content.Context;
 
 import br.ufrn.reuse.remote.comum.UnidadeRemoteService;
 import br.ufrn.reuse.remote.comum.UsuarioRemoteService;
-import br.ufrn.reuse.remote.comum.impl.UnidadeRemoteServiceImpl;
 import br.ufrn.reuse.remote.comum.impl.UnidadeRemoteServiceSimulacaoImpl;
-import br.ufrn.reuse.remote.comum.impl.UsuarioRemoteServiceImpl;
 import br.ufrn.reuse.remote.comum.impl.UsuarioRemoteServiceSimulacaoImpl;
 import br.ufrn.reuse.remote.patrimonio.BemRemoteService;
 import br.ufrn.reuse.remote.patrimonio.BemRemoteServiceSimulacao;

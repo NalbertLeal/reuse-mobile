@@ -7,8 +7,9 @@ import java.net.URL;
 
 /**
  * Pega o retorno de uma URL com string.
- * @author Nalbert Gabriel Melo Leal
- * @Deniel Smith
+ *
+ * @author Nalbert Gabriel Melo Leal, Daniel Smith
+ *
  */
 public class HttpUtils {
 

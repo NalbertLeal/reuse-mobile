@@ -8,9 +8,14 @@ import com.google.gson.Gson;
 
 public class JsonParser {
 
-    public static <T> T fromJson(String body, Class<T> dtoType){
+    public static <T> T fromJson(String jsonObject, Class<T> dtoType){
         Gson gson = new Gson();
-        return gson.fromJson(body, dtoType);
+        return gson.fromJson(jsonObject, dtoType);
+    }
+
+    public static String toJson(Object object){
+        Gson gson = new Gson();
+        return gson.toJson(object);
     }
 
 }

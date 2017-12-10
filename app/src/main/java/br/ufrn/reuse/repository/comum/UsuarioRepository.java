@@ -5,7 +5,6 @@ import android.content.Context;
 import br.ufrn.reuse.dominio.comum.Usuario;
 import br.ufrn.reuse.remote.RemoteServiceConfig;
 import br.ufrn.reuse.remote.comum.UsuarioRemoteService;
-import br.ufrn.reuse.remote.comum.impl.UsuarioRemoteServiceSimulacaoImpl;
 
 /**
  * Created by Daniel on 10/27/2017.
@@ -24,4 +23,9 @@ public class UsuarioRepository {
     public Usuario findUsuarioById(Long id) {
         return remoteService.findUsuarioById(id);
     }
+
+    public Usuario findUsuarioLogado(){
+        return this.remoteService.findUsuarioLogado();
+    }
+
 }

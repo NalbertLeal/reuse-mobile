@@ -35,6 +35,7 @@ public interface ReuseFacade {
 
     boolean autenticar(String authorizationCode) throws IOException;
 
-    Usuario findUsuarioById(Long idUsuario);
+    abstract Usuario findUsuarioById(Long idUsuario);
 
+    Usuario findUsuarioLogado();
 }

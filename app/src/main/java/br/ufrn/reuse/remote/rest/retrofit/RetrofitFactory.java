@@ -1,17 +1,9 @@
 package br.ufrn.reuse.remote.rest.retrofit;
 
-import java.io.IOException;
-
-import br.ufrn.reuse.remote.auth.AuthRemoteService;
 import br.ufrn.reuse.remote.rest.ApiConfig;
-import br.ufrn.reuse.remote.DTO.AuthorizationDTO;
 import br.ufrn.reuse.remote.rest.ClientDetails;
-import br.ufrn.reuse.remote.rest.OAuth2Autenticator;
-import br.ufrn.reuse.repository.local.config.DataAccessException;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

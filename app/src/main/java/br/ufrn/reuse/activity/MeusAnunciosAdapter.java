@@ -51,10 +51,8 @@ public class MeusAnunciosAdapter extends ArrayAdapter<Anuncio> {
         }
         pegarImg.execute(urlFotosMock.get(randomNumber));
 
-        imageView.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // v.getContext().startActivity(new Intent(v.getContext(), NomeDaActivityDeAnuncio.class));
-            }
+        imageView.setOnClickListener(v -> {
+            // v.getContext().startActivity(new Intent(v.getContext(), NomeDaActivityDeAnuncio.class));
         });
 
         TextView tombamento = (TextView) convertView.findViewById(R.id.anuncio_tombamento);

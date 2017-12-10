@@ -94,13 +94,10 @@ public class LerTombamento extends AbstractActivity implements ZXingScannerView.
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                             if (shouldShowRequestPermissionRationale(CAMERA)) {
                                 showMessageOKCancel("Você precisa permitir o acesso a câmera",
-                                        new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                                    requestPermissions(new String[]{CAMERA},
-                                                            REQUEST_CAMERA);
-                                                }
+                                        (dialog, which) -> {
+                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                                requestPermissions(new String[]{CAMERA},
+                                                        REQUEST_CAMERA);
                                             }
                                         });
                                 return;
@@ -136,12 +133,9 @@ public class LerTombamento extends AbstractActivity implements ZXingScannerView.
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Tombamento");
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                scannerView.resumeCameraPreview(LerTombamento.this);
-                finish();
-            }
+        builder.setPositiveButton("OK", (dialog, which) -> {
+            scannerView.resumeCameraPreview(LerTombamento.this);
+            finish();
         });
         builder.setMessage(result.getText());
         AlertDialog alert1 = builder.create();

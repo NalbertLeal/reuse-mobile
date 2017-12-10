@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.ufrn.reuse.dominio.anuncio.Anuncio;
-import br.ufrn.reuse.dominio.anuncio.Etiqueta;
 import br.ufrn.reuse.dominio.anuncio.Interesse;
 import br.ufrn.reuse.dominio.comum.Usuario;
 import br.ufrn.reuse.repository.local.config.DataAccessException;

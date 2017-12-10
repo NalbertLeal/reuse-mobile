@@ -1,11 +1,8 @@
 package br.ufrn.reuse.utils;
 
-import android.util.Log;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Logger;
 
 /**
  * Created by Esther on 03/12/2017.

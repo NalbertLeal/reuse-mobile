@@ -7,6 +7,7 @@ import br.ufrn.reuse.facade.ReuseFacadeImpl;
 
 import android.content.Intent;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,8 +16,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -55,18 +54,30 @@ public class VitrineActivity extends AbstractActivity{
 
         //Inicializa as categorias de acordo com as existentes para usar como filtros na vitrine
         geraCategorias();
-        
-        List<Anuncio> anuncios = reuseFacade.findAllAnunciosPublicados();
 
-        //Setar o adater ao gridView, o atualiza
-        GridView listView = (GridView) findViewById(R.id.lista_vitrine);
-        listView.setAdapter(new VitrineListAdapter(this, anuncios));
-        ((VitrineListAdapter)listView.getAdapter()).notifyDataSetChanged();
-        atualizaClickItensVitrine();
+        //Busca os anúncios e mostra-os na vitrine.
+        new AsyncTask<Void,Void,Void>(){
 
-        //Seta a quantidade de resultados da busca inicial
-        TextView textView = (TextView) findViewById(R.id.quantidade_resultados);
-        textView.setText(anuncios.size() + " Anúncio(s) encontrados");
+            @Override
+            protected Void doInBackground(Void... params) {
+
+                List<Anuncio> anuncios = reuseFacade.findAllAnunciosPublicados();
+
+                runOnUiThread(() -> {
+                    //Setar o adater ao gridView, o atualiza
+                    GridView listView = (GridView) findViewById(R.id.lista_vitrine);
+                    listView.setAdapter(new VitrineListAdapter(VitrineActivity.this, anuncios));
+                    ((VitrineListAdapter)listView.getAdapter()).notifyDataSetChanged();
+                    atualizaClickItensVitrine();
+
+                    //Seta a quantidade de resultados da busca inicial
+                    TextView textView = (TextView) findViewById(R.id.quantidade_resultados);
+                    textView.setText(anuncios.size() + " Anúncio(s) encontrados");
+                });
+
+                return null;
+            }
+        }.execute();
 
         //Setar a busca tanto pelo botão buscar como pelo enter na caixa de texto
         Button buttonBuscar = (Button) findViewById(R.id.button_buscar);
@@ -75,15 +86,12 @@ public class VitrineActivity extends AbstractActivity{
         });
 
         TextView textBusca = (TextView) findViewById(R.id.text_busca);
-        textBusca.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if(event.getAction()==KeyEvent.ACTION_DOWN && keyCode==KeyEvent.KEYCODE_ENTER){
-                    buscar();
-                    return true;
-                }
-                return false;
+        textBusca.setOnKeyListener((v, keyCode, event) -> {
+            if(event.getAction()==KeyEvent.ACTION_DOWN && keyCode==KeyEvent.KEYCODE_ENTER){
+                buscar();
+                return true;
             }
+            return false;
         });
 
     }
@@ -164,13 +172,10 @@ public class VitrineActivity extends AbstractActivity{
 
     private void atualizaClickItensVitrine(){
 
-        getGridVitrine().setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Object listItem = getGridVitrine().getItemAtPosition(position);
-                if(listItem instanceof Anuncio){
-                    iniciaAnuncioView(((Anuncio)listItem).getId());
-                }
+        getGridVitrine().setOnItemClickListener((parent, view, position, id) -> {
+            Object listItem = getGridVitrine().getItemAtPosition(position);
+            if(listItem instanceof Anuncio){
+                iniciaAnuncioView(((Anuncio)listItem).getId());
             }
         });
     }
